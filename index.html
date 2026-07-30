@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Aplica o tema antes do primeiro paint pra não piscar o tema errado.
+      // Padrão é escuro; só fica claro se o usuário escolheu isso antes.
+      try {
+        if (localStorage.getItem('kargo-theme') !== 'light') {
+          document.documentElement.classList.add('dark')
+        }
+      } catch (e) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
+    <link rel="icon" type="image/png" href="/KargoLogo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kargo</title>
+    <meta
+      name="description"
+      content="O Kargo controla veículos, combustível, documentação, manutenção e almoxarifado de obra em um único painel — acessível de qualquer computador ou celular."
+    />
+    <meta property="og:title" content="Kargo — Gestão de Frota e Obras" />
+    <meta
+      property="og:description"
+      content="Substitua planilha, papel e controle manual por um painel único para frota e obras."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

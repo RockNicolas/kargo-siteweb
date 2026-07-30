@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Tema escuro acionado por classe (.dark na <html>), não por prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Oswald", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Grafite/asfalto — neutro escuro do sistema */
+  --color-asphalt-950: #0b0d0f;
+  --color-asphalt-900: #14171a;
+  --color-asphalt-800: #23262b;
+  --color-asphalt-700: #383d44;
+  --color-asphalt-600: #494f57;
+  --color-asphalt-500: #6b7178;
+  --color-asphalt-400: #8a9099;
+  --color-asphalt-300: #b7bcc2;
+  --color-asphalt-200: #d9dcdf;
+
+  /* Concreto — neutro claro do sistema */
+  --color-concrete-50: #f5f6f6;
+  --color-concrete-100: #eef0f1;
+
+  /* Sinalização — cor de destaque (laranja de segurança) */
+  --color-signal-600: #c7440a;
+  --color-signal-500: #f0530c;
+  --color-signal-400: #ff7a3d;
+  --color-signal-100: #fde4d6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-concrete-50);
+}
+
+.dark body {
+  background-color: var(--color-asphalt-950);
+}
+
+/* Faixa de sinalização (referência às faixas de segurança de obra) */
+.stripe-divider {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-signal-500),
+    var(--color-signal-500) 16px,
+    var(--color-asphalt-950) 16px,
+    var(--color-asphalt-950) 32px
+  );
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
