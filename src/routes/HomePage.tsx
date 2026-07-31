@@ -1,4 +1,4 @@
-import { Hero } from '../components/Hero'
+import { Intro } from '../components/Intro'
 import { PainPoints } from '../components/PainPoints'
 import { Features } from '../components/Features'
 import { SiengeSpotlight } from '../components/SiengeSpotlight'
@@ -9,7 +9,7 @@ import { CTASection } from '../components/CTASection'
 export function HomePage() {
   return (
     <>
-      <Hero />
+      <Intro />
       <PainPoints />
       <Features />
       <SiengeSpotlight />

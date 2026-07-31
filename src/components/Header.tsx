@@ -5,16 +5,28 @@ import { Container } from './ui/Container'
 import { navLinks } from '../data/content'
 import { useTheme } from '../hooks/useTheme'
 
+const HEADER_HEIGHT = 80
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [overIntro, setOverIntro] = useState(false)
   const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8)
+
+      const introEl = document.getElementById('intro')
+      setOverIntro(introEl ? introEl.getBoundingClientRect().bottom > HEADER_HEIGHT : false)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -36,15 +48,15 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all ${
-        scrolled
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        !overIntro && scrolled
           ? 'bg-concrete-50/90 shadow-sm backdrop-blur-md dark:bg-asphalt-950/90'
           : 'bg-transparent'
       }`}
     >
       <Container>
         <div className="flex h-16 items-center justify-between sm:h-20">
-          <a href="#top" className="shrink-0">
+          <a href="#intro" className="shrink-0">
             <Logo />
           </a>
 

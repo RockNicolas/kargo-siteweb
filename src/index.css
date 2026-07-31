@@ -71,8 +71,41 @@ body {
   animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Entrada do notebook na intro — dois pulinhos nítidos (como uma bolinha
+   quicando até parar) ao carregar, antes de o scroll assumir a aproximação. */
+@keyframes notebook-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.5);
+  }
+  38% {
+    opacity: 1;
+    transform: translateY(-22px) scale(1.1);
+  }
+  55% {
+    transform: translateY(10px) scale(0.94);
+  }
+  72% {
+    transform: translateY(-9px) scale(1.04);
+  }
+  86% {
+    transform: translateY(3px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-notebook-pop {
+  animation: notebook-pop 1.2s ease-in-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up {
+    animation: none;
+  }
+  .animate-notebook-pop {
     animation: none;
   }
   * {

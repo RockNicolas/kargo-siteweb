@@ -10,8 +10,7 @@ import {
 } from '../data/content'
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
-  const className =
-    'text-base text-asphalt-400 transition hover:text-signal-400'
+  const className = 'text-base text-asphalt-400 transition hover:text-signal-400'
 
   if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
     return (
