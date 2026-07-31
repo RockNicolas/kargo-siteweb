@@ -48,9 +48,9 @@ export function SiengeSpotlight() {
 
           <Reveal delay={120}>
             <div className="rounded-2xl border border-asphalt-800 bg-asphalt-900/60 p-6 sm:p-8">
-              <div className="flex items-center justify-between rounded-xl bg-asphalt-950 p-4">
-                <span className="font-mono text-xs text-asphalt-300">Obra Residencial Norte</span>
-                <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 font-mono text-[11px] text-emerald-400">
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-asphalt-950 p-4">
+                <span className="min-w-0 font-mono text-xs text-asphalt-300">Obra Residencial Norte</span>
+                <span className="shrink-0 rounded-full bg-emerald-500/15 px-2.5 py-1 font-mono text-[11px] text-emerald-400">
                   Sincronizado
                 </span>
               </div>
@@ -58,16 +58,16 @@ export function SiengeSpotlight() {
                 {stockPreview.map(([item, qty]) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between rounded-lg bg-asphalt-950/60 px-4 py-3 text-sm"
+                    className="flex items-center justify-between gap-3 rounded-lg bg-asphalt-950/60 px-4 py-3 text-sm"
                   >
-                    <span className="text-asphalt-300">{item}</span>
-                    <span className="font-mono font-medium text-white">{qty}</span>
+                    <span className="min-w-0 truncate text-asphalt-300">{item}</span>
+                    <span className="shrink-0 font-mono font-medium text-white">{qty}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 flex items-center gap-2 font-mono text-[11px] text-asphalt-500">
-                <RefreshCw className="h-3.5 w-3.5" />
-                Kargo ↔ Sienge · última sincronização há 2 min
+              <div className="mt-4 flex items-start gap-2 font-mono text-[11px] leading-relaxed text-asphalt-500 sm:items-center">
+                <RefreshCw className="mt-0.5 h-3.5 w-3.5 shrink-0 sm:mt-0" />
+                <span>Kargo ↔ Sienge · última sincronização há 2 min</span>
               </div>
             </div>
           </Reveal>

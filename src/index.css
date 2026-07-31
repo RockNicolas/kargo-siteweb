@@ -32,11 +32,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--color-concrete-50);
+  overflow-x: clip;
 }
 
 .dark body {

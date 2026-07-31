@@ -24,6 +24,16 @@ export function Header() {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const onChange = () => {
+      if (mq.matches) setIsOpen(false)
+    }
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
@@ -57,7 +67,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-asphalt-700 transition hover:bg-asphalt-950/5 dark:text-asphalt-200 dark:hover:bg-white/5"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-asphalt-700 transition hover:bg-asphalt-950/5 dark:text-asphalt-200 dark:hover:bg-white/5"
               aria-label={theme === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
             >
               <Sun className="hidden h-5 w-5 dark:block" />
@@ -74,7 +84,7 @@ export function Header() {
 
             <button
               onClick={() => setIsOpen((v) => !v)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-asphalt-700 dark:text-asphalt-200 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-asphalt-700 dark:text-asphalt-200 lg:hidden"
               aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={isOpen}
             >
@@ -85,7 +95,7 @@ export function Header() {
       </Container>
 
       {isOpen && (
-        <div className="border-t border-asphalt-200 bg-concrete-50 dark:border-asphalt-800 dark:bg-asphalt-950 lg:hidden">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-asphalt-200 bg-concrete-50 dark:border-asphalt-800 dark:bg-asphalt-950 lg:hidden">
           <Container>
             <nav className="flex flex-col gap-1 py-4">
               {navLinks.map((link) => (

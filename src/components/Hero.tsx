@@ -25,7 +25,7 @@ export function Hero() {
             </span>
 
             <h1
-              className="animate-fade-up mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-asphalt-950 dark:text-white sm:text-5xl lg:text-[3.4rem]"
+              className="animate-fade-up mt-6 font-display text-[clamp(1.875rem,6.5vw,3.4rem)] font-semibold leading-[1.08] tracking-tight text-asphalt-950 dark:text-white"
               style={{ animationDelay: '90ms' }}
             >
               Sua frota e suas obras, sob controle em um único painel.

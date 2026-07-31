@@ -20,6 +20,36 @@ export const navLinks = [
   { label: 'Contato', href: '#contato' },
 ]
 
+export const contact = {
+  email: 'supportkargo@gmail.com',
+  whatsapp: '+5585997665652',
+  phoneDisplay: '(85) 99766-5652',
+  address: {
+    street: 'Avenida Santos Dumont 1740',
+    city: '60140-160 Fortaleza, Ceará',
+  },
+}
+
+export const footerAboutLinks = [
+  { label: 'Como funciona', href: '/#como-funciona' },
+  { label: 'Módulos', href: '/modulos' },
+  { label: 'Integração Sienge', href: '/#sienge' },
+  { label: 'Perfis de acesso', href: '/#perfis' },
+  { label: 'Contato', href: '/#contato' },
+]
+
+export const footerSupportLinks = [
+  { label: 'Solicitar demonstração', href: '/#contato' },
+  { label: 'Falar no WhatsApp', href: `https://wa.me/${contact.whatsapp}` },
+]
+
+// Preencha com as URLs reais quando tiver; links vazios não aparecem no rodapé.
+export const socialLinks = [
+  { label: 'Instagram', href: '' },
+  { label: 'LinkedIn', href: '' },
+  { label: 'YouTube', href: '' },
+] as const
+
 export interface ModuleItem {
   icon: LucideIcon
   title: string

@@ -6,7 +6,7 @@ import { painPoints } from '../data/content'
 
 export function PainPoints() {
   return (
-    <section className="bg-concrete-100 py-20 dark:bg-asphalt-900 sm:py-28">
+    <section id="como-funciona" className="bg-concrete-100 py-20 dark:bg-asphalt-900 sm:py-28">
       <Container>
         <Reveal>
           <SectionHeading
