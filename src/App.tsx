@@ -4,7 +4,7 @@ import { Footer } from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white transition-colors duration-300 dark:bg-asphalt-950">
+    <div className="min-h-screen bg-white transition-colors duration-300 dark:bg-black">
       <ScrollRestoration />
       <Header />
       <main>

@@ -37,12 +37,12 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-concrete-50);
+  background-color: #ffffff;
   overflow-x: clip;
 }
 
 .dark body {
-  background-color: var(--color-asphalt-950);
+  background-color: #000000;
 }
 
 /* Faixa de sinalização (referência às faixas de segurança de obra) */

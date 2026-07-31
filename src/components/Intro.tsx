@@ -9,6 +9,11 @@ function smoothstep(edge0: number, edge1: number, x: number) {
   return t * t * (3 - 2 * t)
 }
 
+function smootherstep(edge0: number, edge1: number, x: number) {
+  const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)))
+  return t * t * t * (t * (t * 6 - 15) + 10)
+}
+
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false)
 
@@ -113,35 +118,50 @@ function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   return progress
 }
 
-// Um par dark/dark photo — a troca entre eles por tema é sempre por
-// crossfade em CSS (evento discreto de clique, então pode ter transition).
-// A opacidade do PAR inteiro (prop `opacity`) já vem calculada quadro a
-// quadro a partir do scroll, então essa não leva transition — senão o
-// crossfade entre ângulos ficaria atrasado em relação ao scroll.
+// Um ângulo (angulado ou frontal) — só a foto do tema ativo, pra nunca
+// misturar painel claro com escuro no dissolve do scroll. A troca de tema
+// (clique) faz crossfade entre as duas imgs; a opacidade do ângulo vem do
+// scroll sem CSS transition.
 function NotebookPhotoPair({
   darkSrc,
   lightSrc,
   opacity,
+  blur = 0,
+  scale = 1,
 }: {
   darkSrc: string
   lightSrc: string
   opacity: number
+  blur?: number
+  scale?: number
 }) {
   const isDark = useIsDark()
 
+  if (opacity < 0.004) return null
+
   return (
-    <div className="absolute inset-0" style={{ opacity }}>
+    <div
+      className="absolute inset-0"
+      style={{
+        opacity,
+        transform: scale === 1 ? undefined : `scale(${scale})`,
+        filter: blur > 0.15 ? `blur(${blur}px)` : undefined,
+        willChange: blur > 0.15 ? 'opacity, filter, transform' : 'opacity',
+      }}
+    >
       <img
         src={darkSrc}
         alt="Notebook exibindo o painel do Kargo"
-        className="absolute inset-0 h-full w-full object-contain transition-opacity duration-500"
+        className="absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ease-out"
         style={{ opacity: isDark ? 1 : 0 }}
+        draggable={false}
       />
       <img
         src={lightSrc}
         alt="Notebook exibindo o painel do Kargo"
-        className="absolute inset-0 h-full w-full object-contain transition-opacity duration-500"
+        className="absolute inset-0 h-full w-full object-contain transition-opacity duration-500 ease-out"
         style={{ opacity: isDark ? 0 : 1 }}
+        draggable={false}
       />
     </div>
   )
@@ -217,41 +237,29 @@ function IntroGlow() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal-400/10 blur-3xl transition-colors duration-300 dark:bg-signal-500/20"
+      className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal-400/5 blur-3xl transition-colors duration-300 dark:bg-signal-500/20"
     />
   )
 }
 
-// Quatro fases que não se sobrepõem, pra cada uma ficar "limpa" na sua janela
-// do scroll: 1) cresce um pouco (foto angulada, ainda ancorada à direita);
-// 2) com o tamanho já parado, troca rápido pra foto frontal — janela curta
-// pra não demorar na dupla exposição do crossfade; 3) já como frontal, dá um
-// zoom contido (o quanto cabe sem passar por cima do texto); 4) solta essa
-// contenção e vai pro centro de verdade da seção — o texto ao lado esmaece
-// nessa última janela porque é literalmente por cima dele que a foto passa.
+// Movimento contínuo tipo câmera: crescer → dissolve longo (ângulo→frente)
+// misturado no zoom → centralizar. Sem pausa entre fases.
 const GROW_SCALE = 1.18
-const GROW_END = 0.25
+const GROW_END = 0.32
 
-const SWAP_START = 0.32
-const SWAP_END = 0.48
+// Dissolve longo e suave — overlap com grow e zoom pra não parecer corte.
+const SWAP_START = 0.18
+const SWAP_END = 0.58
+const DISSOLVE_BLUR_PX = 7
 
-// Zoom deliberadamente contido: pra manter a borda direita sem cortar, o
-// deslize pra esquerda cresce o DOBRO do ganho de largura (compensa o próprio
-// crescimento simétrico da escala, mais o deslize em si) — então um zoom
-// grande demais avançaria por cima do texto. 1.4 é o teto que ainda cabe
-// com folga na coluna de até 580px sem tocar o conteúdo à esquerda.
 const ZOOM_SCALE = 1.4
-const ZOOM_START = SWAP_END
-const ZOOM_END = 0.72
+const ZOOM_START = 0.38
+const ZOOM_END = 0.74
 
-// Rede de segurança da fase de zoom contido: mesmo com a conta acima, nunca
-// deslizar mais que isso antes de soltar pro centro de verdade.
 const MAX_SHIFT_PX = 160
 
-// Fase final: escala um pouco mais (com margem de sobra, já que centralizada
-// na seção inteira não corre risco de cortar) e desliza até o centro real.
 const CENTER_SCALE = 1.65
-const CENTER_START = 0.8
+const CENTER_START = 0.78
 const CENTER_END = 1
 
 function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; rowWidth: number }) {
@@ -260,24 +268,25 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
   const box = useElementRect(boxRef)
 
   const captionOpacity = 1 - smoothstep(0, 0.2, p)
-  const centerT = smoothstep(CENTER_START, CENTER_END, p)
+  const centerT = smootherstep(CENTER_START, CENTER_END, p)
   const scale =
     1 +
-    (GROW_SCALE - 1) * smoothstep(0, GROW_END, p) +
-    (ZOOM_SCALE - GROW_SCALE) * smoothstep(ZOOM_START, ZOOM_END, p) +
+    (GROW_SCALE - 1) * smootherstep(0, GROW_END, p) +
+    (ZOOM_SCALE - GROW_SCALE) * smootherstep(ZOOM_START, ZOOM_END, p) +
     (CENTER_SCALE - ZOOM_SCALE) * centerT
-  const swap = smoothstep(SWAP_START, SWAP_END, p)
 
-  // A foto nasce ancorada à direita (`sm:justify-end`). Ao crescer a partir do
-  // próprio centro (`transformOrigin` 50%), metade do ganho de largura vazaria
-  // pra fora da tela à direita — desliza pra a esquerda exatamente esse tanto,
-  // então a borda direita não passa de onde já estava em repouso. Só no
-  // desktop: no mobile ela já nasce centralizada.
+  // Dissolve cinematográfico: curva S longa + blur no meio + leve parallax
+  // de escala entre as duas fotos (como rack focus / morph de câmera).
+  const swap = smootherstep(SWAP_START, SWAP_END, p)
+  const dissolvePeak = Math.sin(Math.PI * swap)
+  const dissolveBlur = DISSOLVE_BLUR_PX * dissolvePeak
+  const angledOpacity = 1 - swap
+  const frontOpacity = swap
+  const angledLayerScale = 1 + 0.03 * swap
+  const frontLayerScale = 0.97 + 0.03 * swap
+
   const clipShiftX = isDesktop ? Math.max(-(box.width * (scale - 1)) / 2, -MAX_SHIFT_PX) : 0
 
-  // Na fase final, troca essa contenção por um alvo medido de verdade: o
-  // centro horizontal da SEÇÃO inteira (as duas colunas), não só da coluna
-  // da foto — por isso ela passa por cima de onde o texto está.
   let shiftX = clipShiftX
   if (isDesktop && centerT > 0 && rowWidth > 0 && box.width > 0) {
     const boxCenterX = box.left + box.width / 2
@@ -309,11 +318,21 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
             filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.55))',
           }}
         >
-          <NotebookPhotoPair darkSrc="/notebook-dark.webp" lightSrc="/notebook-light.webp" opacity={1 - swap} />
           <NotebookPhotoPair
-            darkSrc="/notebook-front-dark.webp"
-            lightSrc="/notebook-front-light.webp"
-            opacity={swap}
+            darkSrc="/notebook-dark.webp"
+            lightSrc="/notebook-light.webp"
+            opacity={angledOpacity}
+            blur={dissolveBlur}
+            scale={angledLayerScale}
+          />
+          {/* Front assets: naming no arquivo está invertido em relação ao
+              painel (front-light = UI escura, front-dark = UI clara). */}
+          <NotebookPhotoPair
+            darkSrc="/notebook-front-light.webp"
+            lightSrc="/notebook-front-dark.webp"
+            opacity={frontOpacity}
+            blur={dissolveBlur}
+            scale={frontLayerScale}
           />
         </div>
       </div>
@@ -332,13 +351,13 @@ export function Intro() {
   // Some junto com o esmaecimento pro centro do NotebookRig (mesma janela
   // CENTER_START–CENTER_END) — só no desktop, onde a foto de fato passa por
   // cima desse espaço; no mobile (1 coluna) ela nunca invade o texto.
-  const textOpacity = isDesktop ? 1 - 0.82 * smoothstep(CENTER_START, CENTER_END, progress) : 1
+  const textOpacity = isDesktop ? 1 - 0.82 * smootherstep(CENTER_START, CENTER_END, progress) : 1
 
   if (reducedMotion) {
     return (
       <section
         id="intro"
-        className="relative overflow-hidden bg-concrete-50 py-20 transition-colors duration-300 dark:bg-asphalt-950 sm:py-28"
+        className="relative overflow-hidden bg-white py-20 transition-colors duration-300 dark:bg-black sm:py-28"
       >
         <IntroGlow />
         <Container className="relative">
@@ -360,7 +379,7 @@ export function Intro() {
     <section
       id="intro"
       ref={trackRef}
-      className="relative h-[220vh] bg-concrete-50 transition-colors duration-300 dark:bg-asphalt-950"
+      className="relative h-[220vh] bg-white transition-colors duration-300 dark:bg-black"
     >
       <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden pt-20">
         <IntroGlow />

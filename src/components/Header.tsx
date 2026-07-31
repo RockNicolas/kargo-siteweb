@@ -50,7 +50,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         !overIntro && scrolled
-          ? 'bg-concrete-50/90 shadow-sm backdrop-blur-md dark:bg-asphalt-950/90'
+          ? 'bg-white/90 shadow-sm backdrop-blur-md dark:bg-black/90'
           : 'bg-transparent'
       }`}
     >
@@ -107,7 +107,7 @@ export function Header() {
       </Container>
 
       {isOpen && (
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-asphalt-200 bg-concrete-50 dark:border-asphalt-800 dark:bg-asphalt-950 lg:hidden">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-asphalt-200 bg-white dark:border-asphalt-800 dark:bg-black lg:hidden">
           <Container>
             <nav className="flex flex-col gap-1 py-4">
               {navLinks.map((link) => (
