@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
@@ -43,6 +45,16 @@ export function Features() {
             </div>
           ))}
         </div>
+
+        <Reveal className="mt-10 flex justify-center">
+          <Link
+            to="/modulos"
+            className="inline-flex items-center gap-2 rounded-lg border border-asphalt-200 px-6 py-3 font-medium text-asphalt-700 transition hover:border-asphalt-950 dark:border-asphalt-700 dark:text-asphalt-200 dark:hover:border-white"
+          >
+            Ver todos os módulos em detalhe
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Reveal>
       </Container>
     </section>
   )

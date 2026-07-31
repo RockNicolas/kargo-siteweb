@@ -43,9 +43,13 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-asphalt-600 transition hover:text-asphalt-950 dark:text-asphalt-300 dark:hover:text-white"
+                className="group relative py-1 text-sm font-medium text-asphalt-600 transition-colors duration-200 hover:text-signal-600 active:text-signal-600 dark:text-asphalt-300 dark:hover:text-signal-400 dark:active:text-signal-400"
               >
                 {link.label}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-signal-500 transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100"
+                />
               </a>
             ))}
           </nav>
@@ -89,7 +93,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="rounded-lg px-3 py-3 text-base font-medium text-asphalt-700 hover:bg-white dark:text-asphalt-200 dark:hover:bg-asphalt-900"
+                  className="rounded-lg border-l-2 border-transparent px-3 py-3 text-base font-medium text-asphalt-700 transition-colors duration-200 hover:border-signal-500 hover:bg-white hover:text-signal-600 active:bg-signal-100 dark:text-asphalt-200 dark:hover:bg-asphalt-900 dark:hover:text-signal-400 dark:active:bg-asphalt-800"
                 >
                   {link.label}
                 </a>

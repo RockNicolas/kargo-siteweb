@@ -76,7 +76,8 @@ export const moduleGroups: ModuleGroup[] = [
       {
         icon: BarChart3,
         title: 'Relatórios e painéis',
-        description: 'Um relatório pra cada necessidade, exportável em PDF/Excel com a logo da empresa.',
+        description:
+          'Dashboard com indicadores de frota e obra em tempo real — filtra por período, veículo ou obra e acompanha tudo num só painel. Além disso, cada relatório sai em PDF ou Excel, com a logo da empresa.',
       },
       {
         icon: Bell,
