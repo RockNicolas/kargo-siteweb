@@ -4,6 +4,7 @@ import { MessageCircle, Mail, ArrowRight, Loader2, CheckCircle2, AlertCircle } f
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
+import { EmailModal } from './EmailModal'
 import { contact } from '../data/content'
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined
@@ -22,6 +23,7 @@ function formatPhone(raw: string) {
 export function CTASection() {
   const [form, setForm] = useState({ nome: '', empresa: '', telefone: '', mensagem: '' })
   const [status, setStatus] = useState<SubmitStatus>('idle')
+  const [emailModalOpen, setEmailModalOpen] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -87,9 +89,10 @@ export function CTASection() {
               <ArrowRight className="ml-auto hidden h-5 w-5 shrink-0 text-asphalt-300 transition group-hover:translate-x-1 group-hover:text-signal-500 sm:block dark:text-asphalt-600" />
             </a>
 
-            <a
-              href={`mailto:${contact.email}`}
-              className="group flex items-center gap-3 rounded-2xl border border-asphalt-200 bg-white p-5 transition hover:border-signal-500 hover:shadow-lg hover:shadow-asphalt-950/5 sm:gap-4 sm:p-6 dark:border-asphalt-800 dark:bg-asphalt-950"
+            <button
+              type="button"
+              onClick={() => setEmailModalOpen(true)}
+              className="group flex items-center gap-3 rounded-2xl border border-asphalt-200 bg-white p-5 text-left transition hover:border-signal-500 hover:shadow-lg hover:shadow-asphalt-950/5 sm:gap-4 sm:p-6 dark:border-asphalt-800 dark:bg-asphalt-950"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-signal-500/10 text-signal-600 dark:text-signal-400">
                 <Mail className="h-6 w-6" />
@@ -103,7 +106,7 @@ export function CTASection() {
                 </span>
               </span>
               <ArrowRight className="ml-auto hidden h-5 w-5 shrink-0 text-asphalt-300 transition group-hover:translate-x-1 group-hover:text-signal-500 sm:block dark:text-asphalt-600" />
-            </a>
+            </button>
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-3">
@@ -195,6 +198,8 @@ export function CTASection() {
           </Reveal>
         </div>
       </Container>
+
+      <EmailModal open={emailModalOpen} onClose={() => setEmailModalOpen(false)} />
     </section>
   )
 }

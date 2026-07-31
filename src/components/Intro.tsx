@@ -23,9 +23,6 @@ function usePrefersReducedMotion() {
   return reduced
 }
 
-// O toggle de tema (Header) só atualiza seu próprio estado local — não existe
-// contexto global. Aqui observamos a classe `.dark` do <html> diretamente pra
-// trocar a foto do notebook em tempo real quando o usuário muda o tema.
 function useIsDark() {
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'))
 
@@ -39,8 +36,6 @@ function useIsDark() {
   return isDark
 }
 
-// Progresso de 0 a 1 conforme o usuário rola pela altura extra do track,
-// enquanto o conteúdo interno fica fixo (sticky) preenchendo a tela.
 function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0)
 
@@ -52,7 +47,7 @@ function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
       if (!el) return
       const rect = el.getBoundingClientRect()
       const total = rect.height - window.innerHeight
-      const p = total > 0 ? (-rect.top / total) : 0
+      const p = total > 0 ? -rect.top / total : 0
       setProgress(Math.min(1, Math.max(0, p)))
     }
 
@@ -74,16 +69,13 @@ function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   return progress
 }
 
-// Fotos reais (ângulo 3D já fixado na própria foto) — as duas trocam por
-// crossfade conforme o tema do site, e nunca por "rotateY grande", que
-// deixaria uma foto plana com aparência de cartão se torcendo.
 function NotebookPhoto({ className, style }: { className?: string; style?: React.CSSProperties }) {
   const isDark = useIsDark()
 
   return (
     <div
       className={`relative ${className ?? ''}`}
-      style={{ aspectRatio: '2366 / 1348', ...style }}
+      style={{ aspectRatio: '3000 / 2250', ...style }}
     >
       <img
         src="/notebook-dark.webp"
@@ -101,10 +93,6 @@ function NotebookPhoto({ className, style }: { className?: string; style?: React
   )
 }
 
-// Conteúdo que era do Hero — título, texto, CTAs, linha de dispositivos e
-// módulos —, adiantado pra intro, ao lado do notebook. A foto do notebook já
-// troca com o tema do site, então o resto da cena acompanha também — cores
-// theme-aware (`dark:`), igual ao resto do site, em vez de fixas.
 function IntroHeadline() {
   return (
     <div className="text-center sm:text-left">
@@ -163,47 +151,6 @@ function IntroHeadline() {
   )
 }
 
-// A foto já tem ~1750px de largura real — dá pra ir bem além do zoom possível
-// com o screenshot cru (1362px) antes de embaçar o texto do painel na tela.
-const MAX_SCALE = 2.8
-
-function NotebookRig({ p }: { p: number }) {
-  const captionOpacity = 1 - smoothstep(0, 0.18, p)
-  // Assentamento sutil — não uma "virada" de -24° a 0°: a foto já tem
-  // perspectiva 3D real gravada nos pixels, então qualquer rotateY grande
-  // deixaria a imagem com cara de cartão plano se distorcendo.
-  const rotateY = -5 + 5 * smoothstep(0, 0.45, p)
-  const rotateX = 2.5 - 2.5 * smoothstep(0, 0.45, p)
-  const scale = 1 + (MAX_SCALE - 1) * smoothstep(0.2, 1, p)
-
-  return (
-    <div className="relative flex justify-center sm:justify-end">
-      <p
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.3em] text-signal-600 dark:text-signal-400 sm:text-xs"
-        style={{ opacity: captionOpacity }}
-      >
-        Role pra ver o Kargo de perto
-      </p>
-
-      {/* O "pulinho" de entrada roda uma vez ao montar; o zoom/aproximação
-          do scroll fica isolado no elemento de dentro, sem disputar a
-          mesma transição. */}
-      <div className="animate-notebook-pop" style={{ perspective: '1800px' }}>
-        <NotebookPhoto
-          style={{
-            width: 'clamp(200px, 26vw, 380px)',
-            transformOrigin: '50% 38%',
-            transform: `scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-            transformStyle: 'preserve-3d',
-            willChange: 'transform',
-            filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.55))',
-          }}
-        />
-      </div>
-    </div>
-  )
-}
-
 function IntroGlow() {
   return (
     <div
@@ -213,10 +160,15 @@ function IntroGlow() {
   )
 }
 
+const MAX_SCALE = 1.55
+
 export function Intro() {
   const trackRef = useRef<HTMLDivElement>(null)
   const progress = useScrollProgress(trackRef)
   const reducedMotion = usePrefersReducedMotion()
+
+  const scale = 1 + (MAX_SCALE - 1) * smoothstep(0.05, 0.9, progress)
+  const captionOpacity = 1 - smoothstep(0, 0.2, progress)
 
   if (reducedMotion) {
     return (
@@ -230,7 +182,7 @@ export function Intro() {
             <IntroHeadline />
             <div className="flex justify-center sm:justify-end">
               <NotebookPhoto
-                className="w-[220px] sm:w-[300px] md:w-[360px]"
+                className="w-full max-w-[min(100%,580px)]"
                 style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.55))' }}
               />
             </div>
@@ -244,14 +196,32 @@ export function Intro() {
     <section
       id="intro"
       ref={trackRef}
-      className="relative h-[300vh] bg-concrete-50 transition-colors duration-300 dark:bg-asphalt-950"
+      className="relative h-[220vh] bg-concrete-50 transition-colors duration-300 dark:bg-asphalt-950"
     >
       <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden pt-20">
         <IntroGlow />
         <Container className="relative w-full">
           <div className="grid items-center gap-8 sm:grid-cols-2 sm:gap-8">
             <IntroHeadline />
-            <NotebookRig p={progress} />
+
+            <div className="relative flex justify-center sm:justify-end">
+              <p
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.3em] text-signal-600 dark:text-signal-400 sm:text-xs"
+                style={{ opacity: captionOpacity }}
+              >
+                Role pra ver o Kargo de perto
+              </p>
+
+              <NotebookPhoto
+                className="w-full max-w-[min(100%,580px)]"
+                style={{
+                  transformOrigin: '50% 42%',
+                  transform: `scale(${scale})`,
+                  willChange: 'transform',
+                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.55))',
+                }}
+              />
+            </div>
           </div>
         </Container>
       </div>
