@@ -13,11 +13,13 @@ import {
   Eye,
 } from 'lucide-react'
 
+// Prefixado com "/" (não "#..." puro): o Header aparece em toda rota (App.tsx),
+// então precisa apontar pra âncora na home mesmo quando o usuário está em /modulos.
 export const navLinks = [
-  { label: 'Módulos', href: '#modulos' },
-  { label: 'Integração Sienge', href: '#sienge' },
-  { label: 'Perfis de acesso', href: '#perfis' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Módulos', href: '/#modulos' },
+  { label: 'Integração Sienge', href: '/#sienge' },
+  { label: 'Perfis de acesso', href: '/#perfis' },
+  { label: 'Contato', href: '/#contato' },
 ]
 
 export const contact = {

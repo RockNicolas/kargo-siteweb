@@ -218,7 +218,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
       >
         <Monitor className="h-4 w-4" />
         <Smartphone className="h-4 w-4" />
-        Acesse do computador, tablet ou celular
+        Acesse do computador e tablet
       </div>
 
       <div
