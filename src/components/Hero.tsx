@@ -2,7 +2,7 @@ import { ArrowRight, Monitor, Smartphone } from 'lucide-react'
 import { Container } from './ui/Container'
 import { InstrumentCluster } from './InstrumentCluster'
 
-const stack = ['Combustível', 'Frota', 'Documentação', 'Manutenção', 'Almoxarifado', 'Viagens', 'Rastreamento']
+const stack = ['Combustível', 'Frota', 'Documentação', 'Manutenção', 'Almoxarifado']
 
 export function Hero() {
   return (

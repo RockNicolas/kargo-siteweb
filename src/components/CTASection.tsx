@@ -3,6 +3,7 @@ import type { FormEvent } from 'react'
 import { MessageCircle, Mail, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
+import { Reveal } from './ui/Reveal'
 
 // TODO: troque pelos dados reais de contato antes de publicar
 const WHATSAPP_NUMBER = '+5585997665652'
@@ -58,14 +59,16 @@ export function CTASection() {
   return (
     <section id="contato" className="bg-concrete-100 py-20 dark:bg-asphalt-900 sm:py-28">
       <Container>
-        <SectionHeading
-          eyebrow="Contato"
-          title="Pronto para tirar sua operação da planilha?"
-          description="Fale com a gente e veja o Kargo funcionando com a realidade da sua frota e das suas obras."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Contato"
+            title="Pronto para tirar sua operação da planilha?"
+            description="Fale com a gente e veja o Kargo funcionando com a realidade da sua frota e das suas obras."
+          />
+        </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-5">
-          <div className="flex flex-col gap-4 lg:col-span-2">
+          <Reveal className="flex flex-col gap-4 lg:col-span-2">
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá! Quero saber mais sobre o Kargo.')}`}
               target="_blank"
@@ -103,93 +106,95 @@ export function CTASection() {
               </span>
               <ArrowRight className="ml-auto h-5 w-5 text-asphalt-300 transition group-hover:translate-x-1 group-hover:text-signal-500 dark:text-asphalt-600" />
             </a>
-          </div>
+          </Reveal>
 
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-2xl border border-asphalt-200 bg-white p-6 sm:p-8 dark:border-asphalt-800 dark:bg-asphalt-950 lg:col-span-3"
-          >
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
-                  Nome
-                </label>
-                <input
-                  required
-                  value={form.nome}
-                  onChange={(e) => setForm({ ...form, nome: e.target.value })}
-                  className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
-                  placeholder="Seu nome"
-                />
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
-                  Empresa
-                </label>
-                <input
-                  value={form.empresa}
-                  onChange={(e) => setForm({ ...form, empresa: e.target.value })}
-                  className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
-                  placeholder="Nome da empresa"
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
-                  Telefone
-                </label>
-                <input
-                  type="tel"
-                  inputMode="tel"
-                  value={form.telefone}
-                  onChange={(e) => setForm({ ...form, telefone: formatPhone(e.target.value) })}
-                  className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
-                  placeholder="(00) 00000-0000"
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
-                  Mensagem
-                </label>
-                <textarea
-                  rows={3}
-                  value={form.mensagem}
-                  onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
-                  className="w-full resize-none rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
-                  placeholder="Conte um pouco sobre sua frota ou suas obras"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              disabled={status === 'submitting'}
-              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 sm:w-auto"
+          <Reveal delay={120} className="lg:col-span-3">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-asphalt-200 bg-white p-6 sm:p-8 dark:border-asphalt-800 dark:bg-asphalt-950"
             >
-              {status === 'submitting' ? (
-                <>
-                  Enviando...
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                </>
-              ) : (
-                <>
-                  Solicitar demonstração
-                  <ArrowRight className="h-4 w-4" />
-                </>
-              )}
-            </button>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
+                    Nome
+                  </label>
+                  <input
+                    required
+                    value={form.nome}
+                    onChange={(e) => setForm({ ...form, nome: e.target.value })}
+                    className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
+                    placeholder="Seu nome"
+                  />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
+                    Empresa
+                  </label>
+                  <input
+                    value={form.empresa}
+                    onChange={(e) => setForm({ ...form, empresa: e.target.value })}
+                    className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
+                    placeholder="Nome da empresa"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
+                    Telefone
+                  </label>
+                  <input
+                    type="tel"
+                    inputMode="tel"
+                    value={form.telefone}
+                    onChange={(e) => setForm({ ...form, telefone: formatPhone(e.target.value) })}
+                    className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
+                    placeholder="(00) 00000-0000"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="mb-1.5 block text-sm font-medium text-asphalt-700 dark:text-asphalt-300">
+                    Mensagem
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={form.mensagem}
+                    onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
+                    className="w-full resize-none rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
+                    placeholder="Conte um pouco sobre sua frota ou suas obras"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={status === 'submitting'}
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 sm:w-auto"
+              >
+                {status === 'submitting' ? (
+                  <>
+                    Enviando...
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    Solicitar demonstração
+                    <ArrowRight className="h-4 w-4" />
+                  </>
+                )}
+              </button>
 
-            {status === 'success' && (
-              <p className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
-                <CheckCircle2 className="h-4 w-4 shrink-0" />
-                Mensagem enviada! A gente te retorna em breve.
-              </p>
-            )}
-            {status === 'error' && (
-              <p className="mt-3 flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
-                <AlertCircle className="h-4 w-4 shrink-0" />
-                Não deu pra enviar agora. Tente de novo ou chama no WhatsApp acima.
-              </p>
-            )}
-          </form>
+              {status === 'success' && (
+                <p className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="h-4 w-4 shrink-0" />
+                  Mensagem enviada! A gente te retorna em breve.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="mt-3 flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
+                  <AlertCircle className="h-4 w-4 shrink-0" />
+                  Não deu pra enviar agora. Tente de novo ou chama no WhatsApp acima.
+                </p>
+              )}
+            </form>
+          </Reveal>
         </div>
       </Container>
     </section>

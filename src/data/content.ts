@@ -31,30 +31,9 @@ export interface ModuleGroup {
   items: ModuleItem[]
 }
 
-// Agrupado do jeito que quem administra frota + obra pensa no dia a dia,
-// não por ordem alfabética ou técnica.
+// Mesma sequência do menu lateral do sistema:
+// Patrimônio, Documentação, Combustível, Manutenção, Almoxarifado, Rastreio, Relatório.
 export const moduleGroups: ModuleGroup[] = [
-  {
-    label: 'Operação diária',
-    items: [
-      {
-        icon: Fuel,
-        title: 'Combustível',
-        description:
-          'Lançamento por veículo com foto do comprovante, importação em lote e painel financeiro por período.',
-      },
-      {
-        icon: FileText,
-        title: 'Documentação veicular',
-        description: 'IPVA, licenciamento, seguro, CNH e multas — com alerta antes do vencimento.',
-      },
-      {
-        icon: Wrench,
-        title: 'Manutenção',
-        description: 'Intervalo por km ou hora, ordem de serviço em PDF e baixa de peças na obra certa.',
-      },
-    ],
-  },
   {
     label: 'Patrimônio & obra',
     items: [
@@ -62,6 +41,27 @@ export const moduleGroups: ModuleGroup[] = [
         icon: Truck,
         title: 'Veículos e equipamentos',
         description: 'Cadastro central com placa, categoria, município e controle de km/horímetro.',
+      },
+    ],
+  },
+  {
+    label: 'Operação diária',
+    items: [
+      {
+        icon: FileText,
+        title: 'Documentação veicular',
+        description: 'IPVA, licenciamento, seguro, CNH e multas — com alerta antes do vencimento.',
+      },
+      {
+        icon: Fuel,
+        title: 'Combustível',
+        description:
+          'Lançamento por veículo com foto do comprovante, importação em lote e painel financeiro por período.',
+      },
+      {
+        icon: Wrench,
+        title: 'Manutenção',
+        description: 'Intervalo por km ou hora, ordem de serviço em PDF e baixa de peças na obra certa.',
       },
       {
         icon: Warehouse,
