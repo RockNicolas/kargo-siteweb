@@ -5,8 +5,6 @@ import {
   FileText,
   Wrench,
   Warehouse,
-  Route,
-  Radar,
   BarChart3,
   Bell,
   ShieldCheck,
@@ -69,21 +67,6 @@ export const moduleGroups: ModuleGroup[] = [
         icon: Warehouse,
         title: 'Almoxarifado por obra',
         description: 'Cada obra com seu próprio saldo — entradas, saídas, transferências e reservas.',
-      },
-    ],
-  },
-  {
-    label: 'Em movimento',
-    items: [
-      {
-        icon: Route,
-        title: 'Controle de viagem',
-        description: 'Rota, distância e horário previsto de chegada, com registro de pontualidade.',
-      },
-      {
-        icon: Radar,
-        title: 'Rastreamento',
-        description: 'Posição atual e histórico de deslocamento de cada veículo, direto no painel.',
       },
     ],
   },

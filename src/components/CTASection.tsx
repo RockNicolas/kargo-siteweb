@@ -1,22 +1,58 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { MessageCircle, Mail, ArrowRight } from 'lucide-react'
+import { MessageCircle, Mail, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 
 // TODO: troque pelos dados reais de contato antes de publicar
 const WHATSAPP_NUMBER = '+5585997665652'
 const CONTACT_EMAIL = 'supportkargo@gmail.com'
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined
+
+type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
+
+function formatPhone(raw: string) {
+  const digits = raw.replace(/\D/g, '').slice(0, 11)
+  if (digits.length === 0) return ''
+  if (digits.length <= 2) return `(${digits}`
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+  if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+}
+
 export function CTASection() {
   const [form, setForm] = useState({ nome: '', empresa: '', telefone: '', mensagem: '' })
+  const [status, setStatus] = useState<SubmitStatus>('idle')
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Solicitação de demonstração - ${form.empresa || 'Kargo'}`)
-    const body = encodeURIComponent(
-      `Nome: ${form.nome}\nEmpresa: ${form.empresa}\nTelefone: ${form.telefone}\n\n${form.mensagem}`
-    )
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+    setStatus('submitting')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Solicitação de demonstração — ${form.empresa || form.nome || 'site Kargo'}`,
+          from_name: form.nome || 'Site Kargo',
+          Nome: form.nome,
+          Empresa: form.empresa,
+          Telefone: form.telefone,
+          Mensagem: form.mensagem,
+        }),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        setStatus('success')
+        setForm({ nome: '', empresa: '', telefone: '', mensagem: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -102,8 +138,10 @@ export function CTASection() {
                   Telefone
                 </label>
                 <input
+                  type="tel"
+                  inputMode="tel"
                   value={form.telefone}
-                  onChange={(e) => setForm({ ...form, telefone: e.target.value })}
+                  onChange={(e) => setForm({ ...form, telefone: formatPhone(e.target.value) })}
                   className="w-full rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
                   placeholder="(00) 00000-0000"
                 />
@@ -123,11 +161,34 @@ export function CTASection() {
             </div>
             <button
               type="submit"
-              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 sm:w-auto"
+              disabled={status === 'submitting'}
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 sm:w-auto"
             >
-              Solicitar demonstração
-              <ArrowRight className="h-4 w-4" />
+              {status === 'submitting' ? (
+                <>
+                  Enviando...
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                </>
+              ) : (
+                <>
+                  Solicitar demonstração
+                  <ArrowRight className="h-4 w-4" />
+                </>
+              )}
             </button>
+
+            {status === 'success' && (
+              <p className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                <CheckCircle2 className="h-4 w-4 shrink-0" />
+                Mensagem enviada! A gente te retorna em breve.
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="mt-3 flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                Não deu pra enviar agora. Tente de novo ou chama no WhatsApp acima.
+              </p>
+            )}
           </form>
         </div>
       </Container>
