@@ -1,12 +1,9 @@
-import { RefreshCw, Check } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Container } from './ui/Container'
+import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
-
-const points = [
-  'Sem planilha intermediária',
-  'Sem lançar a mesma movimentação duas vezes',
-  'Nada se perde se a sincronização falhar por instabilidade',
-]
+import { siengeBenefits, siengeFlow } from '../data/content'
 
 const stockPreview: [string, string][] = [
   ['Cimento CP-II 50kg', '128 un'],
@@ -18,49 +15,80 @@ export function SiengeSpotlight() {
   return (
     <section id="sienge" className="bg-white py-20 dark:bg-black sm:py-28">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <Reveal>
+          <SectionHeading
+            align="center"
+            eyebrow="Integração Sienge"
+            title="Seu estoque de obra e o Sienge, sempre batendo."
+            description="O Kargo mantém o estoque de cada obra sincronizado com o Sienge nos dois sentidos — sem lançar a mesma movimentação duas vezes."
+          />
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {siengeBenefits.map((b, i) => (
+            <Reveal key={b.title} delay={i * 90}>
+              <div className="h-full rounded-2xl border border-asphalt-200 p-6 dark:border-asphalt-800">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-signal-500/10 text-signal-600 dark:text-signal-400">
+                  <b.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 font-display font-semibold text-asphalt-950 dark:text-white">
+                  {b.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-asphalt-600 dark:text-asphalt-400">
+                  {b.description}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-8 rounded-2xl border border-asphalt-200 bg-concrete-50 p-6 dark:border-asphalt-800 dark:bg-asphalt-900/60 sm:p-8 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-signal-500/10 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-signal-600 dark:text-signal-400">
-                <RefreshCw className="h-3.5 w-3.5" />
-                Integração
+              <span className="font-mono text-xs uppercase tracking-widest text-asphalt-400">
+                Como funciona
               </span>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:text-4xl">
-                Já usa Sienge? O Kargo conversa com ele automaticamente.
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-asphalt-600 dark:text-asphalt-300">
-                Sincronização dos dois lados: a posição de estoque de cada obra é atualizada no Kargo
-                sem redigitar nada. Toda entrada, saída ou transferência lançada no Kargo é enviada
-                automaticamente para o Sienge.
-              </p>
-              <ul className="mt-6 space-y-3">
-                {points.map((point) => (
-                  <li key={point} className="flex items-center gap-3 text-asphalt-700 dark:text-asphalt-200">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-signal-500/15 text-signal-600 dark:text-signal-400">
-                      <Check className="h-3.5 w-3.5" />
+
+              <div className="mt-5 space-y-6">
+                {siengeFlow.map((step) => (
+                  <div key={step.direction} className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-signal-500/10 text-signal-600 dark:text-signal-400">
+                      <step.icon className="h-5 w-5" />
                     </span>
-                    {point}
-                  </li>
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                        <span className="font-display font-semibold text-asphalt-950 dark:text-white">
+                          {step.direction}
+                        </span>
+                        <span className="font-mono text-[11px] uppercase tracking-widest text-asphalt-400">
+                          {step.label}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-asphalt-600 dark:text-asphalt-300">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-2xl border border-asphalt-200 bg-concrete-50 p-6 dark:border-asphalt-800 dark:bg-asphalt-900/60 sm:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-white p-4 dark:bg-asphalt-950">
+            <div className="rounded-xl bg-white p-4 dark:bg-asphalt-950 sm:p-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-concrete-50 p-4 dark:bg-asphalt-900">
                 <span className="min-w-0 font-mono text-xs text-asphalt-600 dark:text-asphalt-300">
                   Obra Residencial Norte
                 </span>
                 <span className="shrink-0 rounded-full bg-emerald-500/15 px-2.5 py-1 font-mono text-[11px] text-emerald-600 dark:text-emerald-400">
-                  Sincronizado
+                  Atualizado
                 </span>
               </div>
               <div className="mt-3 space-y-2.5">
                 {stockPreview.map(([item, qty]) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between gap-3 rounded-lg bg-white/60 px-4 py-3 text-sm dark:bg-asphalt-950/60"
+                    className="flex items-center justify-between gap-3 rounded-lg bg-concrete-50/60 px-4 py-3 text-sm dark:bg-asphalt-900/60"
                   >
                     <span className="min-w-0 truncate text-asphalt-600 dark:text-asphalt-300">{item}</span>
                     <span className="shrink-0 font-mono font-medium text-asphalt-950 dark:text-white">
@@ -69,13 +97,22 @@ export function SiengeSpotlight() {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 flex items-start gap-2 font-mono text-[11px] leading-relaxed text-asphalt-500 sm:items-center">
-                <RefreshCw className="mt-0.5 h-3.5 w-3.5 shrink-0 sm:mt-0" />
-                <span>Kargo ↔ Sienge · última sincronização há 2 min</span>
-              </div>
+              <p className="mt-4 text-[11px] leading-relaxed text-asphalt-500">
+                Posição trazida do Sienge na última atualização manual.
+              </p>
             </div>
           </Reveal>
         </div>
+
+        <Reveal delay={150} className="mt-10 text-center">
+          <Link
+            to="/#contato"
+            className="group inline-flex items-center gap-1.5 font-medium text-asphalt-950 underline decoration-asphalt-300 underline-offset-4 transition hover:decoration-asphalt-950 dark:text-white dark:decoration-asphalt-600 dark:hover:decoration-white"
+          >
+            Solicitar demonstração
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </Link>
+        </Reveal>
       </Container>
     </section>
   )

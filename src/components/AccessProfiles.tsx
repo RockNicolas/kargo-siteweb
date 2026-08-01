@@ -4,8 +4,7 @@ import { Reveal } from './ui/Reveal'
 import { profiles } from '../data/content'
 
 const stripeColor: Record<string, string> = {
-  Administrador: 'bg-signal-500',
-  Operadores: 'bg-asphalt-500',
+  Operadores: 'bg-signal-500',
   Cliente: 'bg-asphalt-200',
 }
 
@@ -21,7 +20,7 @@ export function AccessProfiles() {
           />
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {profiles.map((profile, i) => (
             <Reveal key={profile.title} delay={i * 90}>
               <div className="overflow-hidden rounded-2xl border border-asphalt-200 dark:border-asphalt-800">

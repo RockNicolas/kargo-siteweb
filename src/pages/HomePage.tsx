@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Intro } from '../components/Intro'
 import { PainPoints } from '../components/PainPoints'
-import { DayWithKargo } from '../components/DayWithKargo'
+import { HowItWorks } from '../components/HowItWorks'
 import { Features } from '../components/Features'
 import { SiengeSpotlight } from '../components/SiengeSpotlight'
 import { AccessProfiles } from '../components/AccessProfiles'
@@ -25,7 +25,7 @@ export function HomePage() {
     <>
       <Intro />
       <PainPoints />
-      <DayWithKargo />
+      <HowItWorks />
       <Features />
       <SiengeSpotlight />
       <AccessProfiles />

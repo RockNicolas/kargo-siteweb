@@ -9,9 +9,11 @@ import {
   Bell,
   ShieldCheck,
   Users,
-  UserCog,
   Eye,
+  Zap,
   RefreshCw,
+  Download,
+  Upload,
 } from 'lucide-react'
 
 export const navLinks = [
@@ -25,10 +27,6 @@ export const contact = {
   email: 'supportkargo@gmail.com',
   whatsapp: '+5585997665652',
   phoneDisplay: '(85) 99766-5652',
-  address: {
-    street: 'Avenida Santos Dumont 1740',
-    city: '60140-160 Fortaleza, Ceará',
-  },
 }
 
 export const footerAboutLinks = [
@@ -133,55 +131,85 @@ export const painPoints: string[] = [
   'Esse motorista está com a CNH em dia?',
 ]
 
-export interface DayStep {
+export interface HowItWorksStep {
   icon: LucideIcon
-  time: string
   title: string
   description: string
-  module: string
 }
 
-/** Narrativa que amarra os módulos num único dia de operação. */
-export const dayWithKargo: DayStep[] = [
+export const howItWorks: HowItWorksStep[] = [
   {
-    icon: Fuel,
-    time: '07:40',
-    title: 'Abastecimento',
+    icon: Truck,
+    title: 'Cadastre sua operação',
     description:
-      'O motorista lança o combustível com foto do comprovante. O gasto já entra no painel do veículo — sem planilha no fim do mês.',
-    module: 'Combustível',
+      'Veículos, obras, equipamentos e peças num cadastro único — sem depender de planilha espalhada em vários lugares.',
   },
   {
     icon: Bell,
-    time: '10:15',
-    title: 'Alerta de IPVA',
+    title: 'O sistema cruza os dados sozinho',
     description:
-      'O sistema avisa sozinho: o IPVA do caminhão vence em sete dias. Ninguém precisa caçar vencimentos na pasta.',
-    module: 'Documentação',
+      'Documento perto de vencer, estoque abaixo do mínimo, manutenção atrasada: o Kargo avisa antes de virar problema, sem ninguém precisar checar manualmente.',
   },
   {
-    icon: Wrench,
-    time: '14:20',
-    title: 'Ordem de serviço',
+    icon: Zap,
+    title: 'Decisão na hora, não no fim do mês',
     description:
-      'O alerta de manutenção por km dispara. A OS sai em PDF e as peças já ficam reservadas pra obra certa.',
-    module: 'Manutenção',
+      'Gasto de combustível, saldo de estoque por obra e status da frota disponíveis no painel, com relatórios prontos pra exportar quando precisar.',
   },
+]
+
+export interface SiengeBenefit {
+  icon: LucideIcon
+  title: string
+  description: string
+}
+
+export const siengeBenefits: SiengeBenefit[] = [
   {
     icon: Warehouse,
-    time: '15:05',
-    title: 'Baixa de peça',
-    description:
-      'A peça sai do saldo daquela obra — não de um estoque misturado. Quem tirou e pra qual equipamento: tudo fica registrado.',
-    module: 'Almoxarifado',
+    title: 'Estoque por obra',
+    description: 'Cada obra tem seu próprio saldo de material — nunca um estoque genérico misturando tudo.',
   },
   {
     icon: RefreshCw,
-    time: '17:30',
-    title: 'Sync com o Sienge',
+    title: 'Sincronização nos dois sentidos',
     description:
-      'A movimentação sobe pro ERP sem redigitar. Obra e escritório terminam o dia no mesmo número.',
-    module: 'Integração',
+      'O que muda no Sienge chega ao Kargo, e o que você lança no Kargo segue pro Sienge — sem redigitar nada.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Nenhum lançamento se perde',
+    description:
+      'Se a sincronização falhar por instabilidade, o lançamento continua salvo no Kargo e fica sinalizado pra revisão.',
+  },
+  {
+    icon: Wrench,
+    title: 'Menos retrabalho',
+    description: 'Nenhuma movimentação é lançada duas vezes entre os dois sistemas.',
+  },
+]
+
+export interface SiengeFlowStep {
+  icon: LucideIcon
+  direction: string
+  label: string
+  description: string
+}
+
+export const siengeFlow: SiengeFlowStep[] = [
+  {
+    icon: Download,
+    direction: 'Sienge → Kargo',
+    label: 'Leitura sob demanda',
+    description:
+      'Quando alguém atualiza a posição de estoque, o Kargo busca no Sienge o saldo mais recente daquela obra.',
+  },
+  {
+    icon: Upload,
+    direction: 'Kargo → Sienge',
+    label: 'Envio automático',
+    description:
+      'Toda entrada, saída ou transferência lançada na tela de Almoxarifado do Kargo já sai automaticamente pro Sienge.',
   },
 ]
 
@@ -193,13 +221,6 @@ export interface Profile {
 }
 
 export const profiles: Profile[] = [
-  {
-    icon: UserCog,
-    title: 'Administrador',
-    level: 'total',
-    description:
-      'Cadastra usuários, define o que cada um pode ver e editar e acompanha a auditoria completa.',
-  },
   {
     icon: Users,
     title: 'Operadores',

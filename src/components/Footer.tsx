@@ -157,12 +157,6 @@ export function Footer() {
                   {contact.phoneDisplay}
                 </a>
               </li>
-              <li className="pt-1 leading-relaxed">
-                <span className="block font-medium text-asphalt-800 dark:text-asphalt-200">
-                  {contact.address.street}
-                </span>
-                <span className="block text-asphalt-500">{contact.address.city}</span>
-              </li>
             </ul>
           </div>
         </div>
