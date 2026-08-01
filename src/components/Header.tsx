@@ -49,9 +49,11 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        !overIntro && scrolled
-          ? 'bg-white/90 shadow-sm backdrop-blur-md dark:bg-black/90'
-          : 'bg-transparent'
+        isOpen
+          ? 'bg-white shadow-sm dark:bg-black'
+          : !overIntro && scrolled
+            ? 'bg-white/90 shadow-sm backdrop-blur-md dark:bg-black/90'
+            : 'bg-transparent'
       }`}
     >
       <Container>
@@ -106,32 +108,43 @@ export function Header() {
         </div>
       </Container>
 
-      {isOpen && (
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-asphalt-200 bg-white dark:border-asphalt-800 dark:bg-black lg:hidden">
-          <Container>
-            <nav className="flex flex-col gap-1 py-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-lg border-l-2 border-transparent px-3 py-3 text-base font-medium text-asphalt-700 transition-colors duration-200 hover:border-signal-500 hover:bg-white hover:text-signal-600 active:bg-signal-100 dark:text-asphalt-200 dark:hover:bg-asphalt-900 dark:hover:text-signal-400 dark:active:bg-asphalt-800"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="/#contato"
-                onClick={() => setIsOpen(false)}
-                className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-lg bg-asphalt-950 px-5 py-3 text-base font-medium text-white dark:bg-signal-500 dark:text-asphalt-950"
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-out lg:hidden ${
+          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        }`}
+        inert={!isOpen}
+      >
+        <div className="overflow-hidden">
+          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-asphalt-200 bg-white dark:border-asphalt-800 dark:bg-black">
+            <Container>
+              <nav
+                className={`flex flex-col gap-1 py-4 transition-all duration-300 ease-out ${
+                  isOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'
+                }`}
               >
-                Solicitar demonstração
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </nav>
-          </Container>
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="rounded-lg border-l-2 border-transparent px-3 py-3 text-base font-medium text-asphalt-700 transition-colors duration-200 hover:border-signal-500 hover:bg-white hover:text-signal-600 active:bg-signal-100 dark:text-asphalt-200 dark:hover:bg-asphalt-900 dark:hover:text-signal-400 dark:active:bg-asphalt-800"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a
+                  href="/#contato"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-lg bg-asphalt-950 px-5 py-3 text-base font-medium text-white dark:bg-signal-500 dark:text-asphalt-950"
+                >
+                  Solicitar demonstração
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </nav>
+            </Container>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }

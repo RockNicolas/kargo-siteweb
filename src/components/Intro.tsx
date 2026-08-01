@@ -269,11 +269,17 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
 
   const captionOpacity = 1 - smoothstep(0, 0.2, p)
   const centerT = smootherstep(CENTER_START, CENTER_END, p)
-  const scale =
-    1 +
-    (GROW_SCALE - 1) * smootherstep(0, GROW_END, p) +
-    (ZOOM_SCALE - GROW_SCALE) * smootherstep(ZOOM_START, ZOOM_END, p) +
-    (CENTER_SCALE - ZOOM_SCALE) * centerT
+  // No mobile o texto nunca esmaece (ver `textOpacity` abaixo) e a foto já
+  // nasce ocupando quase toda a altura sobrando na coluna única — crescer
+  // ela ainda mais estoura a viewport da sticky section e corta a base do
+  // notebook. Por isso o zoom cinematográfico fica só pro desktop; no
+  // mobile a foto mantém o tamanho e só o dissolve entre os ângulos roda.
+  const scale = isDesktop
+    ? 1 +
+      (GROW_SCALE - 1) * smootherstep(0, GROW_END, p) +
+      (ZOOM_SCALE - GROW_SCALE) * smootherstep(ZOOM_START, ZOOM_END, p) +
+      (CENTER_SCALE - ZOOM_SCALE) * centerT
+    : 1
 
   // Dissolve cinematográfico: curva S longa + blur no meio + leve parallax
   // de escala entre as duas fotos (como rack focus / morph de câmera).

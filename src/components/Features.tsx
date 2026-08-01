@@ -7,12 +7,7 @@ import { ModulesCarousel } from './ModulesCarousel'
 
 export function Features() {
   return (
-    <section id="modulos" className="relative overflow-hidden bg-white py-20 dark:bg-asphalt-950 sm:py-28">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-signal-400/10 blur-3xl dark:bg-signal-500/15"
-      />
-
+    <section id="modulos" className="relative overflow-hidden bg-white py-20 dark:bg-black sm:py-28">
       <Container className="relative">
         <Reveal>
           <SectionHeading

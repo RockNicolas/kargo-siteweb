@@ -11,7 +11,7 @@ const stripeColor: Record<string, string> = {
 
 export function AccessProfiles() {
   return (
-    <section id="perfis" className="bg-white py-20 dark:bg-asphalt-950 sm:py-28">
+    <section id="perfis" className="bg-white py-20 dark:bg-black sm:py-28">
       <Container>
         <Reveal>
           <SectionHeading

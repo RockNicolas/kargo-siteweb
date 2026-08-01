@@ -10,7 +10,8 @@ import {
 } from '../data/content'
 
 function FooterLink({ href, children }: { href: string; children: ReactNode }) {
-  const className = 'text-base text-asphalt-400 transition hover:text-signal-400'
+  const className =
+    'text-base text-asphalt-600 transition hover:text-signal-600 dark:text-asphalt-400 dark:hover:text-signal-400'
 
   if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
     return (
@@ -75,14 +76,14 @@ export function Footer() {
   const visibleSocials = socialLinks.filter((s) => s.href)
 
   return (
-    <footer className="bg-asphalt-950 pb-6 pt-16 sm:pb-8 sm:pt-20">
+    <footer className="bg-white pb-6 pt-16 dark:bg-black sm:pb-8 sm:pt-20">
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           <div>
             <Link to="/" className="inline-block">
-              <Logo dark />
+              <Logo />
             </Link>
-            <p className="mt-5 max-w-xs text-base leading-relaxed text-asphalt-400">
+            <p className="mt-5 max-w-xs text-base leading-relaxed text-asphalt-600 dark:text-asphalt-400">
               Sistema de gestão de frota e obras — combustível, documentação, manutenção e
               almoxarifado em um painel só.
             </p>
@@ -97,7 +98,7 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="inline-flex h-11 w-11 items-center justify-center text-asphalt-400 transition hover:text-white"
+                      className="inline-flex h-11 w-11 items-center justify-center text-asphalt-500 transition hover:text-asphalt-950 dark:text-asphalt-400 dark:hover:text-white"
                     >
                       <Icon className="h-5 w-5" />
                     </a>
@@ -108,7 +109,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-mono text-sm font-medium uppercase tracking-widest text-white">
+            <h4 className="font-mono text-sm font-medium uppercase tracking-widest text-asphalt-950 dark:text-white">
               Sobre
             </h4>
             <ul className="mt-5 space-y-3">
@@ -121,7 +122,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-mono text-sm font-medium uppercase tracking-widest text-white">
+            <h4 className="font-mono text-sm font-medium uppercase tracking-widest text-asphalt-950 dark:text-white">
               Suporte
             </h4>
             <ul className="mt-5 space-y-3">
@@ -134,14 +135,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-mono text-sm font-medium uppercase tracking-widest text-white">
+            <h4 className="font-mono text-sm font-medium uppercase tracking-widest text-asphalt-950 dark:text-white">
               Contato
             </h4>
-            <ul className="mt-5 space-y-3 text-base text-asphalt-400">
+            <ul className="mt-5 space-y-3 text-base text-asphalt-600 dark:text-asphalt-400">
               <li>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="break-all italic transition hover:text-signal-400"
+                  className="break-all italic transition hover:text-signal-600 dark:hover:text-signal-400"
                 >
                   {contact.email}
                 </a>
@@ -151,20 +152,22 @@ export function Footer() {
                   href={`https://wa.me/${contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition hover:text-signal-400"
+                  className="transition hover:text-signal-600 dark:hover:text-signal-400"
                 >
                   {contact.phoneDisplay}
                 </a>
               </li>
               <li className="pt-1 leading-relaxed">
-                <span className="block font-medium text-asphalt-200">{contact.address.street}</span>
+                <span className="block font-medium text-asphalt-800 dark:text-asphalt-200">
+                  {contact.address.street}
+                </span>
                 <span className="block text-asphalt-500">{contact.address.city}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-20 border-t border-asphalt-800 pt-4 sm:mt-24 sm:pt-5">
+        <div className="mt-20 border-t border-asphalt-200 pt-4 dark:border-asphalt-800 sm:mt-24 sm:pt-5">
           <p className="text-center text-sm text-asphalt-500">
             © {new Date().getFullYear()} Kargo. Todos os direitos reservados.
           </p>
