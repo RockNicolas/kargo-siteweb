@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Intro } from '../components/Intro'
 import { PainPoints } from '../components/PainPoints'
+import { DayWithKargo } from '../components/DayWithKargo'
 import { Features } from '../components/Features'
 import { SiengeSpotlight } from '../components/SiengeSpotlight'
 import { AccessProfiles } from '../components/AccessProfiles'
@@ -11,11 +12,6 @@ import { CTASection } from '../components/CTASection'
 export function HomePage() {
   const { hash } = useLocation()
 
-  // Links tipo "/#perfis" vindos de outra rota (ex.: Header em /modulos) chegam
-  // aqui como navegação de página inteira — o navegador tenta rolar até a
-  // âncora antes da seção existir no DOM (SPA), então precisa repetir na mão
-  // assim que ela renderizar. O rAF empurra pra depois do <ScrollRestoration />
-  // do react-router (App.tsx), que senão reseta o scroll de volta ao topo.
   useEffect(() => {
     if (!hash) return
     const id = hash.slice(1)
@@ -29,6 +25,7 @@ export function HomePage() {
     <>
       <Intro />
       <PainPoints />
+      <DayWithKargo />
       <Features />
       <SiengeSpotlight />
       <AccessProfiles />

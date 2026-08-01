@@ -83,7 +83,7 @@ export function CTASection() {
                   Fale pelo WhatsApp
                 </span>
                 <span className="block text-sm text-asphalt-500 dark:text-asphalt-400">
-                  Resposta rápida, direto com o time
+                  Resposta rápida — direto com o time
                 </span>
               </span>
               <ArrowRight className="ml-auto hidden h-5 w-5 shrink-0 text-asphalt-300 transition group-hover:translate-x-1 group-hover:text-signal-500 sm:block dark:text-asphalt-600" />
@@ -191,7 +191,7 @@ export function CTASection() {
               {status === 'error' && (
                 <p className="mt-3 flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
                   <AlertCircle className="h-4 w-4 shrink-0" />
-                  Não deu pra enviar agora. Tente de novo ou chama no WhatsApp acima.
+                  Não deu pra enviar agora. Tente de novo ou chame no WhatsApp acima.
                 </p>
               )}
             </form>

@@ -83,7 +83,7 @@ export function Footer() {
               <Logo dark />
             </Link>
             <p className="mt-5 max-w-xs text-base leading-relaxed text-asphalt-400">
-              Sistema de gestão de frota e obras — combustível, documentação, manutenção,
+              Sistema de gestão de frota e obras — combustível, documentação, manutenção e
               almoxarifado em um painel só.
             </p>
             {visibleSocials.length > 0 && (

@@ -28,7 +28,7 @@ export function PainPoints() {
 
         <Reveal delay={150}>
           <p className="mt-10 max-w-2xl text-lg text-asphalt-600 dark:text-asphalt-300">
-            O Kargo responde tudo isso na hora, com histórico completo — sem depender de alguém
+            O Kargo responde tudo isso na hora com histórico completo — sem depender de alguém
             lembrar de atualizar uma planilha.
           </p>
         </Reveal>

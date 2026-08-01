@@ -182,7 +182,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         className="animate-fade-up font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-semibold leading-[1.12] tracking-tight text-asphalt-950 dark:text-white"
         style={{ animationDelay: '90ms' }}
       >
-        Sua frota e suas obras, sob controle em um único painel.
+        Sua frota e suas obras sob controle em um único painel.
       </h1>
 
       <p
@@ -190,7 +190,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         style={{ animationDelay: '180ms' }}
       >
         O Kargo substitui planilha, papel e controle manual por um painel único — acessível de
-        qualquer computador ou celular, com histórico completo e alertas automáticos.
+        qualquer computador, tablet ou celular, com histórico completo e alertas automáticos.
       </p>
 
       <div
@@ -218,7 +218,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
       >
         <Monitor className="h-4 w-4" />
         <Smartphone className="h-4 w-4" />
-        Acesse do computador e tablet
+        Acesse do computador, tablet ou celular
       </div>
 
       <div

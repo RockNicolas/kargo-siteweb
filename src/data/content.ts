@@ -11,10 +11,9 @@ import {
   Users,
   UserCog,
   Eye,
+  RefreshCw,
 } from 'lucide-react'
 
-// Prefixado com "/" (não "#..." puro): o Header aparece em toda rota (App.tsx),
-// então precisa apontar pra âncora na home mesmo quando o usuário está em /modulos.
 export const navLinks = [
   { label: 'Módulos', href: '/#modulos' },
   { label: 'Integração Sienge', href: '/#sienge' },
@@ -66,16 +65,14 @@ export interface ModuleGroup {
   items: ModuleItem[]
 }
 
-// Mesma sequência do menu lateral do sistema:
-// Patrimônio, Documentação, Combustível, Manutenção, Almoxarifado, Rastreio, Relatório.
 export const moduleGroups: ModuleGroup[] = [
   {
-    label: 'Patrimônio & obra',
+    label: 'Patrimônio & obras',
     items: [
       {
         icon: Truck,
         title: 'Veículos e equipamentos',
-        description: 'Cadastro central com placa, categoria, município e controle de km/horímetro.',
+        description: 'Cadastro central com placa, categoria, município e controle de km e horímetro.',
       },
     ],
   },
@@ -96,12 +93,12 @@ export const moduleGroups: ModuleGroup[] = [
       {
         icon: Wrench,
         title: 'Manutenção',
-        description: 'Intervalo por km ou hora, ordem de serviço em PDF e baixa de peças na obra certa.',
+        description: 'Intervalos por km ou por hora, ordem de serviço em PDF e baixa de peças na obra certa.',
       },
       {
         icon: Warehouse,
         title: 'Almoxarifado por obra',
-        description: 'Cada obra com seu próprio saldo — entradas, saídas, transferências e reservas.',
+        description: 'Cada obra com o próprio saldo — entradas, saídas, transferências e reservas.',
       },
     ],
   },
@@ -112,12 +109,12 @@ export const moduleGroups: ModuleGroup[] = [
         icon: BarChart3,
         title: 'Relatórios e painéis',
         description:
-          'Dashboard com indicadores de frota e obra em tempo real — filtra por período, veículo ou obra e acompanha tudo num só painel. Além disso, cada relatório sai em PDF ou Excel, com a logo da empresa.',
+          'Indicadores de frota e obras em tempo real. Filtre por período, veículo ou obra e acompanhe tudo num só painel. Cada relatório sai em PDF ou Excel com a logo da empresa.',
       },
       {
         icon: Bell,
         title: 'Alertas e notificações',
-        description: 'O sistema avisa sozinho: vencimento, estoque baixo, divergência de km.',
+        description: 'O sistema avisa sozinho: vencimentos, estoque baixo e divergência de km.',
       },
       {
         icon: ShieldCheck,
@@ -129,18 +126,70 @@ export const moduleGroups: ModuleGroup[] = [
 ]
 
 export const painPoints: string[] = [
-  'Quanto estamos gastando com combustível por veículo, por mês?',
+  'Quanto estamos gastando de combustível por veículo por mês?',
   'Qual veículo está prestes a vencer o seguro, o IPVA ou a próxima manutenção?',
-  'Quanto de material temos em estoque em cada obra, agora?',
-  'Quem tirou a última peça do almoxarifado, e para qual equipamento?',
+  'Quanto material temos em estoque em cada obra agora?',
+  'Quem tirou a última peça do almoxarifado e para qual equipamento?',
   'Esse motorista está com a CNH em dia?',
+]
+
+export interface DayStep {
+  icon: LucideIcon
+  time: string
+  title: string
+  description: string
+  module: string
+}
+
+/** Narrativa que amarra os módulos num único dia de operação. */
+export const dayWithKargo: DayStep[] = [
+  {
+    icon: Fuel,
+    time: '07:40',
+    title: 'Abastecimento',
+    description:
+      'O motorista lança o combustível com foto do comprovante. O gasto já entra no painel do veículo — sem planilha no fim do mês.',
+    module: 'Combustível',
+  },
+  {
+    icon: Bell,
+    time: '10:15',
+    title: 'Alerta de IPVA',
+    description:
+      'O sistema avisa sozinho: o IPVA do caminhão vence em sete dias. Ninguém precisa caçar vencimentos na pasta.',
+    module: 'Documentação',
+  },
+  {
+    icon: Wrench,
+    time: '14:20',
+    title: 'Ordem de serviço',
+    description:
+      'O alerta de manutenção por km dispara. A OS sai em PDF e as peças já ficam reservadas pra obra certa.',
+    module: 'Manutenção',
+  },
+  {
+    icon: Warehouse,
+    time: '15:05',
+    title: 'Baixa de peça',
+    description:
+      'A peça sai do saldo daquela obra — não de um estoque misturado. Quem tirou e pra qual equipamento: tudo fica registrado.',
+    module: 'Almoxarifado',
+  },
+  {
+    icon: RefreshCw,
+    time: '17:30',
+    title: 'Sync com o Sienge',
+    description:
+      'A movimentação sobe pro ERP sem redigitar. Obra e escritório terminam o dia no mesmo número.',
+    module: 'Integração',
+  },
 ]
 
 export interface Profile {
   icon: LucideIcon
   title: string
-  level: string
   description: string
+  level: string
 }
 
 export const profiles: Profile[] = [
@@ -148,7 +197,8 @@ export const profiles: Profile[] = [
     icon: UserCog,
     title: 'Administrador',
     level: 'total',
-    description: 'Cadastra usuários, define o que cada um pode ver e editar, acompanha a auditoria completa.',
+    description:
+      'Cadastra usuários, define o que cada um pode ver e editar e acompanha a auditoria completa.',
   },
   {
     icon: Users,
@@ -160,7 +210,7 @@ export const profiles: Profile[] = [
     icon: Eye,
     title: 'Cliente',
     level: 'visualização',
-    description: 'Portal simplificado pra quem contrata o serviço acompanhar os próprios dados.',
+    description: 'Portal simplificado pra quem contrata o serviço poder acompanhar os próprios dados.',
   },
 ]
 
@@ -178,17 +228,17 @@ export const benefits: Benefit[] = [
   },
   {
     icon: Bell,
-    title: 'Menos surpresa',
-    description: 'Vencimento, estoque baixo e manutenção atrasada avisam antes de virar problema.',
+    title: 'Menos surpresas',
+    description: 'Vencimentos, estoque baixo e manutenção atrasada avisam antes de virar problema.',
   },
   {
     icon: BarChart3,
     title: 'Decisão mais rápida',
-    description: 'Números de gasto, estoque e frota disponíveis na hora, não no fim do mês.',
+    description: 'Números de gasto, estoque e frota disponíveis na hora — não no fim do mês.',
   },
   {
     icon: Warehouse,
     title: 'Controle real por obra',
-    description: 'Nada fica misturado num estoque só. Cada obra tem sua própria história no sistema.',
+    description: 'Nada fica misturado num estoque só. Cada obra tem a própria história no sistema.',
   },
 ]

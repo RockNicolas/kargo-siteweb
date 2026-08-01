@@ -17,7 +17,7 @@ export function AccessProfiles() {
           <SectionHeading
             eyebrow="Perfis de acesso"
             title="Cada pessoa vê só o que precisa ver."
-            description="Como crachás de acesso: o nível de cada perfil define exatamente o que ele enxerga no painel."
+            description="Como um crachá de acesso: o nível de cada perfil define exatamente o que a pessoa enxerga no painel."
           />
         </Reveal>
 

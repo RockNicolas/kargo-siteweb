@@ -30,7 +30,7 @@ export function SiengeSpotlight() {
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-asphalt-300">
                 Sincronização dos dois lados: a posição de estoque de cada obra é atualizada no Kargo
-                sem redigitar nada, e toda entrada, saída ou transferência lançada no Kargo é enviada
+                sem redigitar nada. Toda entrada, saída ou transferência lançada no Kargo é enviada
                 automaticamente para o Sienge.
               </p>
               <ul className="mt-6 space-y-3">

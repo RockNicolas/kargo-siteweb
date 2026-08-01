@@ -195,7 +195,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
             {status === 'error' && (
               <p className="flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
                 <AlertCircle className="h-4 w-4 shrink-0" />
-                Não deu pra enviar agora. Tente de novo ou chama no WhatsApp.
+                Não deu pra enviar agora. Tente de novo ou chame no WhatsApp.
               </p>
             )}
           </form>

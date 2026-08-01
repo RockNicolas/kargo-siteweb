@@ -8,7 +8,6 @@ function ModuleMedia({ mod }: { mod: ModuleItem }) {
   if (mod.videoSrc) {
     return (
       <div className="aspect-video overflow-hidden rounded-2xl border border-asphalt-200 bg-asphalt-950 dark:border-asphalt-800">
-        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video src={mod.videoSrc} controls preload="metadata" className="h-full w-full object-cover" />
       </div>
     )
@@ -80,8 +79,8 @@ export function ModulosPage() {
             Todos os módulos do Kargo
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-asphalt-600 dark:text-asphalt-300">
-            Cada módulo resolve uma parte específica da rotina de frota e obra — e todos conversam
-            entre si, num painel só. Assista de perto como funciona cada um.
+            Cada módulo resolve uma parte específica da rotina de frota e obras — e todos conversam
+            entre si num painel só. Assista de perto como funciona cada um.
           </p>
         </Reveal>
 
