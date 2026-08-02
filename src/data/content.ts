@@ -38,7 +38,6 @@ export const footerAboutLinks = [
 ]
 
 export const footerSupportLinks = [
-  { label: 'Solicitar demonstração', href: '/#contato' },
   { label: 'Falar no WhatsApp', href: `https://wa.me/${contact.whatsapp}` },
 ]
 

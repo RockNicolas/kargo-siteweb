@@ -1,5 +1,4 @@
-import { ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
@@ -104,15 +103,7 @@ export function SiengeSpotlight() {
           </Reveal>
         </div>
 
-        <Reveal delay={150} className="mt-10 text-center">
-          <Link
-            to="/#contato"
-            className="group inline-flex items-center gap-1.5 font-medium text-asphalt-950 underline decoration-asphalt-300 underline-offset-4 transition hover:decoration-asphalt-950 dark:text-white dark:decoration-asphalt-600 dark:hover:decoration-white"
-          >
-            Solicitar demonstração
-            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-          </Link>
-        </Reveal>
+        
       </Container>
     </section>
   )
