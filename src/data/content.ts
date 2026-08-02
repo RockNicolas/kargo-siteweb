@@ -20,6 +20,7 @@ export const navLinks = [
   { label: 'Módulos', href: '/#modulos' },
   { label: 'Integração Sienge', href: '/#sienge' },
   { label: 'Perfis de acesso', href: '/#perfis' },
+  { label: 'Sobre', href: '/sobre' },
   { label: 'Contato', href: '/#contato' },
 ]
 

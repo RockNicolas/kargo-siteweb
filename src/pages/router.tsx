@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import { HomePage } from './HomePage'
 import { ModulosPage } from './ModulosPage'
+import { SobrePage } from './SobrePage'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: 'modulos',
         element: <ModulosPage />,
+      },
+      {
+        path: 'sobre',
+        element: <SobrePage />,
       },
     ],
   },

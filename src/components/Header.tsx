@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu, X, ArrowRight, Sun, Moon } from 'lucide-react'
 import { Logo } from './Logo'
 import { Container } from './ui/Container'
@@ -6,6 +7,27 @@ import { navLinks } from '../data/content'
 import { useTheme } from '../hooks/useTheme'
 
 const HEADER_HEIGHT = 80
+
+function NavLink({ href, className, onClick, children }: {
+  href: string
+  className?: string
+  onClick?: () => void
+  children: React.ReactNode
+}) {
+  if (href.startsWith('/#')) {
+    return (
+      <a href={href} className={className} onClick={onClick}>
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={href} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  )
+}
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -64,7 +86,7 @@ export function Header() {
 
           <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.href}
                 href={link.href}
                 className="group relative py-1 text-sm font-medium text-asphalt-600 transition-colors duration-200 hover:text-signal-600 active:text-signal-600 dark:text-asphalt-300 dark:hover:text-signal-400 dark:active:text-signal-400"
@@ -74,7 +96,7 @@ export function Header() {
                   aria-hidden="true"
                   className="absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-signal-500 transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100"
                 />
-              </a>
+              </NavLink>
             ))}
           </nav>
 
@@ -123,14 +145,14 @@ export function Header() {
                 }`}
               >
                 {navLinks.map((link) => (
-                  <a
+                  <NavLink
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className="rounded-lg border-l-2 border-transparent px-3 py-3 text-base font-medium text-asphalt-700 transition-colors duration-200 hover:border-signal-500 hover:bg-white hover:text-signal-600 active:bg-signal-100 dark:text-asphalt-200 dark:hover:bg-asphalt-900 dark:hover:text-signal-400 dark:active:bg-asphalt-800"
                   >
                     {link.label}
-                  </a>
+                  </NavLink>
                 ))}
                 <a
                   href="/#contato"
