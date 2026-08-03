@@ -19,7 +19,6 @@ import {
 export const navLinks = [
   { label: 'Módulos', href: '/#modulos' },
   { label: 'Integração Sienge', href: '/#sienge' },
-  { label: 'Perfis de acesso', href: '/#perfis' },
   { label: 'Sobre', href: '/sobre' },
   { label: 'Contato', href: '/#contato' },
 ]
@@ -34,7 +33,6 @@ export const footerAboutLinks = [
   { label: 'Como funciona', href: '/#como-funciona' },
   { label: 'Módulos', href: '/modulos' },
   { label: 'Integração Sienge', href: '/#sienge' },
-  { label: 'Perfis de acesso', href: '/#perfis' },
   { label: 'Contato', href: '/#contato' },
 ]
 

@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight, Compass, User } from 'lucide-react'
+import { ArrowLeft, ArrowRight, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Container } from '../components/ui/Container'
 import { Reveal } from '../components/ui/Reveal'
+import { contact } from '../data/content'
 
 export function SobrePage() {
   return (
@@ -37,46 +38,61 @@ export function SobrePage() {
 
         <div className="mt-16 space-y-6 sm:mt-20">
           <Reveal>
-            <div className="grid gap-6 rounded-2xl border border-asphalt-200 bg-concrete-50 p-6 dark:border-asphalt-800 dark:bg-asphalt-900/60 sm:p-8 lg:grid-cols-[auto,1fr] lg:gap-8">
-              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-signal-500/10 text-signal-600 dark:text-signal-400">
-                <Compass className="h-5 w-5" />
-              </span>
+            <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-asphalt-200 bg-concrete-50 p-6 dark:border-transparent dark:bg-asphalt-950 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12">
+              <div className="mx-auto w-full max-w-sm lg:max-w-none">
+                <img
+                  src="/notebook-front-dark.webp"
+                  alt="Painel do Kargo com os módulos de frota e obra"
+                  className="w-full dark:hidden"
+                />
+                <img
+                  src="/notebook-front-light.webp"
+                  alt="Painel do Kargo com os módulos de frota e obra"
+                  className="hidden w-full dark:block"
+                />
+              </div>
               <div>
-                <h2 className="font-display text-2xl font-semibold tracking-tight text-asphalt-950 dark:text-white">
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:text-3xl">
                   De onde veio a ideia
                 </h2>
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300">
                   <p>
-                    O Kargo nasceu de um problema bem concreto: gestão de frota e de obra feita no
-                    meio de planilha solta, papel e ligação de um setor pra outro. Perguntas simples do
-                    dia a dia — quanto se gastou de combustível por veículo no mês, qual caminhão está
-                    com o seguro, o IPVA ou a manutenção prestes a vencer, quanto material sobrou em
-                    cada obra, quem tirou a última peça do almoxarifado — não tinham resposta rápida,
-                    porque a informação vivia espalhada e sempre um pouco atrasada.
+                    O Kargo começou pequeno: uma ferramenta pensada só para controlar o consumo de
+                    combustível da frota. Ainda nessa fase inicial surgiu a pergunta que mudou o rumo
+                    do projeto — por que não transformar aquilo em um sistema completo de controle de
+                    frota? Dali nasceu o módulo que hoje dá facilidade para localizar cada ativo pela
+                    placa, buscar a documentação de cada veículo e acompanhar o pagamento desses
+                    documentos, tudo em um só lugar.
                   </p>
                   <p>
-                    Daí veio a ideia: em vez de mais uma planilha ou mais um sistema isolado, um painel
-                    único que junta frota e obra e ainda conversa com o que a operação já usa — caso do
-                    Sienge, sincronizado nos dois sentidos pra estoque de obra e sistema de gestão nunca
-                    ficarem desalinhados. A identidade visual do Kargo, inspirada em sinalização de
-                    estrada e canteiro de obra, vem exatamente desse universo: frota na estrada, obra em
-                    andamento, tudo precisando de controle em tempo real.
+                    Foi esse ganho de escopo que fez o Kargo crescer. Vieram o controle de
+                    manutenções, pra nunca mais perder de vista revisão, seguro ou IPVA prestes a
+                    vencer, e o almoxarifado — a parte mais diferenciada, que uniu o controle de frota
+                    ao controle de obra em um único fluxo. É essa junção que dá ao Kargo a identidade
+                    que ele tem hoje: um painel só para gerir frota e canteiro de obra ao mesmo tempo.
                   </p>
                 </div>
+                <Link
+                  to="/modulos"
+                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-signal-500 px-6 py-3 font-medium text-white transition hover:bg-signal-400"
+                >
+                  Ver todos os módulos
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={90}>
-            <div className="grid gap-6 rounded-2xl border border-asphalt-200 bg-white p-6 dark:border-asphalt-800 dark:bg-asphalt-950 sm:p-8 lg:grid-cols-[auto,1fr] lg:gap-8">
-              <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-asphalt-950 text-white dark:bg-signal-500 dark:text-asphalt-950">
-                <User className="h-7 w-7" />
-              </span>
+            <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-asphalt-200 bg-white p-6 dark:border-transparent dark:bg-asphalt-950 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12">
+              <div className="mx-auto flex aspect-square w-full max-w-xs items-center justify-center rounded-2xl border border-dashed border-asphalt-300 bg-concrete-50 dark:border-asphalt-700 dark:bg-asphalt-900 lg:max-w-none">
+                <User className="h-16 w-16 text-asphalt-400 dark:text-asphalt-600" />
+              </div>
               <div>
                 <span className="font-mono text-xs font-medium uppercase tracking-widest text-signal-600 dark:text-signal-400">
                   Sobre o desenvolvedor
                 </span>
-                <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-asphalt-950 dark:text-white">
+                <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:text-3xl">
                   [Seu nome]
                 </h2>
                 <p className="mt-1 text-sm text-asphalt-500 dark:text-asphalt-400">
@@ -88,20 +104,19 @@ export function SobrePage() {
                     trouxe você até aqui.]
                   </p>
                 </div>
+                <a
+                  href={`https://wa.me/${contact.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-signal-500 px-6 py-3 font-medium text-white transition hover:bg-signal-400"
+                >
+                  Falar comigo
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </Reveal>
         </div>
-
-        <Reveal className="mt-16 flex justify-center sm:mt-20">
-          <Link
-            to="/#contato"
-            className="inline-flex items-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400"
-          >
-            Solicitar demonstração
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Reveal>
       </Container>
     </div>
   )
