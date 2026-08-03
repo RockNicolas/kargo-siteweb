@@ -55,6 +55,25 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value))
 }
 
+// Toque simula um "mouseenter" ao tocar num card mas quase nunca dispara o
+// "mouseleave" correspondente (não existe cursor saindo de cima de nada) —
+// sem essa checagem, o efeito de foco/hover ficava "travado" num card fora do
+// centro em touch, achatado e ampliado sem recentralizar, estourando a
+// máscara de desvanecimento nas pontas do carrossel.
+function useHoverCapable() {
+  const [capable, setCapable] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const update = () => setCapable(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return capable
+}
+
 /** Distância com sinal mais curta entre dois índices num ciclo (pra o carrossel dar a volta em vez de "voltar"). */
 function loopedDiff(index: number, active: number, length: number) {
   let diff = (index - active) % length
@@ -72,6 +91,7 @@ export function ModulesCarousel() {
   )
   const n = items.length
   const metrics = useCarouselMetrics()
+  const hoverCapable = useHoverCapable()
   const dragStepPx = Math.round(metrics.spacingX * 0.85)
 
   const [activeIndex, setActiveIndex] = useState(() => Math.floor((n - 1) / 2))
@@ -174,8 +194,8 @@ export function ModulesCarousel() {
             return (
               <div
                 key={item.title}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                onMouseEnter={() => hoverCapable && setHoveredIndex(i)}
+                onMouseLeave={() => hoverCapable && setHoveredIndex(null)}
                 onClick={() => goTo(i)}
                 className="absolute left-1/2 top-0 cursor-pointer"
                 style={{

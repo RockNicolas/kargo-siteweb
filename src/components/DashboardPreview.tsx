@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import {
   ArrowLeft,
   Fuel,
@@ -476,7 +476,7 @@ function AssetGroups({ groups }: { groups: AssetGroup[] }) {
         </div>
       </div>
 
-      <div className={`grid gap-4 ${groups.length >= 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
+      <div className={`grid gap-4 ${groups.length >= 3 ? '@min-[560px]:grid-cols-3' : '@min-[400px]:grid-cols-2'}`}>
         {groups.map((group) => {
           const Icon = group.icon
           const max = Math.max(...group.items.map((it) => (scale === 'metric' ? it.metricValue : it.valor)))
@@ -524,9 +524,50 @@ function AssetGroups({ groups }: { groups: AssetGroup[] }) {
   )
 }
 
-// Tela de relatório de um módulo. Fica num componente próprio (montado com
-// key={selected} pelo pai) só pra "linkedIndex" nascer zerado toda vez que o
-// usuário troca de módulo, sem precisar de useEffect pra resetar.
+// Troca suave entre duas "páginas" do painel: desvanece a página atual, só
+// então troca o conteúdo por baixo e desvanece a nova de volta — sem isso a
+// troca de tela era um corte seco (DOM sumindo/aparecendo na hora).
+function usePanelSwap<T>(value: T, durationMs = 180) {
+  const [rendered, setRendered] = useState(value)
+  const [visible, setVisible] = useState(true)
+
+  useLayoutEffect(() => {
+    if (value === rendered) return
+    setVisible(false)
+    const outTimeout = window.setTimeout(() => {
+      setRendered(value)
+      requestAnimationFrame(() => setVisible(true))
+    }, durationMs)
+    return () => window.clearTimeout(outTimeout)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
+
+  return { rendered, visible }
+}
+
+// Mede a altura real do conteúdo pra animar a altura do card ao trocar de
+// página — o resumo e o detalhe de um módulo têm tamanhos bem diferentes, e
+// sem isso o card "pulava" de tamanho na hora do corte.
+function useAutoHeight(dep: unknown) {
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [height, setHeight] = useState<number>()
+
+  useLayoutEffect(() => {
+    const el = contentRef.current
+    if (!el) return
+    setHeight(el.scrollHeight)
+
+    const observer = new ResizeObserver(() => setHeight(el.scrollHeight))
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [dep])
+
+  return { contentRef, height }
+}
+
+// Tela de relatório de um módulo. Fica num componente próprio só pra
+// "linkedIndex" nascer zerado toda vez que o usuário troca de módulo, sem
+// precisar de useEffect pra resetar.
 function ModuleDetail({ module, onBack }: { module: PreviewModule; onBack: () => void }) {
   const [linkedIndex, setLinkedIndex] = useState(0)
 
@@ -539,11 +580,11 @@ function ModuleDetail({ module, onBack }: { module: PreviewModule; onBack: () =>
   const linkedItem = linkedBars?.data[linkedIndex]
 
   return (
-    <div className="animate-fade-up">
+    <div>
       <button
         type="button"
         onClick={onBack}
-        className="mb-4 inline-flex cursor-pointer items-center gap-1.5 text-xs font-medium text-asphalt-400 transition hover:text-white"
+        className="mb-4 inline-flex cursor-pointer items-center gap-1.5 text-xs font-medium text-asphalt-400 transition duration-150 hover:text-white active:scale-95"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Voltar
@@ -563,7 +604,7 @@ function ModuleDetail({ module, onBack }: { module: PreviewModule; onBack: () =>
 
       <div
         className={
-          module.breakdowns.some((b) => b.type === 'assets') ? 'space-y-3' : 'grid gap-3 sm:grid-cols-2'
+          module.breakdowns.some((b) => b.type === 'assets') ? 'space-y-3' : 'grid gap-3 @min-[480px]:grid-cols-2'
         }
       >
         {module.breakdowns.map((b) => (
@@ -597,10 +638,12 @@ function ModuleDetail({ module, onBack }: { module: PreviewModule; onBack: () =>
 // seção do marketing.
 export function DashboardPreview() {
   const [selected, setSelected] = useState<number | null>(null)
-  const module = selected === null ? null : previewModules[selected]
+  const { rendered, visible } = usePanelSwap(selected)
+  const renderedModule = rendered === null ? null : previewModules[rendered]
+  const { contentRef, height } = useAutoHeight(rendered)
 
   return (
-    <div className="w-full overflow-hidden rounded-xl border border-asphalt-800 bg-asphalt-900 shadow-lg shadow-asphalt-950/30">
+    <div className="@container w-full overflow-hidden rounded-xl border border-asphalt-800 bg-asphalt-900 shadow-lg shadow-asphalt-950/30">
       <div className="flex items-center gap-1.5 border-b border-asphalt-800 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-asphalt-700" />
         <span className="h-2.5 w-2.5 rounded-full bg-asphalt-700" />
@@ -608,39 +651,49 @@ export function DashboardPreview() {
         <span className="ml-2 font-mono text-xs text-asphalt-500">painel.kargo</span>
       </div>
 
-      <div className="p-4 sm:p-5">
-        {module === null ? (
-          <div key="overview" className="animate-fade-up">
-            <p className="mb-1 text-sm font-medium text-white">Bem-vindo à sua operação.</p>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-asphalt-500">
-              Interaja com os módulos para ver o relatório
-            </p>
-            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-              {previewModules.map((mod, index) => {
-                const Icon = mod.icon
-                return (
-                  <button
-                    key={mod.title}
-                    type="button"
-                    onClick={() => setSelected(index)}
-                    className="group flex cursor-pointer flex-col items-start gap-2 rounded-lg border border-asphalt-800 bg-asphalt-950/40 p-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-signal-500/60 hover:bg-signal-500/5 hover:shadow-lg hover:shadow-signal-500/10"
-                  >
-                    <span className="flex h-7 w-7 items-center justify-center rounded-md bg-asphalt-800 text-signal-400 transition-colors duration-200 group-hover:bg-signal-500 group-hover:text-white">
-                      <Icon className="h-4 w-4" />
-                    </span>
-                    <span className="text-[11px] font-medium text-asphalt-400 transition-colors duration-200 group-hover:text-asphalt-200">
-                      {mod.title}
-                    </span>
-                    <span className="text-lg font-semibold leading-none text-white">{mod.stat}</span>
-                    <span className="text-[10px] leading-tight text-asphalt-500">{mod.statLabel}</span>
-                  </button>
-                )
-              })}
+      <div
+        className="overflow-hidden transition-[height] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{ height }}
+      >
+        <div
+          ref={contentRef}
+          className={`p-4 transition-all duration-200 ease-out sm:p-5 ${
+            visible ? 'translate-y-0 opacity-100' : 'translate-y-1.5 opacity-0'
+          }`}
+        >
+          {renderedModule === null ? (
+            <div>
+              <p className="mb-1 text-sm font-medium text-white">Bem-vindo à sua operação.</p>
+              <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-asphalt-500">
+                Interaja com os módulos para ver o relatório
+              </p>
+              <div className="grid grid-cols-2 gap-2.5 @min-[420px]:grid-cols-3">
+                {previewModules.map((mod, index) => {
+                  const Icon = mod.icon
+                  return (
+                    <button
+                      key={mod.title}
+                      type="button"
+                      onClick={() => setSelected(index)}
+                      className="group flex cursor-pointer flex-col items-start gap-2 rounded-lg border border-asphalt-800 bg-asphalt-950/40 p-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-signal-500/60 hover:bg-signal-500/5 hover:shadow-lg hover:shadow-signal-500/10 active:scale-95 active:duration-75"
+                    >
+                      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-asphalt-800 text-signal-400 transition-colors duration-200 group-hover:bg-signal-500 group-hover:text-white">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <span className="text-[11px] font-medium text-asphalt-400 transition-colors duration-200 group-hover:text-asphalt-200">
+                        {mod.title}
+                      </span>
+                      <span className="text-lg font-semibold leading-none text-white">{mod.stat}</span>
+                      <span className="text-[10px] leading-tight text-asphalt-500">{mod.statLabel}</span>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
-          </div>
-        ) : (
-          <ModuleDetail key={selected} module={module} onBack={() => setSelected(null)} />
-        )}
+          ) : (
+            <ModuleDetail module={renderedModule} onBack={() => setSelected(null)} />
+          )}
+        </div>
       </div>
     </div>
   )

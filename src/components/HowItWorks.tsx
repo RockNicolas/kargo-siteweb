@@ -65,7 +65,7 @@ export function HowItWorks() {
         </div>
 
         <Reveal delay={280}>
-          <p className="mx-auto mt-16 max-w-none text-center font-display text-xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:mt-20 sm:whitespace-nowrap sm:text-2xl lg:text-3xl">
+          <p className="mx-auto mt-16 max-w-3xl text-center font-display text-xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:mt-20 sm:text-2xl lg:text-3xl">
             Imagine sua rotina assim: painel interativo, dados sempre atualizados — sem planilhas.
           </p>
         </Reveal>

@@ -113,7 +113,7 @@ export function SobrePage() {
                   <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
-              <div className="mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-2xl lg:max-w-none">
+              <div className="order-first mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-2xl lg:order-none lg:max-w-none">
                 <img
                   src="/NICOLAS ROCK.jpeg"
                   alt="Nicolas Rock, desenvolvedor e criador do Kargo"
