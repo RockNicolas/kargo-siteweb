@@ -13,10 +13,12 @@ type EmailModalProps = {
   onClose: () => void
 }
 
+const DEFAULT_MESSAGE = 'Olá! Gostaria de saber mais sobre o Kargo.'
+
 export function EmailModal({ open, onClose }: EmailModalProps) {
   const titleId = useId()
   const closeRef = useRef<HTMLButtonElement>(null)
-  const [form, setForm] = useState({ nome: '', email: '', mensagem: '' })
+  const [form, setForm] = useState({ nome: '', email: '', mensagem: DEFAULT_MESSAGE })
   const [status, setStatus] = useState<SubmitStatus>('idle')
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
   useEffect(() => {
     if (!open) {
       setStatus('idle')
-      setForm({ nome: '', email: '', mensagem: '' })
+      setForm({ nome: '', email: '', mensagem: DEFAULT_MESSAGE })
     }
   }, [open])
 
@@ -66,7 +68,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
 
       if (data.success) {
         setStatus('success')
-        setForm({ nome: '', email: '', mensagem: '' })
+        setForm({ nome: '', email: '', mensagem: DEFAULT_MESSAGE })
       } else {
         setStatus('error')
       }

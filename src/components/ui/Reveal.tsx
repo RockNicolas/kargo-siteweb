@@ -4,12 +4,9 @@ import type { ReactNode } from 'react'
 interface RevealProps {
   children: ReactNode
   className?: string
-  /** Atraso em ms, pra escalonar vários itens em sequência (ex.: cards de uma grade). */
   delay?: number
 }
 
-// Anima o filho de opacidade 0 + leve deslocamento pra posição normal assim que
-// ele entra na viewport, uma única vez. Respeita prefers-reduced-motion (index.css).
 export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)

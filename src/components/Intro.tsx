@@ -41,9 +41,7 @@ function useIsDark() {
   return isDark
 }
 
-// Abaixo de `sm` o grid vira 1 coluna e a foto já nasce centralizada — o ajuste
-// de posição (que só existe pra compensar o crescimento ficando ancorado à
-// direita) não se aplica nesse layout.
+
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false)
 
@@ -58,10 +56,6 @@ function useIsDesktop() {
   return isDesktop
 }
 
-// Posição/largura "de repouso" de um elemento (sem nenhum transform aplicado
-// a ele) — serve pra calcular deslocamentos (compensar o crescimento, mirar
-// o centro da seção) sem entrar em loop, já que o elemento medido aqui nunca
-// recebe o transform diretamente.
 function useElementRect(ref: React.RefObject<HTMLElement | null>) {
   const [rect, setRect] = useState({ left: 0, width: 0 })
 
@@ -118,10 +112,6 @@ function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   return progress
 }
 
-// Um ângulo (angulado ou frontal) — só a foto do tema ativo, pra nunca
-// misturar painel claro com escuro no dissolve do scroll. A troca de tema
-// (clique) faz crossfade entre as duas imgs; a opacidade do ângulo vem do
-// scroll sem CSS transition.
 function NotebookPhotoPair({
   darkSrc,
   lightSrc,
@@ -218,7 +208,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
       >
         <Monitor className="h-4 w-4" />
         <Smartphone className="h-4 w-4" />
-        Acesse do computador, tablet ou celular
+        Acesse do computador ou qualquer dispositivo móvel
       </div>
 
       <div
@@ -250,22 +240,15 @@ function IntroGlow() {
   )
 }
 
-// Movimento contínuo tipo câmera: crescer → dissolve longo (ângulo→frente)
-// misturado no zoom → centralizar. Sem pausa entre fases.
 const GROW_SCALE = 1.18
 const GROW_END = 0.32
-
-// Dissolve longo e suave — overlap com grow e zoom pra não parecer corte.
 const SWAP_START = 0.18
 const SWAP_END = 0.58
 const DISSOLVE_BLUR_PX = 7
-
 const ZOOM_SCALE = 1.4
 const ZOOM_START = 0.38
 const ZOOM_END = 0.74
-
 const MAX_SHIFT_PX = 160
-
 const CENTER_SCALE = 1.65
 const CENTER_START = 0.78
 const CENTER_END = 1
@@ -277,11 +260,6 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
 
   const captionOpacity = 1 - smoothstep(0, 0.2, p)
   const centerT = smootherstep(CENTER_START, CENTER_END, p)
-  // No mobile o texto nunca esmaece (ver `textOpacity` abaixo) e a foto já
-  // nasce ocupando quase toda a altura sobrando na coluna única — crescer
-  // ela ainda mais estoura a viewport da sticky section e corta a base do
-  // notebook. Por isso o zoom cinematográfico fica só pro desktop; no
-  // mobile a foto mantém o tamanho e só o dissolve entre os ângulos roda.
   const scale = isDesktop
     ? 1 +
       (GROW_SCALE - 1) * smootherstep(0, GROW_END, p) +
@@ -289,8 +267,6 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
       (CENTER_SCALE - ZOOM_SCALE) * centerT
     : 1
 
-  // Dissolve cinematográfico: curva S longa + blur no meio + leve parallax
-  // de escala entre as duas fotos (como rack focus / morph de câmera).
   const swap = smootherstep(SWAP_START, SWAP_END, p)
   const dissolvePeak = Math.sin(Math.PI * swap)
   const dissolveBlur = DISSOLVE_BLUR_PX * dissolvePeak
@@ -311,12 +287,16 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
 
   return (
     <div className="relative flex justify-center sm:justify-end">
-      <p
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.3em] text-signal-600 dark:text-signal-400 sm:text-xs"
+      <div
+        aria-hidden="true"
+        className="absolute -bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5"
         style={{ opacity: captionOpacity }}
       >
-        Role para ver o Kargo de perto
-      </p>
+        <span className="relative h-6 w-4 rounded-full border-2 border-signal-600 dark:border-signal-400">
+          <span className="animate-mouse-scroll absolute left-1/2 top-1 h-1.5 w-[3px] -translate-x-1/2 rounded-full bg-signal-600 dark:bg-signal-400" />
+        </span>
+        <span className="animate-chevron-bounce h-2 w-2 border-b-2 border-r-2 border-signal-600 dark:border-signal-400" />
+      </div>
 
       <div
         ref={boxRef}
@@ -339,8 +319,6 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
             blur={dissolveBlur}
             scale={angledLayerScale}
           />
-          {/* Front assets: naming no arquivo está invertido em relação ao
-              painel (front-light = UI escura, front-dark = UI clara). */}
           <NotebookPhotoPair
             darkSrc="/notebook-front-light.webp"
             lightSrc="/notebook-front-dark.webp"
@@ -361,10 +339,6 @@ export function Intro() {
   const row = useElementRect(rowRef)
   const isDesktop = useIsDesktop()
   const reducedMotion = usePrefersReducedMotion()
-
-  // Some junto com o esmaecimento pro centro do NotebookRig (mesma janela
-  // CENTER_START–CENTER_END) — só no desktop, onde a foto de fato passa por
-  // cima desse espaço; no mobile (1 coluna) ela nunca invade o texto.
   const textOpacity = isDesktop ? 1 - 0.82 * smootherstep(CENTER_START, CENTER_END, progress) : 1
 
   if (reducedMotion) {
