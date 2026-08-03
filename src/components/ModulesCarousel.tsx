@@ -114,6 +114,7 @@ export function ModulesCarousel() {
 
   const handlePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     ;(e.target as Element).setPointerCapture?.(e.pointerId)
+    if (!hoverCapable) setHoveredIndex(null)
     setDrag({ startX: e.clientX, deltaX: 0 })
   }
   const handlePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
@@ -196,7 +197,10 @@ export function ModulesCarousel() {
                 key={item.title}
                 onMouseEnter={() => hoverCapable && setHoveredIndex(i)}
                 onMouseLeave={() => hoverCapable && setHoveredIndex(null)}
-                onClick={() => goTo(i)}
+                onClick={() => {
+                  goTo(i)
+                  if (!hoverCapable) setHoveredIndex(i)
+                }}
                 className="absolute left-1/2 top-0 cursor-pointer"
                 style={{
                   width: metrics.cardW,
@@ -254,7 +258,10 @@ export function ModulesCarousel() {
 
         <button
           type="button"
-          onClick={goPrev}
+          onClick={() => {
+            goPrev()
+            if (!hoverCapable) setHoveredIndex(null)
+          }}
           aria-label="Módulo anterior"
           className="absolute left-3 top-1/2 z-[210] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-asphalt-200 bg-white/90 text-asphalt-700 opacity-0 shadow-sm backdrop-blur transition duration-300 hover:border-signal-500 hover:text-signal-600 group-hover/carousel:opacity-100 focus-visible:opacity-100 sm:left-6 dark:border-asphalt-700 dark:bg-asphalt-900/80 dark:text-asphalt-200 dark:hover:text-signal-400"
         >
@@ -262,7 +269,10 @@ export function ModulesCarousel() {
         </button>
         <button
           type="button"
-          onClick={goNext}
+          onClick={() => {
+            goNext()
+            if (!hoverCapable) setHoveredIndex(null)
+          }}
           aria-label="Próximo módulo"
           className="absolute right-3 top-1/2 z-[210] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-asphalt-200 bg-white/90 text-asphalt-700 opacity-0 shadow-sm backdrop-blur transition duration-300 hover:border-signal-500 hover:text-signal-600 group-hover/carousel:opacity-100 focus-visible:opacity-100 sm:right-6 dark:border-asphalt-700 dark:bg-asphalt-900/80 dark:text-asphalt-200 dark:hover:text-signal-400"
         >
@@ -275,7 +285,10 @@ export function ModulesCarousel() {
           <button
             key={item.title}
             type="button"
-            onClick={() => goTo(i)}
+            onClick={() => {
+              goTo(i)
+              if (!hoverCapable) setHoveredIndex(null)
+            }}
             aria-label={`Ir para ${item.title}`}
             className={`h-1.5 cursor-pointer rounded-full transition-all duration-300 ${
               i === activeIndex ? 'w-6 bg-signal-500' : 'w-1.5 bg-asphalt-200 dark:bg-asphalt-700'
