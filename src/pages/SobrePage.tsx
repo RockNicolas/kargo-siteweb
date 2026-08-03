@@ -115,7 +115,7 @@ export function SobrePage() {
               </div>
               <div className="mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-2xl lg:max-w-none">
                 <img
-                  src="NICOLAS ROCK.jpeg"
+                  src="/NICOLAS ROCK.jpeg"
                   alt="Nicolas Rock, desenvolvedor e criador do Kargo"
                   className="h-full w-full object-cover object-top"
                 />
