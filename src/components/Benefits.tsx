@@ -15,7 +15,7 @@ export function Benefits() {
           <SectionHeading
             eyebrow="Por que isso importa"
             title="O que muda na prática"
-            description="Não é sobre ter mais um sistema — é sobre o que para de dar errado no dia a dia."
+            description="Não se trata de ter mais um sistema — trata-se do que deixa de dar errado no dia a dia."
           />
         </Reveal>
 

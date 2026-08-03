@@ -27,14 +27,14 @@ export function HowItWorks() {
   }, [])
 
   return (
-    <section id="como-funciona" className="bg-white py-20 dark:bg-black sm:py-28">
+    <section id="how-it-works" className="bg-white py-20 dark:bg-black sm:py-28">
       <Container>
         <Reveal>
           <SectionHeading
             align="center"
             eyebrow="Como funciona"
             title="Três passos entre a planilha e o controle real."
-            description="Sem implantação complicada: você cadastra, o sistema cuida do resto."
+            description="Sem implantação complicada: você cadastra, e o sistema cuida do restante."
           />
         </Reveal>
 
@@ -66,7 +66,7 @@ export function HowItWorks() {
 
         <Reveal delay={280}>
           <p className="mx-auto mt-16 max-w-none text-center font-display text-xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:mt-20 sm:whitespace-nowrap sm:text-2xl lg:text-3xl">
-            Imagina sua rotina assim: painel interativo, dado sempre atualizado — longe de planilhas.
+            Imagine sua rotina assim: painel interativo, dados sempre atualizados — sem planilhas.
           </p>
         </Reveal>
 

@@ -18,7 +18,7 @@ export function SiengeSpotlight() {
           <SectionHeading
             align="center"
             eyebrow="Integração Sienge"
-            title="Seu estoque de obra e o Sienge, sempre batendo."
+            title="Seu estoque de obra e o Sienge, sempre alinhados."
             description="O Kargo mantém o estoque de cada obra sincronizado com o Sienge nos dois sentidos — sem lançar a mesma movimentação duas vezes."
           />
         </Reveal>

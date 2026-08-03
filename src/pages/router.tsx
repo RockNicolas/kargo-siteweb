@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import App from '../App'
 import { HomePage } from './HomePage'
 import { SobrePage } from './SobrePage'
@@ -13,8 +13,12 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: 'sobre',
+        path: 'about',
         element: <SobrePage />,
+      },
+      {
+        path: 'sobre',
+        element: <Navigate to="/about" replace />,
       },
     ],
   },

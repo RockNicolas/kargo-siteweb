@@ -248,7 +248,7 @@ const previewModules: PreviewModule[] = [
             label: 'Volvo (KRG-4A21)',
             value: 96,
             color: green,
-            warning: 'Faltam 100km para a troca de óleo',
+            warning: 'Faltam 100 km para a troca de óleo',
           },
           { label: 'MC-13', value: 45, color: orange },
           { label: 'Strada (KRG-7B02)', value: 30, color: blue },

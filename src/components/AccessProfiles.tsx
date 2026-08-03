@@ -10,12 +10,12 @@ const stripeColor: Record<string, string> = {
 
 export function AccessProfiles() {
   return (
-    <section id="perfis" className="bg-white py-20 dark:bg-black sm:py-28">
+    <section id="profiles" className="bg-white py-20 dark:bg-black sm:py-28">
       <Container>
         <Reveal>
           <SectionHeading
             eyebrow="Perfis de acesso"
-            title="Cada pessoa vê só o que precisa ver."
+            title="Cada pessoa vê apenas o que precisa ver."
             description="Como um crachá de acesso: o nível de cada perfil define exatamente o que a pessoa enxerga no painel."
           />
         </Reveal>

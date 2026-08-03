@@ -11,7 +11,7 @@ export function PainPoints() {
         <Reveal>
           <SectionHeading
             eyebrow="O dia a dia sem o Kargo"
-            title="Se essas perguntas demoram pra responder, o problema não é sua equipe — é a planilha."
+            title="Se essas perguntas demoram para ser respondidas, o problema não é sua equipe — é a planilha."
           />
         </Reveal>
 
@@ -28,8 +28,8 @@ export function PainPoints() {
 
         <Reveal delay={150}>
           <p className="mt-10 max-w-2xl text-lg text-asphalt-600 dark:text-asphalt-300">
-            O Kargo responde tudo isso na hora com histórico completo — sem depender de alguém
-            lembrar de atualizar uma planilha.
+            O Kargo responde a tudo isso imediatamente, com histórico completo — sem depender de
+            alguém lembrar de atualizar uma planilha.
           </p>
         </Reveal>
       </Container>

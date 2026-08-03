@@ -17,10 +17,10 @@ import {
 } from 'lucide-react'
 
 export const navLinks = [
-  { label: 'Módulos', href: '/#modulos' },
+  { label: 'Módulos', href: '/#modules' },
   { label: 'Integração Sienge', href: '/#sienge' },
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Contato', href: '/#contato' },
+  { label: 'Sobre', href: '/about' },
+  { label: 'Contato', href: '/#contact' },
 ]
 
 export const contact = {
@@ -30,10 +30,10 @@ export const contact = {
 }
 
 export const footerAboutLinks = [
-  { label: 'Como funciona', href: '/#como-funciona' },
-  { label: 'Módulos', href: '/#modulos' },
+  { label: 'Como funciona', href: '/#how-it-works' },
+  { label: 'Módulos', href: '/#modules' },
   { label: 'Integração Sienge', href: '/#sienge' },
-  { label: 'Contato', href: '/#contato' },
+  { label: 'Contato', href: '/#contact' },
 ]
 
 export const footerSupportLinks = [
@@ -60,12 +60,12 @@ export interface ModuleGroup {
 
 export const moduleGroups: ModuleGroup[] = [
   {
-    label: 'Patrimônio & obras',
+    label: 'Patrimônio e obras',
     items: [
       {
         icon: Truck,
         title: 'Veículos e equipamentos',
-        description: 'Cadastro central com placa, categoria, município e controle de km e horímetro.',
+        description: 'Cadastro central com placa, categoria, município e controle de quilometragem e horímetro.',
       },
     ],
   },
@@ -86,7 +86,8 @@ export const moduleGroups: ModuleGroup[] = [
       {
         icon: Wrench,
         title: 'Manutenção',
-        description: 'Intervalos por km ou por hora, ordem de serviço em PDF e baixa de peças na obra certa.',
+        description:
+          'Intervalos por quilometragem ou por hora, ordem de serviço em PDF e baixa de peças na obra correta.',
       },
       {
         icon: Warehouse,
@@ -96,23 +97,25 @@ export const moduleGroups: ModuleGroup[] = [
     ],
   },
   {
-    label: 'Visão & controle',
+    label: 'Visão e controle',
     items: [
       {
         icon: BarChart3,
         title: 'Relatórios e painéis',
         description:
-          'Indicadores de frota e obras em tempo real. Filtre por período, veículo ou obra e acompanhe tudo num só painel. Cada relatório sai em PDF ou Excel com a logo da empresa.',
+          'Indicadores de frota e obras em tempo real. Filtre por período, veículo ou obra e acompanhe tudo em um único painel. Cada relatório é exportado em PDF ou Excel com o logotipo da empresa.',
       },
       {
         icon: Bell,
         title: 'Alertas e notificações',
-        description: 'O sistema avisa sozinho: vencimentos, estoque baixo e divergência de km.',
+        description:
+          'O sistema alerta automaticamente: vencimentos, estoque baixo e divergência de quilometragem.',
       },
       {
         icon: ShieldCheck,
         title: 'Segurança e acesso',
-        description: 'Cada funcionário só acessa o que faz sentido pro seu trabalho. Tudo fica registrado.',
+        description:
+          'Cada funcionário acessa apenas o que faz sentido para o seu trabalho. Tudo fica registrado.',
       },
     ],
   },
@@ -120,10 +123,10 @@ export const moduleGroups: ModuleGroup[] = [
 
 export const painPoints: string[] = [
   'Quanto estamos gastando de combustível por veículo por mês?',
-  'Qual veículo está prestes a vencer o licenciamento, o IPVA ou a próxima manutenção?',
+  'Qual veículo está com o licenciamento, o IPVA ou a próxima manutenção prestes a vencer?',
   'Quanto material temos em estoque em cada obra agora?',
-  'Quem tirou a última peça do almoxarifado e para qual equipamento?',
-  'Esse motorista está com a CNH em dia?',
+  'Quem retirou a última peça do almoxarifado e para qual equipamento?',
+  'Este motorista está com a CNH em dia?',
 ]
 
 export interface HowItWorksStep {
@@ -137,19 +140,19 @@ export const howItWorks: HowItWorksStep[] = [
     icon: Truck,
     title: 'Cadastre sua operação',
     description:
-      'Veículos, obras, equipamentos e peças num cadastro único — sem depender de planilha espalhada em vários lugares.',
+      'Veículos, obras, equipamentos e peças em um cadastro único — sem depender de planilhas espalhadas em vários lugares.',
   },
   {
     icon: Bell,
-    title: 'O sistema cruza os dados sozinho',
+    title: 'O sistema cruza os dados automaticamente',
     description:
-      'Documento perto de vencer, estoque abaixo do mínimo, manutenção atrasada: o Kargo avisa antes de virar problema, sem ninguém precisar checar manualmente.',
+      'Documento perto de vencer, estoque abaixo do mínimo, manutenção atrasada: o Kargo avisa antes que se torne um problema, sem que ninguém precise verificar manualmente.',
   },
   {
     icon: Zap,
     title: 'Decisão na hora, não no fim do mês',
     description:
-      'Gasto de combustível, saldo de estoque por obra e status da frota disponíveis no painel, com relatórios prontos pra exportar quando precisar.',
+      'Gasto de combustível, saldo de estoque por obra e status da frota disponíveis no painel, com relatórios prontos para exportar quando precisar.',
   },
 ]
 
@@ -163,19 +166,20 @@ export const siengeBenefits: SiengeBenefit[] = [
   {
     icon: Warehouse,
     title: 'Estoque por obra',
-    description: 'Cada obra tem seu próprio saldo de material — nunca um estoque genérico misturando tudo.',
+    description:
+      'Cada obra tem seu próprio saldo de material — nunca um estoque genérico misturando tudo.',
   },
   {
     icon: RefreshCw,
     title: 'Sincronização nos dois sentidos',
     description:
-      'O que muda no Sienge chega ao Kargo, e o que você lança no Kargo segue pro Sienge — sem redigitar nada.',
+      'O que muda no Sienge chega ao Kargo, e o que você lança no Kargo segue para o Sienge — sem digitar novamente.',
   },
   {
     icon: ShieldCheck,
     title: 'Nenhum lançamento se perde',
     description:
-      'Se a sincronização falhar por instabilidade, o lançamento continua salvo no Kargo e fica sinalizado pra revisão.',
+      'Se a sincronização falhar por instabilidade, o lançamento continua salvo no Kargo e fica sinalizado para revisão.',
   },
   {
     icon: Wrench,
@@ -204,7 +208,7 @@ export const siengeFlow: SiengeFlowStep[] = [
     direction: 'Kargo → Sienge',
     label: 'Envio automático',
     description:
-      'Toda entrada, saída ou transferência lançada na tela de Almoxarifado do Kargo já sai automaticamente pro Sienge.',
+      'Toda entrada, saída ou transferência lançada na tela de Almoxarifado do Kargo já é enviada automaticamente para o Sienge.',
   },
 ]
 
@@ -220,13 +224,15 @@ export const profiles: Profile[] = [
     icon: Users,
     title: 'Operadores',
     level: 'por módulo',
-    description: 'Cada funcionário enxerga só as áreas liberadas pra ele — nada além do necessário.',
+    description:
+      'Cada funcionário enxerga apenas as áreas liberadas para ele — nada além do necessário.',
   },
   {
     icon: Eye,
     title: 'Cliente',
     level: 'visualização',
-    description: 'Portal simplificado pra quem contrata o serviço poder acompanhar os próprios dados.',
+    description:
+      'Portal simplificado para que quem contrata o serviço possa acompanhar os próprios dados.',
   },
 ]
 
@@ -240,12 +246,14 @@ export const benefits: Benefit[] = [
   {
     icon: Wrench,
     title: 'Menos retrabalho',
-    description: 'A mesma informação não precisa ser digitada duas vezes em dois sistemas diferentes.',
+    description:
+      'A mesma informação não precisa ser digitada duas vezes em dois sistemas diferentes.',
   },
   {
     icon: Bell,
     title: 'Menos surpresas',
-    description: 'Vencimentos, estoque baixo e manutenção atrasada avisam antes de virar problema.',
+    description:
+      'Vencimentos, estoque baixo e manutenção atrasada alertam antes que se tornem um problema.',
   },
   {
     icon: BarChart3,
@@ -255,6 +263,7 @@ export const benefits: Benefit[] = [
   {
     icon: Warehouse,
     title: 'Controle real por obra',
-    description: 'Nada fica misturado num estoque só. Cada obra tem a própria história no sistema.',
+    description:
+      'Nada fica misturado em um único estoque. Cada obra tem a própria história no sistema.',
   },
 ]

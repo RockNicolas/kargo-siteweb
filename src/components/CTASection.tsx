@@ -57,20 +57,20 @@ export function CTASection() {
   }
 
   return (
-    <section id="contato" className="bg-concrete-100 py-20 dark:bg-black sm:py-28">
+    <section id="contact" className="bg-concrete-100 py-20 dark:bg-black sm:py-28">
       <Container>
         <Reveal>
           <SectionHeading
             eyebrow="Contato"
             title="Pronto para tirar sua operação da planilha?"
-            description="Fale com a gente e veja o Kargo funcionando com a realidade da sua frota e das suas obras."
+            description="Fale conosco e veja o Kargo funcionando com a realidade da sua frota e das suas obras."
           />
         </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-5">
           <Reveal className="flex flex-col gap-4 lg:col-span-2">
             <a
-              href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent('Olá! Quero saber mais sobre o Kargo.')}`}
+              href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre o Kargo.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-3 rounded-2xl border border-asphalt-200 bg-white p-5 transition hover:border-signal-500 hover:shadow-lg hover:shadow-asphalt-950/5 sm:gap-4 sm:p-6 dark:border-asphalt-800 dark:bg-asphalt-900"
@@ -83,7 +83,7 @@ export function CTASection() {
                   Fale pelo WhatsApp
                 </span>
                 <span className="block text-sm text-asphalt-500 dark:text-asphalt-400">
-                  Resposta rápida — direto com o time
+                  Resposta rápida — diretamente com a equipe
                 </span>
               </span>
               <ArrowRight className="ml-auto hidden h-5 w-5 shrink-0 text-asphalt-300 transition group-hover:translate-x-1 group-hover:text-signal-500 sm:block dark:text-asphalt-600" />
@@ -185,13 +185,13 @@ export function CTASection() {
               {status === 'success' && (
                 <p className="mt-3 flex items-center gap-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
                   <CheckCircle2 className="h-4 w-4 shrink-0" />
-                  Mensagem enviada! A gente te retorna em breve.
+                  Mensagem enviada! Retornaremos o contato em breve.
                 </p>
               )}
               {status === 'error' && (
                 <p className="mt-3 flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
                   <AlertCircle className="h-4 w-4 shrink-0" />
-                  Não deu pra enviar agora. Tente de novo ou chame no WhatsApp acima.
+                  Não foi possível enviar agora. Tente novamente ou fale conosco pelo WhatsApp acima.
                 </p>
               )}
             </form>

@@ -189,7 +189,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         className="animate-fade-up mx-auto mt-5 max-w-md text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300 sm:mx-0"
         style={{ animationDelay: '180ms' }}
       >
-        O Kargo substitui planilha, papel e controle manual por um painel único — acessível de
+        O Kargo substitui a planilha, o papel e o controle manual por um painel único — acessível de
         qualquer computador, tablet ou celular, com histórico completo e alertas automáticos.
       </p>
 
@@ -198,14 +198,14 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         style={{ animationDelay: '260ms' }}
       >
         <a
-          href="#contato"
+          href="#contact"
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400"
         >
           Solicitar demonstração
           <ArrowRight className="h-4 w-4" />
         </a>
         <a
-          href="#modulos"
+          href="#modules"
           className="inline-flex items-center justify-center gap-2 rounded-lg border border-asphalt-200 px-6 py-3 font-medium text-asphalt-700 transition hover:border-asphalt-950 dark:border-asphalt-700 dark:text-asphalt-200 dark:hover:border-white"
         >
           Ver módulos do sistema
@@ -315,7 +315,7 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
         className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.3em] text-signal-600 dark:text-signal-400 sm:text-xs"
         style={{ opacity: captionOpacity }}
       >
-        Role pra ver o Kargo de perto
+        Role para ver o Kargo de perto
       </p>
 
       <div

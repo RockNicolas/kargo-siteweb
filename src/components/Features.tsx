@@ -5,14 +5,14 @@ import { ModulesCarousel } from './ModulesCarousel'
 
 export function Features() {
   return (
-    <section id="modulos" className="relative overflow-hidden bg-white py-20 dark:bg-black sm:py-28">
+    <section id="modules" className="relative overflow-hidden bg-white py-20 dark:bg-black sm:py-28">
       <Container className="relative">
         <Reveal>
           <SectionHeading
             align="center"
             eyebrow="Módulos"
-            title="Tudo o que sua operação precisa em um painel só."
-            description="Organizado do jeito que quem administra frota e obras realmente pensa no dia a dia."
+            title="Tudo o que sua operação precisa em um único painel."
+            description="Organizado da forma como quem administra frota e obras realmente pensa no dia a dia."
           />
         </Reveal>
 
@@ -26,7 +26,7 @@ export function Features() {
         <Reveal className="mt-12 text-center sm:mt-14">
           <p className="mx-auto max-w-xl text-base text-asphalt-500 dark:text-asphalt-400">
             Cada módulo já nasce conectado aos outros — sem retrabalho, sem planilha extra, sem
-            redigitar nada.
+            digitar novamente.
           </p>
         </Reveal>
       </Container>

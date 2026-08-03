@@ -20,7 +20,7 @@ export function SobrePage() {
             className="inline-flex items-center gap-1.5 text-sm font-medium text-asphalt-500 transition hover:text-asphalt-950 dark:text-asphalt-400 dark:hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            Voltar pro início
+            Voltar para o início
           </Link>
 
           <span className="mt-6 block font-mono text-xs font-medium uppercase tracking-widest text-signal-600 dark:text-signal-400">
@@ -30,10 +30,10 @@ export function SobrePage() {
             A história por trás do Kargo
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-asphalt-600 dark:text-asphalt-300">
-            O Kargo é um sistema de gestão de frota e obra — combustível, documentação veicular,
-            manutenção e almoxarifado num painel só, acessível de qualquer computador ou celular.
-            Feito pra empresa que tem veículo próprio e obra em andamento ao mesmo tempo, e hoje
-            resolve isso no meio de planilha solta e ligação de um setor pro outro.
+            O Kargo é um sistema de gestão de frota e obras — combustível, documentação veicular,
+            manutenção e almoxarifado em um único painel, acessível de qualquer computador ou celular.
+            Feito para a empresa que tem veículo próprio e obra em andamento ao mesmo tempo — e que
+            hoje lida com isso no meio de planilhas soltas e ligações de um setor para o outro.
           </p>
         </Reveal>
 
@@ -49,23 +49,24 @@ export function SobrePage() {
                 </h2>
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300">
                   <p>
-                    O Kargo começou pequeno: uma ferramenta pensada só para controlar o consumo de
+                    O Kargo começou pequeno: uma ferramenta pensada apenas para controlar o consumo de
                     combustível da frota. Ainda nessa fase inicial surgiu a pergunta que mudou o rumo
                     do projeto — por que não transformar aquilo em um sistema completo de controle de
-                    frota? Dali nasceu o módulo que hoje dá facilidade para localizar cada ativo pela
-                    placa, buscar a documentação de cada veículo e acompanhar o pagamento desses
-                    documentos, tudo em um só lugar.
+                    frota? Dali nasceu o módulo que hoje facilita localizar cada ativo pela placa,
+                    buscar a documentação de cada veículo e acompanhar o pagamento desses documentos,
+                    tudo em um único lugar.
                   </p>
                   <p>
                     Foi esse ganho de escopo que fez o Kargo crescer. Vieram o controle de
-                    manutenções, pra nunca mais perder de vista revisão, licenciamento ou IPVA
-                    prestes a vencer, e o almoxarifado — a parte mais diferenciada, que uniu o controle de frota
-                    ao controle de obra em um único fluxo. É essa junção que dá ao Kargo a identidade
-                    que ele tem hoje: um painel só para gerir frota e canteiro de obra ao mesmo tempo.
+                    manutenções, para nunca mais perder de vista a revisão, o licenciamento ou o IPVA
+                    prestes a vencer, e o almoxarifado — a parte mais diferenciada, que uniu o controle
+                    de frota ao controle de obra em um único fluxo. É essa junção que dá ao Kargo a
+                    identidade que ele tem hoje: um único painel para gerir frota e canteiro de obra ao
+                    mesmo tempo.
                   </p>
                 </div>
                 <Link
-                  to="/#modulos"
+                  to="/#modules"
                   className="mt-6 inline-flex items-center gap-2 rounded-lg bg-signal-500 px-6 py-3 font-medium text-white transition hover:bg-signal-400"
                 >
                   Ver todos os módulos
@@ -89,17 +90,17 @@ export function SobrePage() {
                 </p>
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300">
                   <p>
-                    Tenho 4 anos de experiência no mercado de tecnologia, atuando tanto na criação
-                    de sites quanto no desenvolvimento de grandes sistemas. Estagiei por um ano no
-                    ICC — Instituto do Câncer do Ceará, onde trabalhei com sistemas de grande
+                    Tenho quatro anos de experiência no mercado de tecnologia, atuando tanto na
+                    criação de sites quanto no desenvolvimento de grandes sistemas. Estagiei por um
+                    ano no ICC — Instituto do Câncer do Ceará, onde trabalhei com sistemas de grande
                     porte como o Tasy, sistema de gestão hospitalar, e participei do desenvolvimento
-                    do sistema Unimed Amparo - Private Unimed Pharmacy
+                    do sistema Unimed Amparo — Private Unimed Pharmacy.
                   </p>
                   <p>
-                    Hoje atuo como desenvolvedor full stack, aplicando essas habilidades no
-                    dia a dia. Também tenho um ano de experiência como auxiliar de edificações,
-                    período em que aprendi na prática o fluxo de obras e medições. foi dessas vivências
-                    de mercado que nasceu o Kargo!
+                    Hoje atuo como desenvolvedor full stack, aplicando essas habilidades no dia a
+                    dia. Também tenho um ano de experiência como auxiliar de edificações, período em
+                    que aprendi na prática o fluxo de obras e medições. Foi dessas vivências de
+                    mercado que nasceu o Kargo.
                   </p>
                 </div>
                 <a
@@ -114,7 +115,7 @@ export function SobrePage() {
               </div>
               <div className="mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-2xl lg:max-w-none">
                 <img
-                  src="/nicolas-rock.jpg"
+                  src=""
                   alt="Nicolas Rock, desenvolvedor e criador do Kargo"
                   className="h-full w-full object-cover object-top"
                 />

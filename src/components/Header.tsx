@@ -111,7 +111,7 @@ export function Header() {
             </button>
 
             <a
-              href="/#contato"
+              href="/#contact"
               className="hidden items-center gap-1.5 rounded-lg bg-asphalt-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 lg:inline-flex"
             >
               Solicitar demonstração
@@ -155,7 +155,7 @@ export function Header() {
                   </NavLink>
                 ))}
                 <a
-                  href="/#contato"
+                  href="/#contact"
                   onClick={() => setIsOpen(false)}
                   className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-lg bg-asphalt-950 px-5 py-3 text-base font-medium text-white dark:bg-signal-500 dark:text-asphalt-950"
                 >

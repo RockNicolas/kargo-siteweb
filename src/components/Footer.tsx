@@ -85,7 +85,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 max-w-xs text-base leading-relaxed text-asphalt-600 dark:text-asphalt-400">
               Sistema de gestão de frota e obras — combustível, documentação, manutenção e
-              almoxarifado em um painel só.
+              almoxarifado em um único painel.
             </p>
             {visibleSocials.length > 0 && (
               <div className="mt-5 flex items-center gap-2">

@@ -123,7 +123,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
             <CheckCircle2 className="mx-auto h-8 w-8 text-emerald-600 dark:text-emerald-400" />
             <p className="mt-3 font-medium text-asphalt-950 dark:text-white">Mensagem enviada!</p>
             <p className="mt-1 text-sm text-asphalt-500 dark:text-asphalt-400">
-              A gente te retorna em breve no e-mail informado.
+              Retornaremos o contato em breve no e-mail informado.
             </p>
             <button
               type="button"
@@ -170,7 +170,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
                 value={form.mensagem}
                 onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
                 className="w-full resize-none rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-base text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-900 dark:text-white dark:placeholder:text-asphalt-500"
-                placeholder="Escreva o que deseja falar com a gente"
+                placeholder="Escreva o que deseja nos contar"
               />
             </div>
 
@@ -195,7 +195,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
             {status === 'error' && (
               <p className="flex items-center gap-2 text-sm font-medium text-signal-600 dark:text-signal-400">
                 <AlertCircle className="h-4 w-4 shrink-0" />
-                Não deu pra enviar agora. Tente de novo ou chame no WhatsApp.
+                Não foi possível enviar agora. Tente novamente ou fale conosco pelo WhatsApp.
               </p>
             )}
           </form>
