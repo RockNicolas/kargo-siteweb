@@ -96,9 +96,6 @@ export function SiengeSpotlight() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-[11px] leading-relaxed text-asphalt-500">
-                Posição trazida do Sienge na última atualização manual.
-              </p>
             </div>
           </Reveal>
         </div>

@@ -92,7 +92,7 @@ export function CTASection() {
             <button
               type="button"
               onClick={() => setEmailModalOpen(true)}
-              className="group flex items-center gap-3 rounded-2xl border border-asphalt-200 bg-white p-5 text-left transition hover:border-signal-500 hover:shadow-lg hover:shadow-asphalt-950/5 sm:gap-4 sm:p-6 dark:border-asphalt-800 dark:bg-asphalt-900"
+              className="group flex cursor-pointer items-center gap-3 rounded-2xl border border-asphalt-200 bg-white p-5 text-left transition hover:border-signal-500 hover:shadow-lg hover:shadow-asphalt-950/5 sm:gap-4 sm:p-6 dark:border-asphalt-800 dark:bg-asphalt-900"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-signal-500/10 text-signal-600 dark:text-signal-400">
                 <Mail className="h-6 w-6" />
@@ -167,7 +167,7 @@ export function CTASection() {
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 sm:w-auto"
+                className="mt-5 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400 sm:w-auto"
               >
                 {status === 'submitting' ? (
                   <>

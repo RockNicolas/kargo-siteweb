@@ -466,7 +466,7 @@ function AssetGroups({ groups }: { groups: AssetGroup[] }) {
               key={key}
               type="button"
               onClick={() => setScale(key)}
-              className={`rounded-full px-3 py-1 text-[11px] font-semibold transition-colors duration-150 ${
+              className={`cursor-pointer rounded-full px-3 py-1 text-[11px] font-semibold transition-colors duration-150 ${
                 scale === key ? 'bg-signal-500 text-white' : 'text-asphalt-400 hover:text-white'
               }`}
             >
@@ -543,7 +543,7 @@ function ModuleDetail({ module, onBack }: { module: PreviewModule; onBack: () =>
       <button
         type="button"
         onClick={onBack}
-        className="mb-4 inline-flex items-center gap-1.5 text-xs font-medium text-asphalt-400 transition hover:text-white"
+        className="mb-4 inline-flex cursor-pointer items-center gap-1.5 text-xs font-medium text-asphalt-400 transition hover:text-white"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Voltar
@@ -623,7 +623,7 @@ export function DashboardPreview() {
                     key={mod.title}
                     type="button"
                     onClick={() => setSelected(index)}
-                    className="group flex flex-col items-start gap-2 rounded-lg border border-asphalt-800 bg-asphalt-950/40 p-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-signal-500/60 hover:bg-signal-500/5 hover:shadow-lg hover:shadow-signal-500/10"
+                    className="group flex cursor-pointer flex-col items-start gap-2 rounded-lg border border-asphalt-800 bg-asphalt-950/40 p-3 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-signal-500/60 hover:bg-signal-500/5 hover:shadow-lg hover:shadow-signal-500/10"
                   >
                     <span className="flex h-7 w-7 items-center justify-center rounded-md bg-asphalt-800 text-signal-400 transition-colors duration-200 group-hover:bg-signal-500 group-hover:text-white">
                       <Icon className="h-4 w-4" />

@@ -103,7 +103,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-asphalt-700 transition hover:bg-asphalt-950/5 dark:text-asphalt-200 dark:hover:bg-white/5"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg text-asphalt-700 transition hover:bg-asphalt-950/5 dark:text-asphalt-200 dark:hover:bg-white/5"
               aria-label={theme === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
             >
               <Sun className="hidden h-5 w-5 dark:block" />
@@ -120,7 +120,7 @@ export function Header() {
 
             <button
               onClick={() => setIsOpen((v) => !v)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-asphalt-700 dark:text-asphalt-200 lg:hidden"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg text-asphalt-700 dark:text-asphalt-200 lg:hidden"
               aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={isOpen}
             >

@@ -85,7 +85,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
       <button
         type="button"
         aria-label="Fechar"
-        className="absolute inset-0 bg-asphalt-950/70 backdrop-blur-sm"
+        className="absolute inset-0 cursor-pointer bg-asphalt-950/70 backdrop-blur-sm"
         onClick={onClose}
       />
 
@@ -111,7 +111,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1.5 text-asphalt-400 transition hover:bg-asphalt-100 hover:text-asphalt-700 dark:hover:bg-asphalt-800 dark:hover:text-white"
+            className="cursor-pointer rounded-lg p-1.5 text-asphalt-400 transition hover:bg-asphalt-100 hover:text-asphalt-700 dark:hover:bg-asphalt-800 dark:hover:text-white"
             aria-label="Fechar modal"
           >
             <X className="h-5 w-5" />
@@ -128,7 +128,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400"
+              className="mt-4 inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400"
             >
               Fechar
             </button>
@@ -177,7 +177,7 @@ export function EmailModal({ open, onClose }: EmailModalProps) {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400"
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-signal-500 dark:text-asphalt-950 dark:hover:bg-signal-400"
             >
               {status === 'submitting' ? (
                 <>
