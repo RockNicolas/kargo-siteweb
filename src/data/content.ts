@@ -31,7 +31,7 @@ export const contact = {
 
 export const footerAboutLinks = [
   { label: 'Como funciona', href: '/#como-funciona' },
-  { label: 'Módulos', href: '/modulos' },
+  { label: 'Módulos', href: '/#modulos' },
   { label: 'Integração Sienge', href: '/#sienge' },
   { label: 'Contato', href: '/#contato' },
 ]
@@ -51,9 +51,6 @@ export interface ModuleItem {
   icon: LucideIcon
   title: string
   description: string
-  /** Caminho do vídeo de demonstração (ex.: "/videos/combustivel.mp4"). Sem isso, a página de
-   *  módulos mostra um placeholder "vídeo em breve" no lugar — é só preencher quando gravar. */
-  videoSrc?: string
 }
 
 export interface ModuleGroup {

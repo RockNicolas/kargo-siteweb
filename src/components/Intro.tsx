@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowRight, Monitor, Smartphone } from 'lucide-react'
+import { ArrowRight, Globe, Monitor, Smartphone } from 'lucide-react'
 import { Container } from './ui/Container'
 
 const stack = ['Combustível', 'Frota', 'Documentação', 'Manutenção', 'Almoxarifado']
@@ -219,6 +219,14 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         <Monitor className="h-4 w-4" />
         <Smartphone className="h-4 w-4" />
         Acesse do computador, tablet ou celular
+      </div>
+
+      <div
+        className="animate-fade-up mt-2 flex items-center justify-center gap-2 text-sm text-asphalt-500 dark:text-asphalt-400 sm:justify-start"
+        style={{ animationDelay: '360ms' }}
+      >
+        <Globe className="h-4 w-4" />
+        Sem depender de uma máquina fixa: acesse o Kargo de qualquer lugar
       </div>
 
       <div

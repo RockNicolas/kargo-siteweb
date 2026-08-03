@@ -65,7 +65,7 @@ export function SobrePage() {
                   </p>
                 </div>
                 <Link
-                  to="/modulos"
+                  to="/#modulos"
                   className="mt-6 inline-flex items-center gap-2 rounded-lg bg-signal-500 px-6 py-3 font-medium text-white transition hover:bg-signal-400"
                 >
                   Ver todos os módulos
