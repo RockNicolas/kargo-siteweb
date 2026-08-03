@@ -78,7 +78,7 @@ export const moduleGroups: ModuleGroup[] = [
       {
         icon: FileText,
         title: 'Documentação veicular',
-        description: 'IPVA, licenciamento, seguro, CNH e multas — com alerta antes do vencimento.',
+        description: 'IPVA, licenciamento, CNH e multas — com alerta antes do vencimento.',
       },
       {
         icon: Fuel,
@@ -123,7 +123,7 @@ export const moduleGroups: ModuleGroup[] = [
 
 export const painPoints: string[] = [
   'Quanto estamos gastando de combustível por veículo por mês?',
-  'Qual veículo está prestes a vencer o seguro, o IPVA ou a próxima manutenção?',
+  'Qual veículo está prestes a vencer o licenciamento, o IPVA ou a próxima manutenção?',
   'Quanto material temos em estoque em cada obra agora?',
   'Quem tirou a última peça do almoxarifado e para qual equipamento?',
   'Esse motorista está com a CNH em dia?',

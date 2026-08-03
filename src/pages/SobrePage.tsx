@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight, User } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Container } from '../components/ui/Container'
 import { Reveal } from '../components/ui/Reveal'
+import { DashboardPreview } from '../components/DashboardPreview'
 import { contact } from '../data/content'
 
 export function SobrePage() {
@@ -40,16 +41,7 @@ export function SobrePage() {
           <Reveal>
             <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-asphalt-200 bg-concrete-50 p-6 dark:border-transparent dark:bg-asphalt-950 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12">
               <div className="mx-auto w-full max-w-sm lg:max-w-none">
-                <img
-                  src="/notebook-front-dark.webp"
-                  alt="Painel do Kargo com os módulos de frota e obra"
-                  className="w-full dark:hidden"
-                />
-                <img
-                  src="/notebook-front-light.webp"
-                  alt="Painel do Kargo com os módulos de frota e obra"
-                  className="hidden w-full dark:block"
-                />
+                <DashboardPreview />
               </div>
               <div>
                 <h2 className="font-display text-2xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:text-3xl">
@@ -66,8 +58,8 @@ export function SobrePage() {
                   </p>
                   <p>
                     Foi esse ganho de escopo que fez o Kargo crescer. Vieram o controle de
-                    manutenções, pra nunca mais perder de vista revisão, seguro ou IPVA prestes a
-                    vencer, e o almoxarifado — a parte mais diferenciada, que uniu o controle de frota
+                    manutenções, pra nunca mais perder de vista revisão, licenciamento ou IPVA
+                    prestes a vencer, e o almoxarifado — a parte mais diferenciada, que uniu o controle de frota
                     ao controle de obra em um único fluxo. É essa junção que dá ao Kargo a identidade
                     que ele tem hoje: um painel só para gerir frota e canteiro de obra ao mesmo tempo.
                   </p>
@@ -85,23 +77,29 @@ export function SobrePage() {
 
           <Reveal delay={90}>
             <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-asphalt-200 bg-white p-6 dark:border-transparent dark:bg-asphalt-950 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-12">
-              <div className="mx-auto flex aspect-square w-full max-w-xs items-center justify-center rounded-2xl border border-dashed border-asphalt-300 bg-concrete-50 dark:border-asphalt-700 dark:bg-asphalt-900 lg:max-w-none">
-                <User className="h-16 w-16 text-asphalt-400 dark:text-asphalt-600" />
-              </div>
               <div>
                 <span className="font-mono text-xs font-medium uppercase tracking-widest text-signal-600 dark:text-signal-400">
                   Sobre o desenvolvedor
                 </span>
                 <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-asphalt-950 dark:text-white sm:text-3xl">
-                  [Seu nome]
+                  Nicolas Rock
                 </h2>
                 <p className="mt-1 text-sm text-asphalt-500 dark:text-asphalt-400">
-                  [Seu cargo — ex.: desenvolvedor e criador do Kargo]
+                  Desenvolvedor full stack e criador do Kargo
                 </p>
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300">
                   <p>
-                    [Sua trajetória — formação, experiência com frota, obras ou tecnologia, e o que
-                    trouxe você até aqui.]
+                    Tenho 4 anos de experiência no mercado de tecnologia, atuando tanto na criação
+                    de sites quanto no desenvolvimento de grandes sistemas. Estagiei por um ano no
+                    ICC — Instituto do Câncer do Ceará, onde trabalhei com sistemas de grande
+                    porte como o Tasy, sistema de gestão hospitalar, e participei do desenvolvimento
+                    do sistema Unimed Amparo - Private Unimed Pharmacy
+                  </p>
+                  <p>
+                    Hoje atuo como desenvolvedor full stack, aplicando essas habilidades no
+                    dia a dia. Também tenho um ano de experiência como auxiliar de edificações,
+                    período em que aprendi na prática o fluxo de obras e medições. foi dessas vivências
+                    de mercado que nasceu o Kargo!
                   </p>
                 </div>
                 <a
@@ -113,6 +111,13 @@ export function SobrePage() {
                   Falar comigo
                   <ArrowRight className="h-4 w-4" />
                 </a>
+              </div>
+              <div className="mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-2xl lg:max-w-none">
+                <img
+                  src="/nicolas-rock.jpg"
+                  alt="Nicolas Rock, desenvolvedor e criador do Kargo"
+                  className="h-full w-full object-cover object-top"
+                />
               </div>
             </div>
           </Reveal>
