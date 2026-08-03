@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { MessageCircle, Mail, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { Container } from './ui/Container'
@@ -24,6 +24,12 @@ export function CTASection() {
   const [form, setForm] = useState({ nome: '', empresa: '', telefone: '', mensagem: '' })
   const [status, setStatus] = useState<SubmitStatus>('idle')
   const [emailModalOpen, setEmailModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (status !== 'success') return
+    const timer = window.setTimeout(() => setStatus('idle'), 3000)
+    return () => window.clearTimeout(timer)
+  }, [status])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
