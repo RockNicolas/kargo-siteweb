@@ -369,7 +369,7 @@ export function Intro() {
       ref={trackRef}
       className="relative h-[220vh] bg-white transition-colors duration-300 dark:bg-black"
     >
-      <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden pt-20">
+      <div className="sticky top-0 flex h-screen w-full items-start overflow-hidden pt-20 sm:items-center">
         <IntroGlow />
         <Container className="relative w-full">
           <div ref={rowRef} className="grid items-center gap-8 sm:grid-cols-2 sm:gap-8">
