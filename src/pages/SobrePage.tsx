@@ -67,7 +67,7 @@ export function SobrePage() {
                 </div>
                 <Link
                   to="/#modules"
-                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-signal-500 px-6 py-3 font-medium text-white transition hover:bg-signal-400"
+                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:hover:bg-signal-400"
                 >
                   Ver todos os módulos
                   <ArrowRight className="h-4 w-4" />
@@ -107,9 +107,9 @@ export function SobrePage() {
                   href={`https://wa.me/${contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-signal-500 px-6 py-3 font-medium text-white transition hover:bg-signal-400"
+                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-asphalt-950 px-6 py-3 font-medium text-white transition hover:bg-signal-500 dark:bg-signal-500 dark:hover:bg-signal-400"
                 >
-                  Falar comigo
+                  Entrar em contato
                   <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
