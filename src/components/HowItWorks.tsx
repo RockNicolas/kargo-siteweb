@@ -78,7 +78,7 @@ export function HowItWorks() {
             >
               <video
                 ref={videoRef}
-                src="/kargo-intro.mp4"
+                src="/kargo-intro-v2.mp4"
                 controls
                 muted
                 loop
