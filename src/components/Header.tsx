@@ -68,12 +68,27 @@ export function Header() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
+  // A transparência sobre o hero só funciona no desktop, onde o texto esmaece e
+  // sai da frente conforme o scroll. No mobile o hero rola inteiro por baixo do
+  // header, e mantê-lo transparente fazia o texto colidir com o logo/menu.
+  const [heroCanShowThrough, setHeroCanShowThrough] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 640px)')
+    const onChange = () => setHeroCanShowThrough(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  const transparentOverHero = overIntro && heroCanShowThrough
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         isOpen
           ? 'bg-white shadow-sm dark:bg-black'
-          : !overIntro && scrolled
+          : !transparentOverHero && scrolled
             ? 'bg-white/90 shadow-sm backdrop-blur-md dark:bg-black/90'
             : 'bg-transparent'
       }`}

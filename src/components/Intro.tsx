@@ -79,6 +79,42 @@ function useElementRect(ref: React.RefObject<HTMLElement | null>) {
   return rect
 }
 
+// Persegue `target` quadro a quadro em vez de saltar direto pra ele. Sem isso a
+// animação fica presa 1:1 na posição do scroll: no mobile o dissolve inteiro
+// cabe em ~145px de rolagem, e num flick rápido esses px passam em um ou dois
+// quadros — o efeito "pula" pro fim em vez de acontecer. Com a perseguição, a
+// animação leva o mesmo tempo independentemente da velocidade do scroll.
+function useSmoothed(target: number, factor = 0.07) {
+  const [value, setValue] = useState(target)
+  const valueRef = useRef(target)
+
+  useEffect(() => {
+    let raf = 0
+
+    const tick = () => {
+      const diff = target - valueRef.current
+      // Perto o bastante: encaixa no alvo e encerra o loop (não fica um rAF
+      // rodando à toa gastando bateria no celular). O limiar não é menor
+      // porque o decaimento é exponencial: quanto mais fino, mais longa a
+      // cauda de quadros — e abaixo disso a diferença já é invisível, já que
+      // `progress` só alimenta opacidade/escala.
+      if (Math.abs(diff) < 0.002) {
+        valueRef.current = target
+        setValue(target)
+        return
+      }
+      valueRef.current += diff * factor
+      setValue(valueRef.current)
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [target, factor])
+
+  return value
+}
+
 function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0)
 
@@ -335,7 +371,8 @@ function NotebookRig({ p, rowLeft, rowWidth }: { p: number; rowLeft: number; row
 export function Intro() {
   const trackRef = useRef<HTMLDivElement>(null)
   const rowRef = useRef<HTMLDivElement>(null)
-  const progress = useScrollProgress(trackRef)
+  const rawProgress = useScrollProgress(trackRef)
+  const progress = useSmoothed(rawProgress)
   const row = useElementRect(rowRef)
   const isDesktop = useIsDesktop()
   const reducedMotion = usePrefersReducedMotion()
@@ -364,12 +401,26 @@ export function Intro() {
   }
 
   return (
+    // No mobile o conteúdo do hero (~930px) é bem mais alto que a área visível
+    // do Safari no iOS (~664px num iPhone 14), então prender tudo numa tela só
+    // com `overflow-hidden` cortava o notebook, que fica por último. Lá o hero
+    // flui naturalmente; a pinagem cinematográfica fica só no desktop, onde o
+    // conteúdo cabe. `dvh` (e não `vh`) porque no iOS `vh` mede a viewport com
+    // a barra do navegador escondida — sempre maior que o que se vê de fato.
     <section
       id="intro"
       ref={trackRef}
-      className="relative h-[220vh] bg-white transition-colors duration-300 dark:bg-black"
+      className={`relative bg-white transition-colors duration-300 dark:bg-black ${
+        isDesktop ? 'h-[220dvh]' : ''
+      }`}
     >
-      <div className="sticky top-0 flex h-screen w-full items-start overflow-hidden pt-20 sm:items-center">
+      <div
+        className={
+          isDesktop
+            ? 'sticky top-0 flex h-dvh w-full items-center overflow-hidden pt-20'
+            : 'flex w-full flex-col pb-16 pt-28'
+        }
+      >
         <IntroGlow />
         <Container className="relative w-full">
           <div ref={rowRef} className="grid items-center gap-8 sm:grid-cols-2 sm:gap-8">
