@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "kargo-dev",
+      "url": "http://localhost:5173",
+      "port": 5173
+    },
+    {
+      "name": "kargo-dev-network",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--host", "--port", "5174"],
+      "port": 5174
+    }
+  ]
+}
