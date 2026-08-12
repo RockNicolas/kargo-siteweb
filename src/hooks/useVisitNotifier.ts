@@ -40,12 +40,11 @@ export function useVisitNotifier() {
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY,
-            subject: `Novo acesso ao site — ${local}`,
-            from_name: 'Kargo — Aviso de acesso',
+            subject: `Novo acesso ao site (${local})`,
+            from_name: 'Site Kargo',
             Local: local,
             Pagina: window.location.pathname,
             Referencia: document.referrer || 'Direto',
-            Navegador: navigator.userAgent,
             Horario: new Date().toLocaleString('pt-BR'),
           }),
         })
