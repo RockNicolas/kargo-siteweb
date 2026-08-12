@@ -32,6 +32,8 @@ VITE_WEB3FORMS_ACCESS_KEY=sua-chave-aqui
 
 Sem a chave, o formulário continua renderizando normalmente, mas o envio falha.
 
+A mesma chave também é usada pelo aviso automático de acesso (`src/hooks/useVisitNotifier.ts`): a cada visitante novo por dia (marcado via `localStorage` no navegador dele), chega um e-mail no endereço cadastrado no Web3Forms com a localização aproximada (cidade/estado/país via IP), página acessada e horário. Só roda em produção (`import.meta.env.DEV` desativa em `npm run dev`).
+
 ## Build de produção
 
 ```bash
