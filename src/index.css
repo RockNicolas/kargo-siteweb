@@ -40,6 +40,32 @@
   --color-signal-100: #fde4d6;
 }
 
+/* Cores exatas do painel Kargo de verdade (copiadas do repositório do sistema,
+   src/index.css) — só pra página /demo, que replica a tela real. São
+   deliberadamente diferentes da paleta do site (asphalt/concrete/signal). */
+.kargo-shell {
+  --k-bg: #eef1f6;
+  --k-bg-deep: #e2e8f0;
+  --k-sidebar: #ffffff;
+  --k-elevated: #f8fafc;
+  --k-border: #cbd5e1;
+  --k-text: #1e293b;
+  --k-muted: #64748b;
+  --k-cta: #ed8936;
+  --k-cta-hover: #dd6b20;
+}
+.dark .kargo-shell {
+  --k-bg: #1a1c23;
+  --k-bg-deep: #121212;
+  --k-sidebar: #24252d;
+  --k-elevated: #2a2c35;
+  --k-border: #2f3139;
+  --k-text: #e2e8f0;
+  --k-muted: #a0aec0;
+  --k-cta: #ed8936;
+  --k-cta-hover: #dd6b20;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
@@ -128,8 +154,33 @@ body {
   animation: chevron-bounce 1.6s ease-in-out infinite;
 }
 
+/* Efeito ao abrir o painel /demo: a home e a página de demo compartilham
+   view-transition-name (ver DemoScreen.tsx e Features.tsx) — o card pequeno
+   da prévia "vira" a tela cheia em vez de um corte seco entre páginas. */
+::view-transition-old(kargo-panel) {
+  animation: kargo-panel-out 260ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(kargo-panel) {
+  animation: kargo-panel-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes kargo-panel-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes kargo-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up {
+    animation: none;
+  }
+  ::view-transition-old(kargo-panel),
+  ::view-transition-new(kargo-panel) {
     animation: none;
   }
   * {

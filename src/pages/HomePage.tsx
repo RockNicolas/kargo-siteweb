@@ -4,6 +4,7 @@ import { Intro } from '../components/Intro'
 import { PainPoints } from '../components/PainPoints'
 import { HowItWorks } from '../components/HowItWorks'
 import { Features } from '../components/Features'
+import { DiretoriaSection } from '../components/DiretoriaSection'
 import { SiengeSpotlight } from '../components/SiengeSpotlight'
 import { AccessProfiles } from '../components/AccessProfiles'
 import { Benefits } from '../components/Benefits'
@@ -27,6 +28,7 @@ export function HomePage() {
       <PainPoints />
       <HowItWorks />
       <Features />
+      <DiretoriaSection />
       <SiengeSpotlight />
       <AccessProfiles />
       <Benefits />

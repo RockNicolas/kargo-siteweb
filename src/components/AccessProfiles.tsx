@@ -5,7 +5,7 @@ import { profiles } from '../data/content'
 
 const stripeColor: Record<string, string> = {
   Operadores: 'bg-signal-500',
-  Cliente: 'bg-asphalt-200',
+  Diretoria: 'bg-asphalt-700 dark:bg-asphalt-400',
 }
 
 export function AccessProfiles() {
@@ -14,9 +14,9 @@ export function AccessProfiles() {
       <Container>
         <Reveal>
           <SectionHeading
-            eyebrow="Perfis de acesso"
-            title="Cada pessoa vê apenas o que precisa ver."
-            description="Como um crachá de acesso: o nível de cada perfil define exatamente o que a pessoa enxerga no painel."
+            eyebrow="Gestão de governança"
+            title="Cada colaborador visualiza seus módulos contratados."
+            description="Com segurança de governança: o nível de cada perfil define exatamente o que a pessoa enxerga no painel."
           />
         </Reveal>
 

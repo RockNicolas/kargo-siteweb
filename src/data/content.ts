@@ -5,20 +5,28 @@ import {
   FileText,
   Wrench,
   Warehouse,
+  Package,
   BarChart3,
+  FileSpreadsheet,
   Bell,
   ShieldCheck,
   Users,
-  Eye,
   Zap,
   RefreshCw,
   Download,
   Upload,
+  Receipt,
+  CheckCircle2,
+  LayoutDashboard,
+  TrendingUp,
+  SearchCheck,
 } from 'lucide-react'
 
 export const navLinks = [
   { label: 'Módulos', href: '/#modules' },
+  { label: 'Diretoria', href: '/#diretoria' },
   { label: 'Integração Sienge', href: '/#sienge' },
+  { label: 'Documentação', href: '/docs' },
   { label: 'Sobre', href: '/about' },
   { label: 'Contato', href: '/#contact' },
 ]
@@ -32,11 +40,14 @@ export const contact = {
 export const footerAboutLinks = [
   { label: 'Como funciona', href: '/#how-it-works' },
   { label: 'Módulos', href: '/#modules' },
+  { label: 'Diretoria', href: '/#diretoria' },
   { label: 'Integração Sienge', href: '/#sienge' },
   { label: 'Contato', href: '/#contact' },
 ]
 
 export const footerSupportLinks = [
+  { label: 'Manual do usuário', href: '/docs/manual/o-que-e-o-kargo' },
+  { label: 'Referência da API', href: '/docs/api/introducao' },
   { label: 'Falar no WhatsApp', href: `https://wa.me/${contact.whatsapp}` },
 ]
 
@@ -51,6 +62,9 @@ export interface ModuleItem {
   icon: LucideIcon
   title: string
   description: string
+  /** Caminho do vídeo de demonstração deste módulo (ex.: `/videos/combustivel.mp4`).
+   *  Deixe undefined até o vídeo existir — o modal mostra "Vídeo em produção" nesse caso. */
+  videoSrc?: string
 }
 
 export interface ModuleGroup {
@@ -75,7 +89,8 @@ export const moduleGroups: ModuleGroup[] = [
       {
         icon: FileText,
         title: 'Documentação veicular',
-        description: 'IPVA, licenciamento, CNH e multas — com alerta antes do vencimento.',
+        description:
+          'IPVA, licenciamento, CNH e multas — com alerta antes do vencimento e pagamento conferido no Contas a Pagar do Sienge.',
       },
       {
         icon: Fuel,
@@ -87,10 +102,10 @@ export const moduleGroups: ModuleGroup[] = [
         icon: Wrench,
         title: 'Manutenção',
         description:
-          'Intervalos por quilometragem ou por hora, ordem de serviço em PDF e baixa de peças na obra correta.',
+          'Intervalos por quilometragem ou por hora, ordem de serviço em PDF, baixa de peças na obra correta e boleto marcado como pago quando o Sienge dá baixa.',
       },
       {
-        icon: Warehouse,
+        icon: Package,
         title: 'Almoxarifado por obra',
         description: 'Cada obra com o próprio saldo — entradas, saídas, transferências e reservas.',
       },
@@ -100,10 +115,10 @@ export const moduleGroups: ModuleGroup[] = [
     label: 'Visão e controle',
     items: [
       {
-        icon: BarChart3,
+        icon: FileSpreadsheet,
         title: 'Relatórios e painéis',
         description:
-          'Indicadores de frota e obras em tempo real. Filtre por período, veículo ou obra e acompanhe tudo em um único painel. Cada relatório é exportado em PDF ou Excel com o logotipo da empresa.',
+          'Indicadores de frota e obras em tempo real, com o custo de cada obra no período e o comparativo com o mês anterior. Cada relatório é exportado em PDF ou Excel com o logotipo da empresa.',
       },
       {
         icon: Bell,
@@ -177,14 +192,69 @@ export const siengeBenefits: SiengeBenefit[] = [
   },
   {
     icon: ShieldCheck,
-    title: 'Nenhum lançamento se perde',
+    title: 'Segurança de dados',
     description:
-      'Se a sincronização falhar por instabilidade, o lançamento continua salvo no Kargo e fica sinalizado para revisão.',
+      'Credenciais da integração Sienge protegidas com criptografia — seus dados sempre seguros entre os dois sistemas.',
   },
   {
     icon: Wrench,
-    title: 'Menos retrabalho',
+    title: 'Evitando retrabalho',
     description: 'Nenhuma movimentação é lançada duas vezes entre os dois sistemas.',
+  },
+]
+
+export const contasAPagarPassos: SiengeBenefit[] = [
+  {
+    icon: Receipt,
+    title: 'Informe o título',
+    description:
+      'Na manutenção, na multa ou no IPVA, digite o número do título do Sienge. O Kargo puxa valor, vencimento, parcelas e a guia em PDF.',
+  },
+  {
+    icon: SearchCheck,
+    title: 'O Kargo confere sozinho',
+    description:
+      'Em horário comercial, o Kargo consulta o Sienge e vê quais parcelas o financeiro já deu baixa — sem ninguém abrir o sistema para olhar.',
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Parcela marcada como paga',
+    description:
+      'Quando todas as parcelas do título estão quitadas, a manutenção, a multa ou o ano do IPVA vira pago, com a confirmação do Sienge guardada como prova.',
+  },
+]
+
+export const contasAPagarOndeAplica: string[] = [
+  'Boletos de manutenção',
+  'Multas de trânsito',
+  'IPVA em até 5 parcelas',
+  'Licenciamento',
+]
+
+export interface DiretoriaItem {
+  icon: LucideIcon
+  title: string
+  description: string
+}
+
+export const diretoriaItens: DiretoriaItem[] = [
+  {
+    icon: LayoutDashboard,
+    title: 'Pontos de atenção primeiro',
+    description:
+      'Ao abrir, o painel mostra primeiro o que pede atenção: custo que subiu, margem apertada, ativo que custa mais do que rende.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Mês contra mês, com a causa',
+    description:
+      'Não basta saber que o gasto subiu: o painel mostra de onde veio a diferença — litros ou preço, quais ativos, o que foi pago.',
+  },
+  {
+    icon: FileSpreadsheet,
+    title: 'Cada área em poucos números',
+    description:
+      'Combustível, manutenção, multas e IPVA resumidos em cartões. Quem quiser aprofundar abre a análise do módulo.',
   },
 ]
 
@@ -228,11 +298,11 @@ export const profiles: Profile[] = [
       'Cada funcionário enxerga apenas as áreas liberadas para ele — nada além do necessário.',
   },
   {
-    icon: Eye,
-    title: 'Cliente',
-    level: 'visualização',
+    icon: LayoutDashboard,
+    title: 'Diretoria',
+    level: 'painel operacional',
     description:
-      'Portal simplificado para que quem contrata o serviço possa acompanhar os próprios dados.',
+      'Painel próprio, só de consulta: quanto a operação gastou, o que mudou em relação ao mês anterior e por quê — sem precisar entrar em cada módulo.',
   },
 ]
 
@@ -245,7 +315,7 @@ export interface Benefit {
 export const benefits: Benefit[] = [
   {
     icon: Wrench,
-    title: 'Menos retrabalho',
+    title: 'Evitando retrabalho',
     description:
       'A mesma informação não precisa ser digitada duas vezes em dois sistemas diferentes.',
   },
@@ -257,12 +327,12 @@ export const benefits: Benefit[] = [
   },
   {
     icon: BarChart3,
-    title: 'Decisão mais rápida',
+    title: 'Tomada de decisões mais rápidas',
     description: 'Números de gasto, estoque e frota disponíveis na hora — não no fim do mês.',
   },
   {
     icon: Warehouse,
-    title: 'Controle real por obra',
+    title: 'Gestão de consulta',
     description:
       'Nada fica misturado em um único estoque. Cada obra tem a própria história no sistema.',
   },
