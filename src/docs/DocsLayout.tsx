@@ -20,6 +20,16 @@ export interface DocsOutletContext {
 export function DocsLayout() {
   useVisitNotifier()
   const { theme, toggleTheme } = useTheme()
+
+  // A documentação não é linkada no site: quem recebe o endereço lê, mas ela não deve aparecer em
+  // buscadores. (vercel.json manda o mesmo aviso no cabeçalho HTTP; aqui cobre qualquer outra hospedagem.)
+  useEffect(() => {
+    const meta = document.createElement('meta')
+    meta.name = 'robots'
+    meta.content = 'noindex, nofollow, noarchive'
+    document.head.appendChild(meta)
+    return () => meta.remove()
+  }, [])
   const { pathname, hash } = useLocation()
   const area = areaPorId(pathname.split('/')[2])
 

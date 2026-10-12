@@ -40,6 +40,21 @@
   --color-signal-100: #fde4d6;
 }
 
+/* Tokens `kargo-*` como utilitários do Tailwind (bg-kargo-sidebar, text-kargo-muted…), apontando
+   para as variáveis `--k-*` abaixo. Funcionam só dentro de `.kargo-shell` (onde as variáveis
+   existem) — assim o JSX do painel da diretoria é copiado do sistema sem reescrever as classes. */
+@theme inline {
+  --color-kargo-bg: var(--k-bg);
+  --color-kargo-bg-deep: var(--k-bg-deep);
+  --color-kargo-sidebar: var(--k-sidebar);
+  --color-kargo-elevated: var(--k-elevated);
+  --color-kargo-border: var(--k-border);
+  --color-kargo-text: var(--k-text);
+  --color-kargo-muted: var(--k-muted);
+  --color-kargo-cta: var(--k-cta);
+  --color-kargo-cta-hover: var(--k-cta-hover);
+}
+
 /* Cores exatas do painel Kargo de verdade (copiadas do repositório do sistema,
    src/index.css) — só pra página /demo, que replica a tela real. São
    deliberadamente diferentes da paleta do site (asphalt/concrete/signal). */
@@ -55,6 +70,31 @@
   --k-cta-hover: #dd6b20;
 }
 .dark .kargo-shell {
+  --k-bg: #1a1c23;
+  --k-bg-deep: #121212;
+  --k-sidebar: #24252d;
+  --k-elevated: #2a2c35;
+  --k-border: #2f3139;
+  --k-text: #e2e8f0;
+  --k-muted: #a0aec0;
+  --k-cta: #ed8936;
+  --k-cta-hover: #dd6b20;
+}
+
+/* Tema PRÓPRIO do painel da diretoria (a lua do painel troca só o painel, não o site): as mesmas
+   cores de .kargo-shell, escolhidas por classe em vez de pela classe .dark da página. */
+:root .kargo-shell.painel-tema-claro {
+  --k-bg: #eef1f6;
+  --k-bg-deep: #e2e8f0;
+  --k-sidebar: #ffffff;
+  --k-elevated: #f8fafc;
+  --k-border: #cbd5e1;
+  --k-text: #1e293b;
+  --k-muted: #64748b;
+  --k-cta: #ed8936;
+  --k-cta-hover: #dd6b20;
+}
+:root .kargo-shell.painel-tema-escuro {
   --k-bg: #1a1c23;
   --k-bg-deep: #121212;
   --k-sidebar: #24252d;
@@ -175,7 +215,85 @@ body {
   }
 }
 
+/* Demonstração "Kargo cria o título no Sienge" (SiengeTitulos): o pacote que
+   viaja entre os dois sistemas, o preenchimento do passo ativo e a entrada de
+   cada estado dos painéis. */
+@keyframes lane-right {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 0.625rem);
+    opacity: 0;
+  }
+}
+
+@keyframes lane-left {
+  0% {
+    left: calc(100% - 0.625rem);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes step-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes demo-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-lane-right {
+  animation: lane-right 1.5s ease-in-out infinite;
+}
+
+.animate-lane-left {
+  animation: lane-left 1.5s ease-in-out infinite;
+}
+
+.animate-step-fill {
+  transform-origin: left;
+  animation: step-fill var(--step-ms, 3400ms) linear both;
+}
+
+.animate-demo-in {
+  animation: demo-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-lane-right,
+  .animate-lane-left,
+  .animate-step-fill,
+  .animate-demo-in,
+  .animate-ping,
+  .animate-bounce {
+    animation: none;
+  }
   .animate-fade-up {
     animation: none;
   }

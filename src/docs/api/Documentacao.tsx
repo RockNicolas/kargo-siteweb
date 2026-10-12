@@ -72,6 +72,11 @@ export function ApiDocumentacao() {
     "observacoes": null,
     "arquivoPdfNome": "crlv-abc1d23.pdf",
     "parcelasPdf": [],
+    "billIdSienge": 23490,
+    "criadoPorSienge": "marina.souza",
+    "documentoSienge": "REC",
+    "numeroDocumentoSienge": "ABC1D232026",
+    "pagoConfirmadoSiengeEm": null,
     "temPdf": true,
     "ativo": true,
     "faixaVencimento": "ate30",
@@ -83,6 +88,12 @@ export function ApiDocumentacao() {
         <P>
           Devolve os documentos ativos, do vencimento mais próximo para o mais distante. No IPVA parcelado,{' '}
           <C>parcelasPdf</C> lista cada parcela (<C>parcela</C>, <C>pdfNome</C>, <C>temPdf</C>).
+        </P>
+        <P>
+          Quando o documento (IPVA ou licenciamento) está ligado a um título do Contas a Pagar do Sienge,{' '}
+          <C>billIdSienge</C> traz o número do título; <C>criadoPorSienge</C>, o usuário que criou o título pelo
+          Kargo (<C>null</C> se o título veio do financeiro); <C>documentoSienge</C> e <C>numeroDocumentoSienge</C>,
+          o tipo e o número do documento no título; e <C>pagoConfirmadoSiengeEm</C>, quando o Kargo confirmou a baixa.
         </P>
       </Endpoint>
 
@@ -138,6 +149,13 @@ export function ApiDocumentacao() {
     "temComprovante": false,
     "pago": false,
     "dataPagamento": null,
+    "billIdSienge": 23491,
+    "criadoPorSienge": "marina.souza",
+    "documentoSienge": "REC",
+    "numeroDocumentoSienge": "74550",
+    "pagoViaSienge": false,
+    "pagoConfirmadoSiengeEm": null,
+    "situacaoSienge": null,
     "ativo": true,
     "faixaVencimento": "ate30",
     "createdAt": "2026-09-12T10:02:37.000Z",
@@ -147,6 +165,13 @@ export function ApiDocumentacao() {
       >
         <P>
           Multas cadastradas juntas, num mesmo lote, compartilham o mesmo <C>grupoId</C>.
+        </P>
+        <P>
+          Os campos do Sienge seguem a mesma lógica dos documentos: <C>billIdSienge</C> (número do título),{' '}
+          <C>criadoPorSienge</C> (quem criou o título pelo Kargo), <C>documentoSienge</C> e{' '}
+          <C>numeroDocumentoSienge</C>. Quando a baixa veio do Sienge, <C>pagoViaSienge</C> é <C>true</C>,{' '}
+          <C>situacaoSienge</C> traz a resposta do Sienge (por exemplo, <C>Totalmente paga</C>) e{' '}
+          <C>pagoConfirmadoSiengeEm</C>, o momento em que o Kargo confirmou.
         </P>
       </Endpoint>
 

@@ -55,9 +55,10 @@ export function ManualManutencao() {
 
       <Callout tipo="info" titulo="Pagamento confirmado pelo Sienge">
         <p>
-          Com a integração ligada, informe o número do título do Sienge na manutenção: o Kargo puxa os dados do
-          título e, quando o financeiro dá baixa no Sienge, marca a parcela como paga aqui sozinho. Veja{' '}
-          <L to="/docs/manual/sienge-visao-geral">Como funciona a integração</L>.
+          Com a integração ligada, o Kargo pode criar o título da manutenção no Contas a Pagar do Sienge: é só ligar{' '}
+          <B>Criar título ao salvar</B> e conferir os dados antes de enviar. Se o financeiro já lançou o título,
+          informe o número dele. Quando o financeiro dá baixa no Sienge, o Kargo marca a parcela como paga aqui
+          sozinho. Veja <L to="/docs/manual/contas-a-pagar">Contas a Pagar pelo Sienge</L>.
         </p>
       </Callout>
 

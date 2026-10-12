@@ -44,6 +44,15 @@ export function ManualRelatorios() {
         </li>
       </UL>
 
+      <H2>Quem criou o título no Sienge</H2>
+      <P>
+        Nos relatórios de <B>Multas</B>, <B>IPVA</B>, <B>Licenciamento</B> e de <B>Manutenções realizadas</B>, a
+        coluna <B>Título Sienge criado por</B> mostra o usuário que lançou o título no Contas a Pagar pelo Kargo.
+        Título que o financeiro lançou direto no Sienge aparece sem nome. A lista completa, com data e hora, está no{' '}
+        <B>Histórico da integração</B> da tela <Menu itens={['Integração Sienge']} />, que também exporta em PDF e
+        Excel.
+      </P>
+
       <H2>Exportar</H2>
       <UL>
         <li>

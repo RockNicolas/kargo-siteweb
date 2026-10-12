@@ -126,10 +126,41 @@ export function SiengeComoConectar() {
           },
         ]}
       />
+      <H3>Contas a Pagar — criar o título pelo Kargo</H3>
+      <P>
+        Só é preciso se a empresa vai deixar o Kargo lançar o título (manutenção, multa, IPVA e licenciamento). O
+        recurso <B>Títulos do Contas a Pagar</B> precisa, além de leitura, de <B>POST</B> e <B>PATCH</B>.
+      </P>
+      <Rotas
+        itens={[
+          { metodo: 'POST', caminho: '/bills', descricao: 'Criar o título no Contas a Pagar.' },
+          {
+            metodo: 'PATCH',
+            caminho: '/bills/{billId}/installments/{numeroParcela}',
+            descricao: 'Ajustar valor e vencimento de cada parcela, para ficarem iguais aos do Kargo.',
+          },
+          { metodo: 'GET', caminho: '/bills', descricao: 'Procurar título igual já lançado, para não duplicar.' },
+          { metodo: 'GET', caminho: '/creditors', descricao: 'Buscar o credor (fornecedor ou oficina).' },
+          { metodo: 'GET', caminho: '/cost-centers', descricao: 'Centros de custo (obras) e a empresa de cada um.' },
+          {
+            metodo: 'GET',
+            caminho: '/building-cost-estimations/{buildingId}/sheets',
+            descricao: 'Orçamentos de Obra: unidades construtivas e itens do orçamento, para a apropriação de obra.',
+          },
+        ]}
+      />
+      <Callout tipo="dica" titulo="Listas opcionais">
+        <p>
+          <C>/companies</C> (nome das empresas), <C>/payment-categories</C> (plano financeiro) e{' '}
+          <C>/document-identifications</C> (tipos de documento) são opcionais. Sem elas o Kargo continua criando o
+          título — só que o plano financeiro, o documento e a empresa são digitados em vez de escolhidos numa lista.
+        </p>
+      </Callout>
       <Callout tipo="aviso" titulo="Apareceu erro de permissão?">
         <p>
           Se o teste de conexão, o registro do webhook ou uma sincronização disser que falta permissão no Sienge,
-          alguma das rotas acima ainda não foi marcada para o usuário de integração.
+          alguma das rotas acima ainda não foi marcada para o usuário de integração. Ao criar um título, o próprio
+          Kargo diz qual recurso falta liberar.
         </p>
       </Callout>
 
@@ -197,7 +228,7 @@ export function SiengeComoConectar() {
         linhas={[
           [<B>Almoxarifado</B>, 'O envio das entradas, saídas e transferências ao Sienge. Só liga com o webhook registrado. A leitura do estoque funciona mesmo com a chave desligada.'],
           [<B>Movimentação de Ativos</B>, 'A atualização da obra de cada ativo a cada 15 minutos. Antes, vincule os ativos aos bens do Sienge (pela placa ou criando a partir do cadastro de lá).'],
-          [<B>Contas a Pagar</B>, 'A conferência, em horário comercial, das baixas de título das manutenções.'],
+          [<B>Contas a Pagar</B>, 'A conferência, em horário comercial, das baixas de título de manutenções, multas, IPVA e licenciamento.'],
         ]}
       />
       <Callout tipo="dica" titulo="Comece pequeno">

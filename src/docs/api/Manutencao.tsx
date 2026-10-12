@@ -25,6 +25,7 @@ const REALIZADA = `{
   "qtdParcelas": 2,
   "dataPagamentoPrevisto": "2026-10-05",
   "billIdSienge": 23486,
+  "criadoPorSienge": "marina.souza",
   "documentoSienge": "NF",
   "numeroDocumentoSienge": "4512",
   "pecaId": null,
@@ -88,7 +89,9 @@ export function ApiManutencao() {
           [<C>valorMaoDeObra</C>, 'número ou null', 'Parte do valor que é mão de obra.'],
           [<C>itensDetalhados</C>, 'lista', <>Peças e mão de obra por serviço: <C>id</C> do serviço, <C>quantidade</C>, <C>valorUnitario</C> e, na mão de obra, <C>tipoCusto: "mao_de_obra"</C>.</>],
           [<C>boletos</C>, 'lista', <>Parcelas do pagamento: <C>valor</C>, <C>vencimento</C>, <C>pagoComBoleto</C> (paga ou não) e, quando a baixa veio do Sienge, <C>pagoViaSienge</C>.</>],
-          [<C>billIdSienge</C>, 'número ou null', 'Número do título no Contas a Pagar do Sienge, quando informado.'],
+          [<C>billIdSienge</C>, 'número ou null', 'Número do título no Contas a Pagar do Sienge — criado pelo Kargo ou informado na manutenção.'],
+          [<C>criadoPorSienge</C>, 'texto ou null', <>Usuário que criou o título pelo Kargo. <C>null</C> quando o título foi lançado pelo financeiro ou não existe.</>],
+          [<C>documentoSienge</C>, 'texto ou null', <>Tipo do documento no título (por exemplo, <C>NFSE</C> ou <C>DANF</C>); <C>numeroDocumentoSienge</C> traz o número.</>],
           [<C>pecaId</C>, 'texto ou null', <>Peça baixada do almoxarifado, com <C>quantidadePeca</C> e a obra de onde saiu (<C>obraId</C>).</>],
           [<C>temOrdemServicoPdf</C>, 'booleano', 'Se há ordem de serviço ou nota fiscal anexada.'],
         ]}

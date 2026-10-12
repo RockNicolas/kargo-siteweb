@@ -20,13 +20,27 @@ import {
   LayoutDashboard,
   TrendingUp,
   SearchCheck,
+  Scale,
+  Landmark,
+  IdCard,
+  ClipboardCheck,
+  ListChecks,
+  CopyX,
+  Building2,
+  Tag,
+  Fingerprint,
+  Filter,
+  FileDown,
+  Presentation,
+  Smartphone,
 } from 'lucide-react'
 
 export const navLinks = [
   { label: 'Módulos', href: '/#modules' },
   { label: 'Diretoria', href: '/#diretoria' },
   { label: 'Integração Sienge', href: '/#sienge' },
-  { label: 'Documentação', href: '/docs' },
+  // A documentação (/docs) existe, mas não é linkada no site: o link é enviado ao cliente que precisar.
+  // Para voltar a exibir: { label: 'Documentação', href: '/docs' } aqui e os dois links no rodapé abaixo.
   { label: 'Sobre', href: '/about' },
   { label: 'Contato', href: '/#contact' },
 ]
@@ -46,8 +60,6 @@ export const footerAboutLinks = [
 ]
 
 export const footerSupportLinks = [
-  { label: 'Manual do usuário', href: '/docs/manual/o-que-e-o-kargo' },
-  { label: 'Referência da API', href: '/docs/api/introducao' },
   { label: 'Falar no WhatsApp', href: `https://wa.me/${contact.whatsapp}` },
 ]
 
@@ -90,7 +102,7 @@ export const moduleGroups: ModuleGroup[] = [
         icon: FileText,
         title: 'Documentação veicular',
         description:
-          'IPVA, licenciamento, CNH e multas — com alerta antes do vencimento e pagamento conferido no Contas a Pagar do Sienge.',
+          'IPVA, licenciamento, CNH e multas — com alerta antes do vencimento, título criado direto no Contas a Pagar do Sienge e pagamento conferido de volta.',
       },
       {
         icon: Fuel,
@@ -102,7 +114,7 @@ export const moduleGroups: ModuleGroup[] = [
         icon: Wrench,
         title: 'Manutenção',
         description:
-          'Intervalos por quilometragem ou por hora, ordem de serviço em PDF, baixa de peças na obra correta e boleto marcado como pago quando o Sienge dá baixa.',
+          'Intervalos por quilometragem ou por hora, ordem de serviço em PDF, baixa de peças na obra correta, título criado no Contas a Pagar do Sienge e boleto marcado como pago quando o financeiro dá baixa.',
       },
       {
         icon: Package,
@@ -206,9 +218,9 @@ export const siengeBenefits: SiengeBenefit[] = [
 export const contasAPagarPassos: SiengeBenefit[] = [
   {
     icon: Receipt,
-    title: 'Informe o título',
+    title: 'Crie ou informe o título',
     description:
-      'Na manutenção, na multa ou no IPVA, digite o número do título do Sienge. O Kargo puxa valor, vencimento, parcelas e a guia em PDF.',
+      'O Kargo cria o título no Sienge a partir do cadastro. Se o financeiro já lançou, é só digitar o número: o Kargo puxa valor, vencimento, parcelas e a guia em PDF.',
   },
   {
     icon: SearchCheck,
@@ -231,6 +243,283 @@ export const contasAPagarOndeAplica: string[] = [
   'Licenciamento',
 ]
 
+/* ------------------------------------------------------------------ *
+ * Criação de título no Sienge (Kargo → Sienge) — showpiece da seção
+ * "SiengeTitulos". Tudo aqui é exemplo ilustrativo: nomes, placas,
+ * valores e números de título são fictícios, só mostram o formato.
+ * ------------------------------------------------------------------ */
+
+export type TituloFonteId = 'manutencao' | 'multa' | 'ipva' | 'licenciamento'
+
+export interface TituloParcelaExemplo {
+  vencimento: string
+  valor: string
+}
+
+export interface TituloExemplo {
+  id: TituloFonteId
+  label: string
+  icon: LucideIcon
+  /** Título da janela do Kargo na demonstração. */
+  janela: string
+  ativo: string
+  resumo: string
+  /** Como o pagamento aparece no cadastro: boletos, parcelas… */
+  pagamento: string
+  credor: string
+  documento: string
+  numero: string
+  emissao: string
+  obra: string
+  plano: string
+  /** Número do título que o Sienge devolve. */
+  titulo: string
+  /** Usuário (fictício) que criou o título no Kargo. */
+  usuario: string
+  parcelas: TituloParcelaExemplo[]
+  total: string
+  observacao: string
+}
+
+export const tituloExemplos: TituloExemplo[] = [
+  {
+    id: 'manutencao',
+    label: 'Manutenção',
+    icon: Wrench,
+    janela: 'Manutenção realizada',
+    ativo: 'Caminhão basculante · ABC-1D23',
+    resumo: 'Troca de pastilhas e discos de freio',
+    pagamento: 'Boletos',
+    credor: 'Oficina Rota Sul Ltda',
+    documento: 'NFSE',
+    numero: '4821',
+    emissao: '05/11/2026',
+    obra: 'Obra Rodovia Norte',
+    plano: '2.05.06.05',
+    titulo: '26104',
+    usuario: 'marina.souza',
+    parcelas: [
+      { vencimento: '20/11/2026', valor: 'R$ 1.620,00' },
+      { vencimento: '20/12/2026', valor: 'R$ 1.620,00' },
+      { vencimento: '20/01/2027', valor: 'R$ 1.620,00' },
+    ],
+    total: 'R$ 4.860,00',
+    observacao: 'Kargo — Troca de pastilhas e discos de freio · Caminhão basculante ABC-1D23',
+  },
+  {
+    id: 'multa',
+    label: 'Multas',
+    icon: Scale,
+    janela: 'Multa de trânsito',
+    ativo: 'Pickup L200 · DEF-4G56',
+    resumo: 'Velocidade até 20% acima · infração 74550',
+    pagamento: 'Parcelas',
+    credor: 'DETRAN',
+    documento: 'REC',
+    numero: '74550',
+    emissao: '20/11/2026',
+    obra: 'Obra Rodovia Norte',
+    plano: '2.05.06.05',
+    titulo: '26105',
+    usuario: 'juliana.reis',
+    parcelas: [{ vencimento: '20/11/2026', valor: 'R$ 130,16' }],
+    total: 'R$ 130,16',
+    observacao: 'Kargo — Multa · DEF4G56 · 74550 · R$ 130,16 · Velocidade até 20% · Carlos M.',
+  },
+  {
+    id: 'ipva',
+    label: 'IPVA',
+    icon: Landmark,
+    janela: 'IPVA 2027',
+    ativo: 'Caminhonete Hilux · GHI-7J89',
+    resumo: 'Exercício 2027 · pago em 5 parcelas',
+    pagamento: 'Parcelas',
+    credor: 'Secretaria da Fazenda',
+    documento: 'REC',
+    numero: 'GHI7J892027',
+    emissao: '15/01/2027',
+    obra: 'Obra Rodovia Norte',
+    plano: '2.05.06.05',
+    titulo: '26106',
+    usuario: 'carlos.mendes',
+    parcelas: [
+      { vencimento: '15/01/2027', valor: 'R$ 1.248,00' },
+      { vencimento: '15/02/2027', valor: 'R$ 1.248,00' },
+      { vencimento: '15/03/2027', valor: 'R$ 1.248,00' },
+      { vencimento: '15/04/2027', valor: 'R$ 1.248,00' },
+      { vencimento: '15/05/2027', valor: 'R$ 1.248,00' },
+    ],
+    total: 'R$ 6.240,00',
+    observacao: 'Kargo — IPVA do ativo Caminhonete Hilux — GHI-7J89 2027',
+  },
+  {
+    id: 'licenciamento',
+    label: 'Licenciamento',
+    icon: IdCard,
+    janela: 'Licenciamento 2027',
+    ativo: 'Caminhão toco · JKL-0M12',
+    resumo: 'Licenciamento anual · exercício 2027',
+    pagamento: 'Parcelas',
+    credor: 'DETRAN',
+    documento: 'REC',
+    numero: 'JKL0M122027',
+    emissao: '30/11/2026',
+    obra: 'Obra Rodovia Norte',
+    plano: '2.05.06.05',
+    titulo: '26107',
+    usuario: 'marina.souza',
+    parcelas: [{ vencimento: '30/11/2026', valor: 'R$ 172,20' }],
+    total: 'R$ 172,20',
+    observacao: 'Kargo — LICENCIAMENTO do ativo Caminhão toco — JKL-0M12 2027',
+  },
+]
+
+export interface TituloEtapa {
+  titulo: string
+  descricao: string
+}
+
+export const tituloEtapas: TituloEtapa[] = [
+  {
+    titulo: 'Cadastre',
+    descricao:
+      'Lance a manutenção, a multa, o IPVA ou o licenciamento como já faz hoje e deixe ligado “Criar título ao salvar”.',
+  },
+  {
+    titulo: 'Confira',
+    descricao:
+      'O Kargo monta o título com credor, documento, plano financeiro e obra — e mostra exatamente o que vai ser lançado.',
+  },
+  {
+    titulo: 'Título criado',
+    descricao:
+      'Um clique e o título entra no Contas a Pagar do Sienge, com cada parcela igual à do Kargo e ligada ao boleto de origem.',
+  },
+  {
+    titulo: 'Baixa de volta',
+    descricao:
+      'O financeiro dá a baixa no Sienge e o Kargo marca como pago sozinho, guardando a confirmação como prova.',
+  },
+]
+
+export interface TituloGarantia {
+  icon: LucideIcon
+  title: string
+  description: string
+}
+
+export const tituloGarantias: TituloGarantia[] = [
+  {
+    icon: ClipboardCheck,
+    title: 'Prévia antes de enviar',
+    description:
+      'Uma tela de conferência mostra empresa, credor, documento, parcelas, plano financeiro e obra. Só envia depois do “Conferi os dados”.',
+  },
+  {
+    icon: ListChecks,
+    title: 'Parcela por parcela',
+    description:
+      'Cada boleto vira uma parcela do título, com o mesmo valor e o mesmo vencimento — inclusive quando os centavos mudam de uma parcela para outra.',
+  },
+  {
+    icon: CopyX,
+    title: 'Sem título duplicado',
+    description:
+      'Registro que já tem título não gera outro, e um título igual já lançado no Sienge é barrado. Clique duplo também não passa.',
+  },
+  {
+    icon: Building2,
+    title: 'Obra, plano e credor do jeito do Sienge',
+    description:
+      'Busca de credor que perdoa erro de digitação, plano financeiro com a máscara do Sienge e apropriação de obra dentro do título, para ele não nascer incompleto.',
+  },
+  {
+    icon: Tag,
+    title: 'Origem identificada',
+    description:
+      'A observação de todo título criado pelo Kargo começa com “Kargo —”: o financeiro sabe de onde ele veio.',
+  },
+  {
+    icon: Fingerprint,
+    title: 'Quem criou, e quando',
+    description:
+      'Cada título guarda o usuário que o criou e a data. O nome aparece nos relatórios de Manutenção, Multas, IPVA e Licenciamento.',
+  },
+]
+
+export interface HistoricoAtributo {
+  icon: LucideIcon
+  texto: string
+}
+
+export const historicoAtributos: HistoricoAtributo[] = [
+  { icon: Filter, texto: 'Filtro por módulo e por sentido da integração' },
+  { icon: BarChart3, texto: 'Dashboard de análise com os números do período' },
+  { icon: FileDown, texto: 'Exportação em PDF e em Excel' },
+  { icon: Fingerprint, texto: 'Usuário de cada ação — título criado ou baixa confirmada' },
+]
+
+export interface HistoricoLinhaExemplo {
+  modulo: string
+  icon: LucideIcon
+  titulo: string
+  quando: string
+  sentido: 'kargo-sienge' | 'sienge-kargo'
+  /** Rótulo do status — vazio quando não se aplica. */
+  status?: string
+  paga?: boolean
+  usuario: string
+}
+
+export const historicoLinhasExemplo: HistoricoLinhaExemplo[] = [
+  {
+    modulo: 'Manutenção',
+    icon: Wrench,
+    titulo: 'Título 26104 criado no Sienge',
+    quando: 'há 2 min',
+    sentido: 'kargo-sienge',
+    status: 'Enviado',
+    usuario: 'marina.souza',
+  },
+  {
+    modulo: 'IPVA',
+    icon: Landmark,
+    titulo: 'Título 26106 criado — IPVA 2027 em 5 parcelas',
+    quando: 'há 18 min',
+    sentido: 'kargo-sienge',
+    status: 'Enviado',
+    usuario: 'carlos.mendes',
+  },
+  {
+    modulo: 'Multas',
+    icon: Scale,
+    titulo: 'Multa DEF-4G56 · baixa confirmada',
+    quando: 'há 1 h',
+    sentido: 'sienge-kargo',
+    paga: true,
+    usuario: 'Sienge (automático)',
+  },
+  {
+    modulo: 'Licenciamento',
+    icon: IdCard,
+    titulo: 'Título 26107 criado — Licenciamento 2027',
+    quando: 'ontem',
+    sentido: 'kargo-sienge',
+    status: 'Enviado',
+    usuario: 'marina.souza',
+  },
+]
+
+/** Eventos por módulo no período do dashboard de exemplo. */
+export const historicoBarrasExemplo: { label: string; valor: number }[] = [
+  { label: 'Almoxarifado', valor: 48 },
+  { label: 'Manutenção', valor: 21 },
+  { label: 'Ativos', valor: 17 },
+  { label: 'IPVA', valor: 14 },
+  { label: 'Multas', valor: 9 },
+  { label: 'Licenciamento', valor: 6 },
+]
+
 export interface DiretoriaItem {
   icon: LucideIcon
   title: string
@@ -240,21 +529,39 @@ export interface DiretoriaItem {
 export const diretoriaItens: DiretoriaItem[] = [
   {
     icon: LayoutDashboard,
-    title: 'Pontos de atenção primeiro',
+    title: 'Sabe o que olhar primeiro',
     description:
-      'Ao abrir, o painel mostra primeiro o que pede atenção: custo que subiu, margem apertada, ativo que custa mais do que rende.',
+      'Ao abrir, o painel já aponta o que pede atenção: custo que subiu, margem apertada, ativo que custa mais do que rende. Sem caçar número em módulo nenhum.',
   },
   {
     icon: TrendingUp,
-    title: 'Mês contra mês, com a causa',
+    title: 'Entende o porquê, não só o quanto',
     description:
-      'Não basta saber que o gasto subiu: o painel mostra de onde veio a diferença — litros ou preço, quais ativos, o que foi pago.',
+      'Cada variação vem com a causa e o número que a sustenta: litros ou preço, quais ativos, o que foi pago. Acabou o “subiu, mas não sei por quê”.',
   },
   {
-    icon: FileSpreadsheet,
-    title: 'Cada área em poucos números',
+    icon: Presentation,
+    title: 'Leva para a reunião em um clique',
     description:
-      'Combustível, manutenção, multas e IPVA resumidos em cartões. Quem quiser aprofundar abre a análise do módulo.',
+      'O botão Apresentar abre os mesmos números em slides, em tela cheia. Também baixa em PDF, em PowerPoint editável e em Excel.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Sem planilha e sem relatório manual',
+    description:
+      'O painel se monta sozinho com o que o time já lança: combustível, manutenção, multas, IPVA e pagamentos confirmados no Sienge.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Só de consulta, e cada um vê o seu',
+    description:
+      'A diretoria acompanha sem alterar nada, e cada pessoa vê apenas os módulos liberados para ela.',
+  },
+  {
+    icon: Smartphone,
+    title: 'No escritório, na obra ou no celular',
+    description:
+      'O mesmo painel abre no computador, no tablet e no celular — o número certo na mão de quem decide, onde estiver.',
   },
 ]
 

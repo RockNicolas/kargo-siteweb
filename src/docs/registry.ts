@@ -148,8 +148,8 @@ const manual: DocArea = {
           slug: 'painel-da-diretoria',
           titulo: 'Painel da diretoria',
           resumo:
-            'Painel operacional só de consulta: gasto do período, comparação com o mês anterior e a causa de cada variação.',
-          palavras: ['diretoria', 'painel operacional', 'cliente', 'comparativo', 'mês contra mês', 'custos', 'lucro', 'dre', 'causas'],
+            'Painel só de consulta: gasto do período, comparação com o mês anterior, a causa de cada variação e a apresentação em slides para reunião.',
+          palavras: ['diretoria', 'painel operacional', 'cliente', 'comparativo', 'mês contra mês', 'custos', 'lucro', 'dre', 'causas', 'apresentar', 'apresentação', 'slides', 'powerpoint', 'pdf', 'excel', 'ano', 'período'],
           Component: ManualPainelDaDiretoria,
         },
         {
@@ -168,16 +168,31 @@ const manual: DocArea = {
           slug: 'sienge-visao-geral',
           titulo: 'Como funciona a integração',
           resumo:
-            'O que o Kargo troca com o Sienge: estoque das obras, localização dos ativos e pagamento de manutenções, multas e IPVA.',
-          palavras: ['sienge', 'sincronização', 'webhook', 'estoque', 'contas a pagar', 'ativos'],
+            'O que o Kargo troca com o Sienge: estoque das obras, localização dos ativos, títulos criados no Contas a Pagar e pagamento de manutenções, multas e IPVA.',
+          palavras: ['sienge', 'sincronização', 'webhook', 'estoque', 'contas a pagar', 'ativos', 'histórico', 'título'],
           Component: SiengeVisaoGeral,
         },
         {
           slug: 'contas-a-pagar',
           titulo: 'Contas a Pagar pelo Sienge',
           resumo:
-            'Como o Kargo confirma o pagamento de manutenções, multas, IPVA e licenciamento a partir do título do Sienge.',
-          palavras: ['contas a pagar', 'título', 'boleto', 'parcela', 'baixa', 'pago', 'multa', 'ipva', 'licenciamento', 'financeiro'],
+            'Como o Kargo cria o título de manutenções, multas, IPVA e licenciamento no Contas a Pagar do Sienge e confirma o pagamento quando o financeiro dá baixa.',
+          palavras: [
+            'contas a pagar',
+            'título',
+            'criar título',
+            'lançar',
+            'boleto',
+            'parcela',
+            'baixa',
+            'pago',
+            'multa',
+            'ipva',
+            'licenciamento',
+            'financeiro',
+            'credor',
+            'conferência',
+          ],
           Component: ManualContasAPagar,
         },
         {

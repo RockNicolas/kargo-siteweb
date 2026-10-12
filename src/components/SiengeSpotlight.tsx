@@ -1,21 +1,20 @@
-
 import { ArrowRight, BadgeCheck, ChevronDown } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
 import { siengeBenefits, contasAPagarPassos, contasAPagarOndeAplica } from '../data/content'
 
+// A âncora `#sienge` (menu e rodapé) pertence à seção SiengeTitulos, logo acima.
 export function SiengeSpotlight() {
   return (
-    <section id="sienge" className="bg-white pb-12 pt-20 dark:bg-black sm:pb-16 sm:pt-28">
+    <section id="sienge-integracao" className="bg-white pb-12 pt-20 dark:bg-black sm:pb-16 sm:pt-28">
       <Container>
         <Reveal>
           <SectionHeading
             align="center"
             eyebrow="Integrações via API"
-            title="Integrações com sistemas ERP"
-            description="O Kargo se conecta a sistemas ERP via API para manter o estoque de cada obra sempre sincronizado — hoje com o Sienge: estoque nos dois sentidos e pagamentos conferidos no Contas a Pagar, sem lançar a mesma coisa duas vezes."
+            title="Estoque, ativos e pagamentos também falam com o Sienge."
+            description="O Kargo se conecta a sistemas ERP via API — hoje com o Sienge: estoque de cada obra nos dois sentidos, localização dos ativos e pagamentos conferidos no Contas a Pagar, sem lançar a mesma coisa duas vezes."
           />
         </Reveal>
 
@@ -37,7 +36,6 @@ export function SiengeSpotlight() {
           ))}
         </div>
 
-
         <Reveal delay={40}>
           <div className="mt-14 rounded-3xl border border-asphalt-200 bg-concrete-50 p-6 dark:border-asphalt-800 dark:bg-asphalt-900/60 sm:p-10">
             <div className="max-w-2xl">
@@ -48,8 +46,8 @@ export function SiengeSpotlight() {
                 O financeiro dá baixa no Sienge. O Kargo marca como pago.
               </h3>
               <p className="mt-3 text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300">
-                Chega de perguntar se aquele boleto, multa ou IPVA já foi pago. O Kargo lê o título no Sienge e
-                acompanha cada parcela até a baixa.
+                Chega de perguntar se aquele boleto, multa ou IPVA já foi pago. Seja um título criado pelo Kargo ou
+                lançado pelo financeiro, o Kargo acompanha cada parcela no Sienge até a baixa.
               </p>
             </div>
 
@@ -98,13 +96,7 @@ export function SiengeSpotlight() {
             </div>
 
             <p className="mt-5 text-sm text-asphalt-500 dark:text-asphalt-400">
-              Parcela paga só no Sienge é marcada; nunca desmarcada. Parcial ou em aberto continua em aberto.{' '}
-              <Link
-                to="/docs/manual/contas-a-pagar"
-                className="font-medium text-signal-600 underline-offset-4 hover:underline dark:text-signal-400"
-              >
-                Como funciona na prática
-              </Link>
+              Parcela paga só no Sienge é marcada; nunca desmarcada. Parcial ou em aberto continua em aberto.
             </p>
           </div>
         </Reveal>
@@ -129,7 +121,7 @@ export function SiengeSpotlight() {
                   Tudo o que o financeiro e o almoxarifado já fazem no Sienge, sem digitar de novo no Kargo.
                 </p>
                 <ul className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
-                  {['Estoque por obra', 'Localização dos ativos', 'Contas a Pagar'].map((t) => (
+                  {['Estoque por obra', 'Localização dos ativos', 'Criação de títulos', 'Baixa conferida'].map((t) => (
                     <li
                       key={t}
                       className="rounded-full border border-asphalt-200 bg-white px-3 py-1 text-xs font-medium text-asphalt-700 dark:border-asphalt-700 dark:bg-black dark:text-asphalt-200"

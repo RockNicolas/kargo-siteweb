@@ -5,6 +5,7 @@ import { PainPoints } from '../components/PainPoints'
 import { HowItWorks } from '../components/HowItWorks'
 import { Features } from '../components/Features'
 import { DiretoriaSection } from '../components/DiretoriaSection'
+import { SiengeTitulos } from '../components/SiengeTitulos'
 import { SiengeSpotlight } from '../components/SiengeSpotlight'
 import { AccessProfiles } from '../components/AccessProfiles'
 import { Benefits } from '../components/Benefits'
@@ -29,6 +30,7 @@ export function HomePage() {
       <HowItWorks />
       <Features />
       <DiretoriaSection />
+      <SiengeTitulos />
       <SiengeSpotlight />
       <AccessProfiles />
       <Benefits />

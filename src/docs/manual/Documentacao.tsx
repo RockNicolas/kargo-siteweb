@@ -67,9 +67,10 @@ export function ManualDocumentacao() {
       </P>
       <Callout tipo="info" titulo="Pagamento confirmado pelo Sienge">
         <p>
-          Com a integração ligada, informe o número do título do Sienge na multa, no IPVA ou no licenciamento: o
-          Kargo puxa valor, vencimento e parcelas e, quando o financeiro dá baixa, marca como pago sozinho. Veja{' '}
-          <L to="/docs/manual/contas-a-pagar">Contas a Pagar pelo Sienge</L>.
+          Com a integração ligada, o Kargo cria o título da multa, do IPVA ou do licenciamento no Contas a Pagar do
+          Sienge: é só ligar <B>Criar título ao salvar</B> e conferir antes de enviar. Se o financeiro já lançou o
+          título, informe o número dele e o Kargo puxa valor, vencimento e parcelas. Quando o financeiro dá baixa, o
+          Kargo marca como pago sozinho. Veja <L to="/docs/manual/contas-a-pagar">Contas a Pagar pelo Sienge</L>.
         </p>
       </Callout>
 

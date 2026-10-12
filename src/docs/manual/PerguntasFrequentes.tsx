@@ -76,6 +76,32 @@ export function PerguntasFrequentes() {
           enviado fica sinalizado para revisão.
         </P>
       </Pergunta>
+      <Pergunta titulo="O Kargo consegue criar o título no Contas a Pagar do Sienge?">
+        <P>
+          Sim, para manutenção, multa, IPVA e licenciamento. Você liga <B>Criar título ao salvar</B>, o Kargo mostra
+          o que vai ser lançado e só envia depois do “Conferi os dados”. Cada boleto ou parcela vira uma parcela do
+          título. Veja <L to="/docs/manual/contas-a-pagar">Contas a Pagar pelo Sienge</L>.
+        </P>
+      </Pergunta>
+      <Pergunta titulo="O Kargo paga o boleto ou dá baixa no título?">
+        <P>
+          Não. Quem dá a baixa é o financeiro, na tela do Sienge. O Kargo só cria o título e, quando o Sienge
+          confirma a baixa, marca a parcela como paga.
+        </P>
+      </Pergunta>
+      <Pergunta titulo="Criei um título errado. Dá para desfazer pelo Kargo?">
+        <P>
+          O Kargo não apaga títulos: a API do Sienge não permite. Por isso existe a tela de conferência antes do
+          envio. Se algo já foi lançado errado, o financeiro cancela o título direto no Sienge.
+        </P>
+      </Pergunta>
+      <Pergunta titulo="Dá para saber quem criou cada título?">
+        <P>
+          Sim. O <B>Histórico da integração</B> mostra o usuário e a data de cada título criado e de cada baixa
+          confirmada, com filtro por módulo e exportação em PDF ou Excel. Os relatórios de Multas, IPVA,
+          Licenciamento e Manutenção também trazem a coluna <B>Título Sienge criado por</B>.
+        </P>
+      </Pergunta>
       <Pergunta titulo="Preciso pagar algo a mais ao Sienge?">
         <P>
           A integração usa a API do Sienge, que é contratada com o próprio Sienge. Existe um plano gratuito (Free),

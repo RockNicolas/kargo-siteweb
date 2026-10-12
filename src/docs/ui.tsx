@@ -278,11 +278,12 @@ export function Code({ children, lang, titulo }: { children: string; lang?: stri
   )
 }
 
-type Metodo = 'GET' | 'POST' | 'DELETE'
+type Metodo = 'GET' | 'POST' | 'PATCH' | 'DELETE'
 
 const METODO_CLASSE: Record<Metodo, string> = {
   GET: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400',
   POST: 'bg-signal-500/15 text-signal-600 dark:text-signal-400',
+  PATCH: 'bg-sky-500/15 text-sky-700 dark:text-sky-400',
   DELETE: 'bg-red-500/15 text-red-700 dark:text-red-400',
 }
 

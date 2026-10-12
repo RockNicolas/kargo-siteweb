@@ -56,8 +56,9 @@ export function OQueEOKargo() {
       <H2>Integração com o Sienge</H2>
       <P>
         Para quem já usa o Sienge, o Kargo conversa com ele: o estoque das obras fica igual nos dois
-        sistemas, a obra onde cada ativo está é atualizada sozinha e a baixa de um título no financeiro marca como
-        paga a manutenção, a multa ou o IPVA. Entenda em <L to="/docs/manual/sienge-visao-geral">Como funciona a integração</L>.
+        sistemas, a obra onde cada ativo está é atualizada sozinha, o título da manutenção, da multa, do IPVA e do
+        licenciamento é criado direto no Contas a Pagar e a baixa dada pelo financeiro marca tudo como pago. Entenda
+        em <L to="/docs/manual/sienge-visao-geral">Como funciona a integração</L>.
       </P>
 
       <H2>Por onde começar</H2>

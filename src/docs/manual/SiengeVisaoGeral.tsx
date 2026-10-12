@@ -24,8 +24,8 @@ export function SiengeVisaoGeral() {
           ],
           [
             <B>Contas a Pagar</B>,
-            'Sienge → Kargo',
-            'Em horário comercial, o Kargo confere se o financeiro deu baixa no título e marca a parcela como paga — em manutenções, multas, IPVA e licenciamento.',
+            'Nos dois sentidos',
+            'O Kargo cria o título no Sienge a partir da manutenção, da multa, do IPVA ou do licenciamento. Depois, em horário comercial, confere se o financeiro deu baixa e marca a parcela como paga.',
           ],
         ]}
       />
@@ -59,19 +59,34 @@ export function SiengeVisaoGeral() {
       </P>
 
       <H2>Contas a Pagar</H2>
+      <H3>Do Kargo para o Sienge: criar o título</H3>
       <P>
-        Ao registrar uma manutenção realizada, uma multa ou o IPVA/licenciamento de um ativo, informe o número do
-        título do Contas a Pagar do Sienge. O Kargo puxa os dados do título (valor, vencimento, parcelas e a guia em
-        PDF) e, quando o financeiro dá baixa no Sienge, marca a parcela como paga — com a confirmação do Sienge
-        guardada como prova. Veja o passo a passo em{' '}
+        Ao registrar uma manutenção realizada, uma multa ou o IPVA/licenciamento de um ativo, o Kargo cria o título
+        no Contas a Pagar do Sienge — com as parcelas, o plano financeiro e a obra — depois de uma tela de
+        conferência. O número do título fica gravado no cadastro.
+      </P>
+      <H3>Do Sienge para o Kargo: acompanhar a baixa</H3>
+      <P>
+        Quando o financeiro dá baixa no Sienge, o Kargo marca a parcela como paga, com a confirmação do Sienge
+        guardada como prova. Se o título já tiver sido lançado pelo financeiro, basta informar o número dele: o Kargo
+        puxa valor, vencimento, parcelas e a guia em PDF. Veja o passo a passo em{' '}
         <L to="/docs/manual/contas-a-pagar">Contas a Pagar pelo Sienge</L>.
       </P>
 
       <H2>Histórico</H2>
       <P>
-        A tela da integração tem um histórico único das três áreas: o que foi enviado, o que chegou e o que deu
-        erro, com data e hora. É o primeiro lugar para olhar quando algo não bater entre os dois sistemas.
+        A tela da integração tem um histórico único das áreas ligadas, nos dois sentidos: o que foi enviado, o que
+        chegou e o que deu erro, com data e hora. É o primeiro lugar para olhar quando algo não bater entre os dois
+        sistemas.
       </P>
+      <UL>
+        <li>Filtro por módulo (Almoxarifado, Ativos, Manutenção, Multas, IPVA e Licenciamento) e por sentido.</li>
+        <li>Dashboard com os números do período e exportação em PDF ou Excel.</li>
+        <li>
+          O <B>usuário</B> de cada ação — quem criou o título no Sienge. Cada pessoa vê só os módulos a que tem
+          acesso.
+        </li>
+      </UL>
 
       <H2>Limites do Sienge</H2>
       <UL>
