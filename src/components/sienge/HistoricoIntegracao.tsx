@@ -43,11 +43,11 @@ function JanelaHistorico() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex rounded-lg border border-[var(--k-border)] bg-[var(--k-sidebar)] p-0.5">
+          <div className="flex flex-wrap rounded-lg border border-[var(--k-border)] bg-[var(--k-sidebar)] p-0.5">
             {SENTIDOS.map((s, i) => (
               <span
                 key={s}
-                className={`rounded-md px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wide ${
+                className={`whitespace-nowrap rounded-md px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wide ${
                   i === 0 ? 'bg-[var(--k-cta)] text-white' : 'text-[var(--k-muted)]'
                 }`}
               >
@@ -139,8 +139,8 @@ function JanelaHistorico() {
 
 export function HistoricoIntegracao() {
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
-      <div>
+    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+      <div className="min-w-0">
         <span className="font-mono text-xs font-medium uppercase tracking-widest text-signal-400">
           Histórico da integração
         </span>
@@ -164,7 +164,7 @@ export function HistoricoIntegracao() {
         </ul>
       </div>
 
-      <div>
+      <div className="min-w-0">
         <JanelaHistorico />
         <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-widest text-asphalt-500">
           Exemplo ilustrativo
