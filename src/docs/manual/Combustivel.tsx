@@ -4,7 +4,7 @@ export function ManualCombustivel() {
   return (
     <>
       <P>
-        O módulo de Combustível registra cada abastecimento da frota e mostra quanto se gasta por ativo, por
+        O módulo de Combustível registra cada abastecimento dos ativos e mostra quanto se gasta por ativo, por
         categoria e por período. Ele tem duas visões — <B>semanal</B> e <B>mensal</B> — escolhidas no menu{' '}
         <Menu itens={['Combustível', 'Semanal']} /> ou <Menu itens={['Combustível', 'Mensal']} />.
       </P>

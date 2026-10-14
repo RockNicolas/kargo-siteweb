@@ -66,7 +66,7 @@ export function Features() {
             align="center"
             eyebrow="Módulos"
             title="Tudo o que sua operação precisa em um único painel."
-            description="Organizado da forma como quem administra frota e obras realmente pensa no dia a dia."
+            description="Organizado da forma como quem administra ativos e obras realmente pensa no dia a dia."
           />
         </Reveal>
 

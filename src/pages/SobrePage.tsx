@@ -30,8 +30,8 @@ export function SobrePage() {
             A história por trás do Kargo
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-asphalt-600 dark:text-asphalt-300">
-            O Kargo é um sistema de gestão de frota e obras — combustível, documentação veicular,
-            manutenção e almoxarifado em um único painel, acessível de qualquer computador ou celular.
+            O Kargo é um sistema de gestão de ativos e obras — combustível, documentação veicular,
+            manutenção e almoxarifado em um único painel, acessível de qualquer computador ou dispositivo móvel.
             Feito para a empresa que tem veículo próprio e obra em andamento ao mesmo tempo — e que
             hoje lida com isso no meio de planilhas soltas e ligações de um setor para o outro.
           </p>
@@ -50,9 +50,9 @@ export function SobrePage() {
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-asphalt-600 dark:text-asphalt-300">
                   <p>
                     O Kargo começou pequeno: uma ferramenta pensada apenas para controlar o consumo de
-                    combustível da frota. Ainda nessa fase inicial surgiu a pergunta que mudou o rumo
+                    combustível dos ativos. Ainda nessa fase inicial surgiu a pergunta que mudou o rumo
                     do projeto — por que não transformar aquilo em um sistema completo de controle de
-                    frota? Dali nasceu o módulo que hoje facilita localizar cada ativo pela placa,
+                    ativos? Dali nasceu o módulo que hoje facilita localizar cada ativo pela placa,
                     buscar a documentação de cada veículo e acompanhar o pagamento desses documentos,
                     tudo em um único lugar.
                   </p>
@@ -60,8 +60,8 @@ export function SobrePage() {
                     Foi esse ganho de escopo que fez o Kargo crescer. Vieram o controle de
                     manutenções, para nunca mais perder de vista a revisão, o licenciamento ou o IPVA
                     prestes a vencer, e o almoxarifado — a parte mais diferenciada, que uniu o controle
-                    de frota ao controle de obra em um único fluxo. É essa junção que dá ao Kargo a
-                    identidade que ele tem hoje: um único painel para gerir frota e canteiro de obra ao
+                    de ativos ao controle de obra em um único fluxo. É essa junção que dá ao Kargo a
+                    identidade que ele tem hoje: um único painel para gerir ativos e canteiro de obra ao
                     mesmo tempo.
                   </p>
                 </div>

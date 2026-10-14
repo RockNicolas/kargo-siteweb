@@ -65,7 +65,7 @@ export function PerguntasFrequentes() {
       <H2>Sienge</H2>
       <Pergunta titulo="O Kargo substitui o Sienge?">
         <P>
-          Não. O Sienge continua sendo o sistema de gestão da empresa; o Kargo cuida do controle de campo — frota,
+          Não. O Sienge continua sendo o sistema de gestão da empresa; o Kargo cuida do controle de campo — ativos,
           documentação, combustível, manutenção e almoxarifado das obras — e conversa com o Sienge para ninguém
           lançar a mesma coisa duas vezes.
         </P>

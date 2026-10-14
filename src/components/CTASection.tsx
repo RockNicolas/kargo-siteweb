@@ -69,7 +69,7 @@ export function CTASection() {
           <SectionHeading
             eyebrow="Contato"
             title="Pronto para tirar sua operação da planilha?"
-            description="Fale conosco e veja o Kargo funcionando com a realidade da sua frota e das suas obras."
+            description="Fale conosco e veja o Kargo funcionando com a realidade dos seus ativos e das suas obras."
           />
         </Reveal>
 
@@ -166,7 +166,7 @@ export function CTASection() {
                     value={form.mensagem}
                     onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
                     className="w-full resize-none rounded-lg border border-asphalt-200 px-3.5 py-2.5 text-base text-asphalt-950 outline-none transition focus:border-signal-500 focus:ring-2 focus:ring-signal-500/20 dark:border-asphalt-700 dark:bg-asphalt-950 dark:text-white dark:placeholder:text-asphalt-500"
-                    placeholder="Conte um pouco sobre sua frota ou suas obras"
+                    placeholder="Conte um pouco sobre seus ativos ou suas obras"
                   />
                 </div>
               </div>

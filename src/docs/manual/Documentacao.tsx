@@ -35,7 +35,7 @@ export function ManualDocumentacao() {
         </li>
         <li>
           IPVA e licenciamento também têm telas próprias (<Menu itens={['Documentação', 'IPVA']} /> e{' '}
-          <Menu itens={['Documentação', 'Licenciamento']} />), com a situação de toda a frota de uma vez.
+          <Menu itens={['Documentação', 'Licenciamento']} />), com a situação de todos os ativos de uma vez.
         </li>
       </UL>
 

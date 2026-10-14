@@ -75,7 +75,7 @@ const manual: DocArea = {
           slug: 'o-que-e-o-kargo',
           titulo: 'O que é o Kargo',
           resumo:
-            'Um painel único para frota e obras: patrimônio, documentação, combustível, manutenção e almoxarifado, integrado ao Sienge.',
+            'Um painel único para ativos e obras: patrimônio, documentação, combustível, manutenção e almoxarifado, integrado ao Sienge.',
           palavras: ['visão geral', 'módulos', 'introdução'],
           Component: OQueEOKargo,
         },

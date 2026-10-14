@@ -130,7 +130,7 @@ export const moduleGroups: ModuleGroup[] = [
         icon: FileSpreadsheet,
         title: 'Relatórios e painéis',
         description:
-          'Indicadores de frota e obras em tempo real, com o custo de cada obra no período e o comparativo com o mês anterior. Cada relatório é exportado em PDF ou Excel com o logotipo da empresa.',
+          'Indicadores de ativos e obras em tempo real, com o custo de cada obra no período e o comparativo com o mês anterior. Cada relatório é exportado em PDF ou Excel com o logotipo da empresa.',
       },
       {
         icon: Bell,
@@ -179,7 +179,7 @@ export const howItWorks: HowItWorksStep[] = [
     icon: Zap,
     title: 'Decisão na hora, não no fim do mês',
     description:
-      'Gasto de combustível, saldo de estoque por obra e status da frota disponíveis no painel, com relatórios prontos para exportar quando precisar.',
+      'Gasto de combustível, saldo de estoque por obra e status dos ativos disponíveis no painel, com relatórios prontos para exportar quando precisar.',
   },
 ]
 
@@ -559,9 +559,9 @@ export const diretoriaItens: DiretoriaItem[] = [
   },
   {
     icon: Smartphone,
-    title: 'No escritório, na obra ou no celular',
+    title: 'No escritório ou na obra, em qualquer dispositivo',
     description:
-      'O mesmo painel abre no computador, no tablet e no celular — o número certo na mão de quem decide, onde estiver.',
+      'O mesmo painel abre no computador, no tablet e em dispositivos móveis — o número certo na mão de quem decide, onde estiver.',
   },
 ]
 
@@ -635,7 +635,13 @@ export const benefits: Benefit[] = [
   {
     icon: BarChart3,
     title: 'Tomada de decisões mais rápidas',
-    description: 'Números de gasto, estoque e frota disponíveis na hora — não no fim do mês.',
+    description: 'Números de gasto, estoque e ativos disponíveis na hora — não no fim do mês.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Seus ativos na palma da mão',
+    description:
+      'Abre direto no navegador do dispositivo móvel, sem baixar aplicativo, e pode ficar como ícone na tela inicial.',
   },
   {
     icon: Warehouse,

@@ -3,7 +3,7 @@ import { B, Callout, H2, L, P, Step, Steps, Table, UL } from '../ui'
 export function OQueEOKargo() {
   return (
     <>
-      <H2>Um painel para frota e obras</H2>
+      <H2>Um painel para ativos e obras</H2>
       <P>
         O Kargo junta em um só lugar o que normalmente fica espalhado em planilhas, papéis e mensagens: os
         veículos e máquinas da empresa, a documentação de cada um, o combustível, as manutenções e o

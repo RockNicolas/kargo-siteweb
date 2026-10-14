@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, Globe, Monitor, Smartphone } from 'lucide-react'
 import { Container } from './ui/Container'
 
-const stack = ['Combustível', 'Frota', 'Documentação', 'Manutenção', 'Almoxarifado']
+const stack = ['Combustível', 'Ativos', 'Documentação', 'Manutenção', 'Almoxarifado']
 
 function smoothstep(edge0: number, edge1: number, x: number) {
   const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)))
@@ -208,7 +208,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         className="animate-fade-up font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-semibold leading-[1.12] tracking-tight text-asphalt-950 dark:text-white"
         style={{ animationDelay: '90ms' }}
       >
-        Sua frota e suas obras sob controle em um único painel.
+        Seus ativos e suas obras sob controle em um único painel.
       </h1>
 
       <p
@@ -216,7 +216,7 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
         style={{ animationDelay: '180ms' }}
       >
         O Kargo substitui a planilha, o papel e o controle manual por um painel único — acessível de
-        qualquer computador, tablet ou celular, com histórico completo e alertas automáticos.
+        qualquer computador, tablet ou dispositivo móvel, com histórico completo e alertas automáticos.
       </p>
 
       <div
@@ -239,12 +239,12 @@ function IntroHeadline({ style }: { style?: React.CSSProperties }) {
       </div>
 
       <div
-        className="animate-fade-up mt-6 flex items-center justify-center gap-2 text-sm text-asphalt-500 dark:text-asphalt-400 sm:justify-start"
+        className="animate-fade-up mt-6 flex items-center justify-center gap-2 text-sm font-medium text-asphalt-700 dark:text-asphalt-200 sm:justify-start"
         style={{ animationDelay: '340ms' }}
       >
-        <Monitor className="h-4 w-4" />
-        <Smartphone className="h-4 w-4" />
-        Acesse do computador ou qualquer dispositivo móvel
+        <Monitor className="h-4 w-4 text-signal-500 dark:text-signal-400" />
+        <Smartphone className="h-4 w-4 text-signal-500 dark:text-signal-400" />
+        Seus ativos no bolso: abra o Kargo em qualquer dispositivo, sem instalar nada
       </div>
 
       <div

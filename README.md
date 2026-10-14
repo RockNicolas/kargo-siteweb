@@ -1,10 +1,10 @@
 # Kargo — Landing Page
 
-Landing page de marketing do Kargo (sistema de gestão de frota e obras), feita com **React 19 + TypeScript + Vite + Tailwind CSS 4**.
+Landing page de marketing do Kargo (sistema de gestão de ativos e obras), feita com **React 19 + TypeScript + Vite + Tailwind CSS 4**.
 
 ## O que é o Kargo
 
-O Kargo é um sistema de gestão de frota e obras: combustível, documentação veicular, manutenção e almoxarifado em um único painel, acessível de qualquer computador ou celular. A proposta é substituir a planilha, o papel e o controle manual — hoje o dono/gestor de uma empresa que tem veículo próprio e obra em andamento ao mesmo tempo lida com isso espalhado em planilhas soltas e ligações de um setor para o outro; o Kargo junta tudo num painel só, com histórico completo e alertas automáticos (documento perto de vencer, estoque baixo, manutenção atrasada).
+O Kargo é um sistema de gestão de ativos e obras: combustível, documentação veicular, manutenção e almoxarifado em um único painel, acessível de qualquer computador ou celular. A proposta é substituir a planilha, o papel e o controle manual — hoje o dono/gestor de uma empresa que tem veículo próprio e obra em andamento ao mesmo tempo lida com isso espalhado em planilhas soltas e ligações de um setor para o outro; o Kargo junta tudo num painel só, com histórico completo e alertas automáticos (documento perto de vencer, estoque baixo, manutenção atrasada).
 
 Módulos: veículos e equipamentos, documentação veicular (IPVA, licenciamento, CNH, multas), combustível, manutenção, almoxarifado por obra, relatórios e painéis, alertas/notificações, e segurança de acesso por perfil. Tem integração de mão dupla com o **Sienge**: o estoque de cada obra fica sincronizado nos dois sistemas, sem lançar a mesma movimentação duas vezes, e — o grande diferencial — manutenção, multa, IPVA e licenciamento **criam o título direto no Contas a Pagar do Sienge** (com conferência antes de enviar), enquanto a baixa dada pelo financeiro volta e marca tudo como pago.
 
