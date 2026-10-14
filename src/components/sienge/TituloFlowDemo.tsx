@@ -257,7 +257,7 @@ function PainelSienge({ ex, etapa }: { ex: TituloExemplo; etapa: number }) {
   return (
     <div className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-asphalt-200 bg-white text-asphalt-900 shadow-2xl shadow-black/40">
       <JanelaBarra claro>
-        <img src="/sienge-logo.svg" alt="Sienge" className="h-5 w-auto shrink-0" />
+        <img src="/sienge-logo-real.png" alt="Sienge" className="h-6 w-auto shrink-0" />
         <p className="min-w-0 flex-1 truncate text-xs font-semibold text-asphalt-500">· Contas a Pagar</p>
       </JanelaBarra>
 

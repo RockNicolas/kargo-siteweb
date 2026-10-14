@@ -1,4 +1,4 @@
-import { ArrowLeftRight, ShieldCheck, Sparkles } from 'lucide-react'
+import { ArrowLeftRight, ShieldCheck } from 'lucide-react'
 import { Container } from './ui/Container'
 import { Reveal } from './ui/Reveal'
 import { Logo } from './Logo'
@@ -36,20 +36,15 @@ export function SiengeTitulos() {
       <Container className="relative py-20 sm:py-28">
         <Reveal>
           <div className="mx-auto max-w-4xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-signal-500/40 bg-signal-500/10 px-3.5 py-1.5 font-mono text-[11px] font-medium uppercase tracking-widest text-signal-400">
-              <Sparkles className="h-3.5 w-3.5" aria-hidden />
-              Novo · Diferencial do Kargo
-            </span>
-
-            <div className="mt-7 flex items-center justify-center gap-4 sm:gap-5">
-              <Logo dark className="!h-8 sm:!h-9" />
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-signal-400">
-                <ArrowLeftRight className="h-4 w-4" aria-hidden />
+            <div className="flex items-center justify-center gap-5 sm:gap-8">
+              <Logo dark className="!h-11 sm:!h-16" />
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-signal-400 sm:h-14 sm:w-14">
+                <ArrowLeftRight className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
               </span>
-              <img src="/sienge-logo-white.png" alt="Sienge" className="h-7 w-auto sm:h-8" />
+              <img src="/sienge-logo-real-white.png" alt="Sienge" className="h-11 w-auto sm:h-16" />
             </div>
 
-            <h2 className="mt-7 font-display text-[clamp(2rem,4.8vw,3.6rem)] font-semibold leading-[1.08] tracking-tight">
+            <h2 className="mt-8 font-display text-[clamp(2rem,4.8vw,3.6rem)] font-semibold leading-[1.08] tracking-tight">
               Lançou no Kargo? O título já nasce{' '}
               <span className="text-signal-400">no Contas a Pagar do Sienge.</span>
             </h2>

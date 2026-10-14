@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, ChevronDown } from 'lucide-react'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 import { Reveal } from './ui/Reveal'
@@ -98,40 +98,6 @@ export function SiengeSpotlight() {
             <p className="mt-5 text-sm text-asphalt-500 dark:text-asphalt-400">
               Parcela paga só no Sienge é marcada; nunca desmarcada. Parcial ou em aberto continua em aberto.
             </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={60}>
-          <div className="relative mt-10 overflow-hidden rounded-3xl border border-asphalt-200 bg-concrete-50 dark:border-asphalt-800 dark:bg-asphalt-900/60">
-            <div className="h-1 bg-signal-500" aria-hidden />
-            <div className="flex flex-col items-center gap-8 px-6 py-10 text-center sm:px-10 md:flex-row md:gap-12 md:text-left lg:px-14 lg:py-12">
-              <div className="flex shrink-0 flex-col items-center gap-4 md:w-72">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-signal-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-signal-600 dark:text-signal-400">
-                  <BadgeCheck className="h-3.5 w-3.5" />
-                  Parceiro de integração
-                </span>
-                <img src="/sienge-logo.svg" alt="Sienge" className="h-14 w-auto dark:hidden" />
-                <img src="/sienge-logo-white.png" alt="Sienge" className="hidden h-12 w-auto dark:block" />
-              </div>
-
-              <div className="hidden h-24 w-px bg-asphalt-200 dark:bg-asphalt-800 md:block" aria-hidden />
-
-              <div className="min-w-0 flex-1">
-                <p className="font-display text-xl font-semibold text-asphalt-950 dark:text-white sm:text-2xl">
-                  Tudo o que o financeiro e o almoxarifado já fazem no Sienge, sem digitar de novo no Kargo.
-                </p>
-                <ul className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
-                  {['Estoque por obra', 'Localização dos ativos', 'Criação de títulos', 'Baixa conferida'].map((t) => (
-                    <li
-                      key={t}
-                      className="rounded-full border border-asphalt-200 bg-white px-3 py-1 text-xs font-medium text-asphalt-700 dark:border-asphalt-700 dark:bg-black dark:text-asphalt-200"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           </div>
         </Reveal>
       </Container>
